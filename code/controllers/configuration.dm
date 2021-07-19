@@ -125,6 +125,7 @@ var/list/gamemode_cache = list()
 	var/static/wikisearchurl
 	var/static/forumurl
 	var/static/githuburl
+	var/static/discordurl
 	var/static/rulesurl
 	var/static/mapurl
 
@@ -286,9 +287,16 @@ var/list/gamemode_cache = list()
 
 	// whether or not to use the nightshift subsystem to perform lighting changes
 	var/static/enable_night_shifts = FALSE
+
+	// How strictly the loadout enforces object species whitelists
+	var/loadout_whitelist = LOADOUT_WHITELIST_LAX
 	
 	var/static/vgs_access_identifier = null	// VOREStation Edit - VGS
 	var/static/vgs_server_port = null	// VOREStation Edit - VGS
+
+	var/disable_webhook_embeds = FALSE
+
+	var/static/list/jukebox_track_files
 
 /datum/configuration/New()
 	var/list/L = typesof(/datum/game_mode) - /datum/game_mode
@@ -540,6 +548,10 @@ var/list/gamemode_cache = list()
 
 				if ("githuburl")
 					config.githuburl = value
+
+				if ("discordurl")
+					config.discordurl = value
+
 				if ("guest_jobban")
 					config.guest_jobban = 1
 
@@ -938,6 +950,9 @@ var/list/gamemode_cache = list()
 
 				if("enable_night_shifts")
 					config.enable_night_shifts = TRUE
+
+				if("jukebox_track_files")
+					config.jukebox_track_files = splittext(value, ";")
 				
 				// VOREStation Edit Start - Can't be in _vr file because it is loaded too late.
 				if("vgs_access_identifier")
@@ -1011,6 +1026,9 @@ var/list/gamemode_cache = list()
 
 				if("use_loyalty_implants")
 					config.use_loyalty_implants = 1
+
+				if("loadout_whitelist")
+					config.loadout_whitelist = text2num(value)
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

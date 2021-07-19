@@ -1,8 +1,3 @@
-//used for pref.alternate_option
-#define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
-#define RETURN_TO_LOBBY 2
-
 /datum/category_item/player_setup_item/occupation
 	name = "Occupation"
 	sort_order = 1
@@ -238,7 +233,7 @@
 		var/datum/job/job = locate(href_list["select_alt_title"])
 		if (job)
 			var/choices = list(job.title) + job.alt_titles
-			var/choice = input("Choose a title for [job.title].", "Choose Title", pref.GetPlayerAltTitle(job)) as anything in choices|null
+			var/choice = tgui_input_list(usr, "Choose a title for [job.title].", "Choose Title", choices, pref.GetPlayerAltTitle(job))
 			if(choice && CanUseTopic(user))
 				SetPlayerAltTitle(job, choice)
 				return (pref.equip_preview_mob ? TOPIC_REFRESH_UPDATE_PREVIEW : TOPIC_REFRESH)
@@ -361,7 +356,7 @@
 					pref.job_engsec_med |= job.flag
 				if(3)
 					pref.job_engsec_low |= job.flag
-		/*/VOREStation Add //YW COMMENT OUT
+		//VOREStation Add
 		if(TALON)
 			pref.job_talon_low &= ~job.flag
 			pref.job_talon_med &= ~job.flag
@@ -374,7 +369,7 @@
 					pref.job_talon_med |= job.flag
 				if(3)
 					pref.job_talon_low |= job.flag
-		VOREStation Add End*/
+		//VOREStation Add End
 
 	return 1
 
@@ -429,4 +424,14 @@
 					return job_engsec_med
 				if(3)
 					return job_engsec_low
+		//VOREStation Add
+		if(TALON)
+			switch(level)
+				if(1)
+					return job_talon_high
+				if(2)
+					return job_talon_med
+				if(3)
+					return job_talon_low
+		//VOREStation Add End
 	return 0

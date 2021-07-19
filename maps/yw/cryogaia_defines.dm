@@ -12,23 +12,22 @@
 #define Z_LEVEL_ROGUEMINE_1				11
 #define Z_LEVEL_ROGUEMINE_2				12
 #define Z_LEVEL_OFFMAP1					13
-#define Z_LEVEL_OFFMAP2					14
-#define Z_LEVEL_PLAINS					15
-#define Z_LEVEL_UNDERDARK				16
-#define Z_LEVEL_BEACH					17
-#define Z_LEVEL_BEACH_CAVE				18
-#define Z_LEVEL_AEROSTAT				19
-#define Z_LEVEL_AEROSTAT_SURFACE		20
-#define Z_LEVEL_DEBRISFIELD				21
-#define Z_LEVEL_GUTTERSITE				22
-#define Z_LEVEL_FUELDEPOT				23
-#define Z_LEVEL_GATEWAY					24
+#define Z_LEVEL_PLAINS					14
+#define Z_LEVEL_UNDERDARK				15
+#define Z_LEVEL_BEACH					16
+#define Z_LEVEL_BEACH_CAVE				17
+#define Z_LEVEL_AEROSTAT				18
+#define Z_LEVEL_AEROSTAT_SURFACE		19
+#define Z_LEVEL_DEBRISFIELD				20
+#define Z_LEVEL_GUTTERSITE				20
+#define Z_LEVEL_FUELDEPOT				22
+#define Z_LEVEL_GATEWAY					23
 
 //Camera networks
 #define NETWORK_CRYOGAIA "Cryogaia"
-#define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
-#define NETWORK_OUTSIDE "Outside"
-#define NETWORK_EXPLORATION "Exploration"
+// Defined in another file #define NETWORK_TCOMMS "Telecommunications" //Using different from Polaris one for better name
+// defined in another file #define NETWORK_OUTSIDE "Outside"
+// defined in another file #define NETWORK_EXPLORATION "Exploration"
 #define NETWORK_XENOBIO "Xenobiology"
 
 /datum/map/cryogaia
@@ -186,7 +185,7 @@
 	lateload_z_levels = list(
 		//list("Alien Ship - Z1 Ship"),
 		list("Asteroid Belt 1","Asteroid Belt 2"),
-		list("Offmap Ship - Talon Z1","Offmap Ship - Talon Z2"),
+		list("Offmap Ship - Talon V2"),
 		list("Snow plains"),
 		list("Cryogaia - Underdark"),
 		list("Desert Planet - Z1 Beach","Desert Planet - Z2 Cave"),
@@ -334,7 +333,7 @@
 /datum/map_z_level/cryogaia/mining
 	z = Z_LEVEL_CRYOGAIA_MINE
 	name = "Subterranian depths"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/floor/indoorrocks
 	holomap_legend_x = 220
 	holomap_legend_y = 160
@@ -350,7 +349,7 @@
 /datum/map_z_level/cryogaia/lower
 	name = "Subfloor"
 	z = Z_LEVEL_CRYOGAIA_LOWER
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open // /turf/simulated/floor/outdoors/rocks/cryogaia
 	holomap_legend_x = 220
 	holomap_legend_y = 160
@@ -360,7 +359,7 @@
 /datum/map_z_level/cryogaia/main
 	z = Z_LEVEL_CRYOGAIA_MAIN
 	name = "Surface level"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open
 	holomap_legend_x = 220
 	holomap_legend_y = 160
@@ -370,7 +369,7 @@
 /datum/map_z_level/cryogaia/upper
 	z = Z_LEVEL_CRYOGAIA_UPPER
 	name = "Upper level"
-	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED
+	flags = MAP_LEVEL_STATION|MAP_LEVEL_CONTACT|MAP_LEVEL_PLAYER|MAP_LEVEL_CONSOLES|MAP_LEVEL_SEALED|MAP_LEVEL_PERSIST
 	base_turf = /turf/simulated/open
 	holomap_legend_x = 220
 	holomap_legend_y = 160

@@ -4,12 +4,22 @@
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
 	set category = "IC"
+	//VOREStation Addition Start
+	if(forced_psay)
+		psay(message)
+		return
+	//VOREStation Addition End
 
 	usr.say(message,whispering=1)
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
+	//VOREStation Addition Start
+	if(forced_psay)
+		psay(message)
+		return
+	//VOREStation Addition End
 
 	set_typing_indicator(FALSE)
 	usr.say(message)
@@ -19,11 +29,18 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<font color='red'>Speech is currently admin-disabled.</font>")
+		to_chat(usr, span_red("Speech is currently admin-disabled."))
 		return
+	//VOREStation Addition Start
+	if(forced_psay)
+		pme(message)
+		return
+	//VOREStation Addition End
 
 	//VOREStation Edit Start
 	if(muffled)
+		return me_verb_subtle(message)
+	if(autowhisper)
 		return me_verb_subtle(message)
 	message = sanitize_or_reflect(message,src) //VOREStation Edit - Reflect too-long messages (within reason)
 	//VOREStation Edit End
@@ -62,6 +79,15 @@
 	//Universal speak makes everything understandable, for obvious reasons.
 	else if(universal_speak || universal_understand)
 		return TRUE
+
+	//VOREStation Addition Start
+	if(isliving(src))
+		var/mob/living/L = src
+		if(isbelly(L.loc) && L.absorbed)
+			var/mob/living/P = L.loc.loc
+			if(P.say_understands(other, speaking))
+				return TRUE
+	//VOREStation Addition End
 
 	//Languages are handled after.
 	if(!speaking)
@@ -104,11 +130,6 @@
 		else if(ending == "?")
 			verb = "asks"
 	return verb
-
-
-/mob/proc/emote(var/act, var/type, var/message)
-	if(act == "me")
-		return custom_emote(type, message)
 
 /mob/proc/get_ear()
 	// returns an atom representing a location on the map from which this
@@ -161,6 +182,8 @@
 			// Okay, we're definitely now trying to invoke a language (probably)
 			// This "[]" is probably unnecessary but BYOND will runtime if a number is used
 			var/datum/language/L = GLOB.language_keys["[language_key]"]
+			if((language_key in language_keys) && language_keys[language_key])
+				L = language_keys[language_key]
 
 			// MULTILINGUAL_SPACE enforces a space after the language key
 			if(client && (client.prefs.multilingual_mode == MULTILINGUAL_SPACE) && (text2ascii(copytext(selection, 3, 4)) != 32)) // If we're looking for a space and we don't find one
@@ -230,7 +253,7 @@
 
 		// There are a few things that will make us want to ignore all other languages in - namely, HIVEMIND languages.
 		var/datum/language/L = current[1]
-		if(L && (L.flags & HIVEMIND || L.flags & SIGNLANG))
+		if(L && (L.flags & HIVEMIND || L.flags & SIGNLANG || L.flags & INAUDIBLE))
 			return new /datum/multilingual_say_piece(L, trim(sanitize(strip_prefixes(message))))
 
 		if(i + 1 > length(prefix_locations)) // We are out of lookaheads, that means the rest of the message is in cur lang

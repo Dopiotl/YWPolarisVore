@@ -39,7 +39,7 @@
 	desc = "A trolly designed to transport security personnel or prisoners."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "paddy_trailer"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 1
 	locked = 0
 
@@ -64,7 +64,7 @@
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
-	overlays += I
+	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 
 /obj/vehicle/train/security/engine/Move(var/turf/destination)
@@ -175,7 +175,7 @@
 
 /obj/vehicle/train/security/trolley/RunOver(var/mob/living/M)
 	..()
-	attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey])</font>")
+	attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
 /obj/vehicle/train/security/engine/RunOver(var/mob/living/M)
 	..()
@@ -185,9 +185,9 @@
 		to_chat(D, "<span class='danger'>You ran over \the [M]!</span>")
 		visible_message("<span class='danger'>\The [src] ran over \the [M]!</span>")
 		add_attack_logs(D,M,"Ran over with [src.name]")
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey]), driven by [D.name] ([D.ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey]), driven by [D.name] ([D.ckey])")]")
 	else
-		attack_log += text("\[[time_stamp()]\] <font color='red'>ran over [M.name] ([M.ckey])</font>")
+		attack_log += text("\[[time_stamp()]\] [span_red("ran over [M.name] ([M.ckey])")]")
 
 
 //-------------------------------------------
@@ -200,7 +200,7 @@
 	if(is_train_head())
 		if(direction == reverse_direction(dir) && tow)
 			return 0
-		if(Move(get_step(src, direction)))
+		if(vehicle_move(get_step(src, direction))) // YW Edit - pr #1294
 			return 1
 		return 0
 	else
@@ -319,7 +319,7 @@
 		C.pixel_y += load_offset_y
 		C.layer = layer
 
-		overlays += C
+		add_overlay(C)
 
 		//we can set these back now since we have already cloned the icon into the overlay
 		C.pixel_x = initial(C.pixel_x)
@@ -332,7 +332,7 @@
 		load = dummy_load.actual_load
 		dummy_load.actual_load = null
 		qdel(dummy_load)
-		overlays.Cut()
+		cut_overlays()
 	..()
 
 //-------------------------------------------
@@ -384,6 +384,6 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE

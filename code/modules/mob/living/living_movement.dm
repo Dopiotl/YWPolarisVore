@@ -3,6 +3,9 @@
 		var/mob/moving_mob = mover
 		if ((other_mobs && moving_mob.other_mobs))
 			return TRUE
+		if(is_shifted && (abs(pixel_x) >= 8 || abs(pixel_y) >= 8))
+			// they're wallflowering, let 'em through
+			return TRUE
 	if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
 		return !P.can_hit_target(src, P.permutated, src == P.original, TRUE)
@@ -197,7 +200,15 @@ default behaviour is:
 				now_pushing = 0
 				return
 
-		step(AM, t)
+		var/turf/T = AM.loc
+		var/turf/T2 = get_step(AM,t)
+		if(!T2) // Map edge
+			now_pushing = 0
+			return
+		var/move_time = movement_delay(loc, t)
+		move_time = DS2NEARESTTICK(move_time)
+		if(AM.Move(T2, t, move_time))
+			Move(T, t, move_time)
 
 		if(ishuman(AM) && AM:grabbed_by)
 			for(var/obj/item/weapon/grab/G in AM:grabbed_by)
@@ -265,6 +276,8 @@ default behaviour is:
 		is_shifted = FALSE
 		pixel_x = default_pixel_x
 		pixel_y = default_pixel_y
+		layer = initial(layer)
+		plane = initial(plane)
 	// End VOREstation edit
 
 	if(pulling) // we were pulling a thing and didn't lose it during our move.
@@ -283,9 +296,10 @@ default behaviour is:
 				var/mob/living/M = pulling
 				M.dragged(src, oldloc)
 
-			pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
-			if(pulling && get_dist(src, pulling) > 1) // the pullee couldn't keep up
-				stop_pulling()
+			if(pulling)								// Check it AGAIN after previous steps just in case
+				pulling.Move(oldloc, 0, movetime) // the pullee tries to reach our previous position
+				if(get_dist(src, pulling) > 1) // the pullee couldn't keep up
+					stop_pulling()
 
 	if(!isturf(loc))
 		return

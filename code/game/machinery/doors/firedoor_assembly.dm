@@ -1,15 +1,15 @@
-obj/structure/firedoor_assembly
+/obj/structure/firedoor_assembly
 	name = "\improper emergency shutter assembly"
 	desc = "It can save lives."
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_construction"
-	anchored = 0
+	anchored = FALSE
 	opacity = 0
-	density = 1
+	density = TRUE
 	var/wired = 0
 	var/glass = FALSE
 
-obj/structure/firedoor_assembly/update_icon()
+/obj/structure/firedoor_assembly/update_icon()
 	if(glass)
 		icon = 'icons/obj/doors/DoorHazardGlass.dmi'
 	else
@@ -19,7 +19,7 @@ obj/structure/firedoor_assembly/update_icon()
 	else
 		icon_state = "door_construction"
 
-obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
+/obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 	if(istype(C, /obj/item/stack/cable_coil) && !wired && anchored)
 		var/obj/item/stack/cable_coil/cable = C
 		if (cable.get_amount() < 1)
@@ -31,7 +31,7 @@ obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 				wired = 1
 				to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 
-	else if(C.is_wirecutter() && wired )
+	else if(C.has_tool_quality(TOOL_WIRECUTTER) && wired )
 		playsound(src, C.usesound, 100, 1)
 		user.visible_message("[user] cuts the wires from \the [src].", "You start to cut the wires from \the [src].")
 
@@ -54,14 +54,14 @@ obj/structure/firedoor_assembly/attackby(obj/item/C, mob/user as mob)
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You must secure \the [src] first!</span>")
-	else if(C.is_wrench())
+	else if(C.has_tool_quality(TOOL_WRENCH))
 		anchored = !anchored
 		playsound(src, C.usesound, 50, 1)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "" : "un" ]secured \the [src]!</span>",
 							  "You have [anchored ? "" : "un" ]secured \the [src]!")
 		update_icon()
-	else if((glass || !anchored) && istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	else if((glass || !anchored) && C.has_tool_quality(TOOL_WELDER))
+		var/obj/item/weapon/weldingtool/WT = C.get_welder()
 		if(WT.remove_fuel(0, user))
 			playsound(src, WT.usesound, 50, 1)
 			if(glass)

@@ -14,8 +14,8 @@
 	desc = "A large cabinet with drawers."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "filingcabinet"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 /obj/structure/filingcabinet/chestdrawer
 	name = "chest drawer"
@@ -38,11 +38,11 @@
 		P.loc = src
 		open_animation()
 		SStgui.update_uis(src)
-	else if(P.is_wrench())
+	else if(P.has_tool_quality(TOOL_WRENCH))
 		playsound(src, P.usesound, 50, 1)
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
-	else if(P.is_screwdriver())
+	else if(P.has_tool_quality(TOOL_SCREWDRIVER))
 		to_chat(user, "<span class='notice'>You begin taking the [name] apart.</span>")
 		playsound(src, P.usesound, 50, 1)
 		if(do_after(user, 10 * P.toolspeed))
@@ -90,16 +90,14 @@
 		ui.open()
 
 /obj/structure/filingcabinet/tgui_data(mob/user)
-	var/list/data = list()
-
-	data["contents"] = list()
+	var/list/files = list()
 	for(var/obj/item/P in src)
-		data["contents"].Add(list(list(
+		files.Add(list(list(
 			"name" = P.name,
 			"ref" = "\ref[P]",
 		)))
 
-	return data
+	return list("contents" = files)
 
 /obj/structure/filingcabinet/tgui_act(action, params)
 	if(..())
@@ -146,7 +144,6 @@
 			P.name = "Security Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/security/attack_hand()
 	populate()
@@ -184,7 +181,6 @@
 				P.name = "Medical Record ([G.fields["name"]])"
 			virgin = 0	//tabbing here is correct- it's possible for people to try and use it
 						//before the records have been generated, so we do this inside the loop.
-	..()
 
 /obj/structure/filingcabinet/medical/attack_hand()
 	populate()

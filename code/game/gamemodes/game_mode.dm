@@ -59,23 +59,23 @@ var/global/list/additional_antag_types = list()
 		var/choice = ""
 		switch(href_list["set"])
 			if("shuttle_delay")
-				choice = input("Enter a new shuttle delay multiplier") as num
+				choice = tgui_input_number(usr, "Enter a new shuttle delay multiplier", null, null, 20, 1)
 				if(!choice || choice < 1 || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
-				choice = input("Enter a new antagonist cap scaling coefficient.") as num
+				choice = tgui_input_number(usr, "Enter a new antagonist cap scaling coefficient.", null, null, 100, 0)
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
 			if("event_modifier_moderate")
-				choice = input("Enter a new moderate event time modifier.") as num
+				choice = tgui_input_number(usr, "Enter a new moderate event time modifier.", null, null, 100, 0)
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_moderate = choice
 				refresh_event_modifiers()
 			if("event_modifier_severe")
-				choice = input("Enter a new moderate event time modifier.") as num
+				choice = tgui_input_number(usr, "Enter a new moderate event time modifier.", null, null, 100, 0)
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_major = choice
@@ -99,7 +99,7 @@ var/global/list/additional_antag_types = list()
 			additional_antag_types -= antag.id
 			message_admins("Admin [key_name_admin(usr)] removed [antag.role_text] template from game mode.")
 	else if(href_list["add_antag_type"])
-		var/choice = input("Which type do you wish to add?") as null|anything in all_antag_types
+		var/choice = tgui_input_list(usr, "Which type do you wish to add?", "Select Antag Type", all_antag_types)
 		if(!choice)
 			return
 		var/datum/antagonist/antag = all_antag_types[choice]
@@ -368,6 +368,15 @@ var/global/list/additional_antag_types = list()
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	SSwebhooks.send(
+		WEBHOOK_ROUNDEND,
+		list(
+			"survivors" = surviving_total,
+			"escaped" = escaped_total,
+			"ghosts" = ghosts,
+			"clients" = clients
+		)
+	)
 
 	return 0
 
@@ -460,7 +469,7 @@ var/global/list/additional_antag_types = list()
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-proc/display_roundstart_logout_report()
+/proc/display_roundstart_logout_report()
 	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
 	for(var/mob/living/L in mob_list)
 
@@ -471,15 +480,15 @@ proc/display_roundstart_logout_report()
 					found = 1
 					break
 			if(!found)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Disconnected</b></font>)\n"
+				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_yellow("<b>Disconnected</b>")])\n"
 
 		if(L.ckey && L.client)
 			if(L.client.inactivity >= (ROUNDSTART_LOGOUT_REPORT_TIME / 2))	//Connected, but inactive (alt+tabbed or something)
-				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='#ffcc00'><b>Connected, Inactive</b></font>)\n"
+				msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_yellow("<b>Connected, Inactive</b>")])\n"
 				continue //AFK client
 			if(L.stat)
 				if(L.suiciding)	//Suicider
-					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
+					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] ([span_red("<b>Suicide</b>")])\n"
 					continue //Disconnected client
 				if(L.stat == UNCONSCIOUS)
 					msg += "<b>[L.name]</b> ([L.ckey]), the [L.job] (Dying)\n"
@@ -493,17 +502,17 @@ proc/display_roundstart_logout_report()
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Suicide</b></font>)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Suicide</b>")])\n"
 						continue //Disconnected client
 					else
 						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (Dead)\n"
 						continue //Dead mob, ghost abandoned
 				else
 					if(D.can_reenter_corpse)
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Adminghosted</b></font>)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Adminghosted</b>")])\n"
 						continue //Lolwhat
 					else
-						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] (<font color='red'><b>Ghosted</b></font>)\n"
+						msg += "<b>[L.name]</b> ([ckey(D.mind.key)]), the [L.job] ([span_red("<b>Ghosted</b>")])\n"
 						continue //Ghosted while alive
 
 	msg += "</span>" // close the span from right at the top
@@ -512,7 +521,7 @@ proc/display_roundstart_logout_report()
 		if(M.client && M.client.holder)
 			to_chat(M,msg)
 
-proc/get_nt_opposed()
+/proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)

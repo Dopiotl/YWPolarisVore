@@ -112,14 +112,13 @@
 				web_master.process_autopath()
 
 /datum/shuttle/autodock/web_shuttle/proc/update_helmets()
-	for(var/helm in helmets)
-		var/obj/item/clothing/head/pilot/H = helm
+	for(var/obj/item/clothing/head/pilot/H as anything in helmets)
 		if(QDELETED(H))
 			helmets -= H
 			continue
 		if(!H.shuttle_comp || !(get_area(H) in shuttle_area))
 			H.shuttle_comp = null
-			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>")
+			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>", runemessage = "ping")
 			H.update_hud("discon")
 			helmets -= H
 		else
@@ -150,7 +149,7 @@
 	if(!can_rename)
 		to_chat(user, "<span class='warning'>You can't rename this vessel.</span>")
 		return
-	var/new_name = input(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name) as null|text
+	var/new_name = tgui_input_text(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name)
 	var/sanitized_name = sanitizeName(new_name, MAX_NAME_LEN, TRUE)
 	if(sanitized_name)
 		//can_rename = FALSE //VOREStation Removal
@@ -209,7 +208,7 @@
 
 /obj/machinery/computer/shuttle_control/web/tgui_data(mob/user)
 	var/list/data = list()
-	
+
 	var/list/routes[0]
 	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(!istype(shuttle))
@@ -301,7 +300,7 @@
 		return
 
 	if(WS.moving_status != SHUTTLE_IDLE)
-		to_chat(usr, "<font color='blue'>[WS.visible_name] is busy moving.</font>")
+		to_chat(usr, span_blue("[WS.visible_name] is busy moving."))
 		return
 
 	switch(action)
@@ -338,7 +337,7 @@
 				return
 
 			if((WS.last_move + WS.cooldown) > world.time)
-				to_chat(usr, "<font color='red'>The ship's drive is inoperable while the engines are charging.</font>")
+				to_chat(usr, span_red("The ship's drive is inoperable while the engines are charging."))
 				return
 
 			var/index = text2num(params["traverse"])
@@ -375,11 +374,11 @@
 	if(MS.skip_docking_checks() || MS.check_undocked())
 		return 1
 
-	var/choice = alert("The shuttle is currently docked! Please undock before continuing.","Error","Cancel","Force Launch")
+	var/choice = tgui_alert(usr, "The shuttle is currently docked! Please undock before continuing.","Error",list("Cancel","Force Launch"))
 	if(choice == "Cancel")
 		return 0
 
-	choice = alert("Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", "Force Launch", "Cancel")
+	choice = tgui_alert(usr, "Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", list("Force Launch", "Cancel"))
 	if(choice == "Cancel")
 		return 0
 
@@ -410,10 +409,10 @@
 
 /obj/shuttle_connector/Initialize()
 	. = ..()
-	GLOB.shuttle_added.register_global(src, .proc/setup_routes)
+	GLOB.shuttle_added.register_global(src, PROC_REF(setup_routes))
 
 /obj/shuttle_connector/Destroy()
-	GLOB.shuttle_added.unregister_global(src, .proc/setup_routes)
+	GLOB.shuttle_added.unregister_global(src, PROC_REF(setup_routes))
 	. = ..()
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!

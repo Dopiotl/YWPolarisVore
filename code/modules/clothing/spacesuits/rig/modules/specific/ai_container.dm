@@ -35,7 +35,7 @@
 	interface_desc = "A socket that supports a range of artificial intelligence systems."
 
 	var/mob/integrated_ai // Direct reference to the actual mob held in the suit.
-	var/obj/item/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
+	var/obj/item/device/aicard/ai_card  // Reference to the MMI, posibrain, intellicard or pAI card previously holding the AI.
 	var/obj/item/ai_verbs/verb_holder
 
 /obj/item/rig_module/ai_container/process()
@@ -200,8 +200,8 @@
 				user.drop_from_inventory(ai)
 				ai.forceMove(src)
 				ai_card = ai
-				to_chat(ai_mob, "<font color='blue'>You have been transferred to \the [holder]'s [src].</font>")
-				to_chat(user, "<font color='blue'>You load [ai_mob] into \the [holder]'s [src].</font>")
+				to_chat(ai_mob, span_blue("You have been transferred to \the [holder]'s [src]."))
+				to_chat(user, span_blue("You load [ai_mob] into \the [holder]'s [src]."))
 
 			integrated_ai = ai_mob
 

@@ -13,6 +13,8 @@
 	var/det_time = 50
 	var/loadable = TRUE
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
+	var/hud_state = "grenade_he" // TGMC Ammo HUD Port
+	var/hud_state_empty = "grenade_empty" // TGMC Ammo HUD Port
 
 /obj/item/weapon/grenade/proc/clown_check(var/mob/living/user)
 	if((CLUMSY in user.mutations) && prob(50))
@@ -90,7 +92,7 @@
 
 
 /obj/item/weapon/grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		switch(det_time)
 			if (1)
 				det_time = 10
@@ -112,3 +114,6 @@
 	walk(src, null, null)
 	..()
 	return
+
+/obj/item/weapon/grenade/vendor_action(var/obj/machinery/vending/V)
+	activate(V)

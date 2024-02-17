@@ -31,9 +31,9 @@
 	maxHealth = 125
 	health = 125
 	minbodytemp = 175 //yw edit, Makes mobs survive cryogaia temps
-	movement_cooldown = 0.5 SECONDS
-	heat_resist = -0.50
-	cold_resist = 0.75
+	movement_cooldown = -1
+	heat_resist = -0.50 //yw edit, Makes mobs survive cryogaia temps
+	cold_resist = 0.75 //yw edit, Makes mobs survive cryogaia temps
 	melee_damage_lower = 15
 	melee_damage_upper = 35
 	attack_armor_pen = 15
@@ -42,12 +42,14 @@
 	melee_attack_delay = 1 SECOND
 	attacktext = list("mauled")
 
+	organ_names = /decl/mob_organ_names/savik
+
 	player_msg = "You have the ability to <b>berserk at will</b>, which will grant strong physical bonuses for \
 	a short period of time, however it will tire you and you will be much weaker for awhile after it expires."
 
 	tame_items = list(
 	/obj/item/organ = 70,
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 30,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 30,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
 	)
 
@@ -80,3 +82,6 @@
 	set category = "Abilities"
 
 	add_modifier(/datum/modifier/berserk, 30 SECONDS)
+
+/decl/mob_organ_names/savik
+	hit_zones = list("head", "torso", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "right bone plate", "left bone plate", "tail", "left claw", "right claw")

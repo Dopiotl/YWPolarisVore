@@ -33,15 +33,13 @@
 		ui.open()
 
 /obj/machinery/computer/area_atmos/tgui_data(mob/user)
-	var/list/data = list()
-	
-	data["scrubbers"] = list()
+	var/list/working = list()
 	for(var/id in connectedscrubbers)
 		var/obj/machinery/portable_atmospherics/powered/scrubber/huge/scrubber = connectedscrubbers[id]
 		if(!validscrubber(scrubber))
 			connectedscrubbers -= scrubber
 			continue
-		data["scrubbers"].Add(list(list(
+		working.Add(list(list(
 			"id" = id,
 			"name" = scrubber.name,
 			"on" = scrubber.on,
@@ -51,12 +49,12 @@
 			"area" = get_area(scrubber),
 		)))
 
-	return data
+	return list("scrubbers" = working)
 
 /obj/machinery/computer/area_atmos/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("toggle")
 			var/scrub_id = params["id"]
@@ -68,10 +66,10 @@
 			S.update_icon()
 			. = TRUE
 		if("allon")
-			INVOKE_ASYNC(src, .proc/toggle_all, TRUE)
+			INVOKE_ASYNC(src, PROC_REF(toggle_all), TRUE)
 			. = TRUE
 		if("alloff")
-			INVOKE_ASYNC(src, .proc/toggle_all, FALSE)
+			INVOKE_ASYNC(src, PROC_REF(toggle_all), FALSE)
 			. = TRUE
 		if("scan")
 			scanscrubbers()
@@ -80,7 +78,7 @@
 	add_fingerprint(usr)
 
 /obj/machinery/computer/area_atmos/proc/toggle_all(on)
-	for(var/id in connectedscrubbers)	
+	for(var/id in connectedscrubbers)
 		var/obj/machinery/portable_atmospherics/powered/scrubber/huge/S = connectedscrubbers["[id]"]
 		if(!validscrubber(S))
 			connectedscrubbers -= S

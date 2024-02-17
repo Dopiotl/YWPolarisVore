@@ -16,6 +16,18 @@
 	item_cost = 2
 	path = /obj/item/device/suit_cooling_unit/emergency
 
+/datum/uplink_item/item/tools/beacon_op
+	name = "Holomap Beacon-M"
+	item_cost = 2
+	path = /obj/item/device/holomap_beacon/operative
+	antag_roles = list("mercenary")
+
+/datum/uplink_item/item/tools/beacon_ert
+	name = "Holomap Beacon-E"
+	item_cost = 2
+	path = /obj/item/device/holomap_beacon/ert
+	antag_roles = list("ert")
+
 /datum/uplink_item/item/tools/basiclaptop
 	name = "Laptop (Basic)"
 	item_cost = 5
@@ -61,6 +73,21 @@
 	item_cost = 15
 	path = /obj/fiftyspawner/glass
 
+/datum/uplink_item/item/tools/smallpouch
+	name = "Small Pouch"
+	item_cost = 5
+	path = /obj/item/weapon/storage/pouch/small
+
+/datum/uplink_item/item/tools/normalpouch
+	name = "Standard Pouch"
+	item_cost = 10
+	path = /obj/item/weapon/storage/pouch
+
+/datum/uplink_item/item/tools/largepouch
+	name = "Large Pouch"
+	item_cost = 15
+	path = /obj/item/weapon/storage/pouch/large
+
 /datum/uplink_item/item/tools/elitelaptop
 	name = "Laptop (Advanced)"
 	item_cost = 20
@@ -70,6 +97,18 @@
 	name = "Inducer"
 	item_cost = 20
 	path = /obj/item/weapon/inducer/syndicate
+
+/datum/uplink_item/item/tools/mappingunit_op
+	name = "Mapping Unit-M"
+	item_cost = 20
+	path = /obj/item/device/mapping_unit/operative
+	antag_roles = list("mercenary")
+
+/datum/uplink_item/item/tools/mappingunit_ert
+	name = "Mapping Unit-E"
+	item_cost = 20
+	path = /obj/item/device/mapping_unit/ert
+	antag_roles = list("ert")
 
 /datum/uplink_item/item/tools/luxurycapsule
 	name = "Survival Capsule (Luxury)"
@@ -90,3 +129,18 @@
 	name = "Survival Capsule (Bar)"
 	item_cost = 80
 	path = /obj/item/device/survivalcapsule/luxurybar
+
+/datum/uplink_item/item/tools/capturecrystal
+	name = "Capture Crystal"
+	item_cost = 30
+	path = /obj/item/capture_crystal/basic
+
+/datum/uplink_item/item/tools/capturecrystal/great
+	name = "Capture Crystal (Great)"
+	item_cost = 40
+	path = /obj/item/capture_crystal/great
+
+/datum/uplink_item/item/tools/capturecrystal/ultra
+	name = "Capture Crystal (Ultra)"
+	item_cost = 50
+	path = /obj/item/capture_crystal/ultra

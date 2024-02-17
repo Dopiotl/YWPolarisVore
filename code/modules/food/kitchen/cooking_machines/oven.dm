@@ -110,7 +110,7 @@
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
 	// check if someone's trying to manipulate the machine
 
-	if(I.is_crowbar() || I.is_screwdriver() || istype(I, /obj/item/weapon/storage/part_replacer))
+	if(I.has_tool_quality(TOOL_CROWBAR) || I.has_tool_quality(TOOL_SCREWDRIVER) || istype(I, /obj/item/weapon/storage/part_replacer))
 		return TRUE
 	else
 		return FALSE
@@ -148,7 +148,7 @@
 /obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
 	if(CI.combine_target)
 		CI.result_type = 3//Combination type. We're making something out of our ingredients
-		visible_message("<span class='notice'>\The [src] pings!</span>")
+		visible_message("<b>\The [src]</b> pings!")
 		combination_cook(CI)
 		return
 	else

@@ -256,7 +256,7 @@
 			/obj/item/weapon/shield/riot = 3,
 			/obj/item/weapon/handcuffs = 3,
 			/obj/item/weapon/storage/box/flashbangs,
-			/obj/item/weapon/storage/box/beanbags,
+			/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 			/obj/item/weapon/storage/box/handcuffs
 			)
 	cost = 40
@@ -287,6 +287,16 @@
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot armor crate"
 	access = access_armory
+/*
+/datum/supply_pack/security/riot_sprayer
+	name = "Gear - Riot sprayer"
+	contains = list(
+			/obj/item/weapon/watertank/pepperspray
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure/lawson
+	containername = "Riot sprayer crate"
+	access = access_armory*/
 
 /datum/supply_pack/security/ablative_armor
 	name = "Armor - Ablative"
@@ -421,7 +431,8 @@
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/armpit,
 			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip
+			/obj/item/clothing/accessory/holster/hip,
+			/obj/item/clothing/accessory/holster/leg
 			)
 	cost = 15
 	containertype = /obj/structure/closet/crate/hedberg
@@ -433,7 +444,8 @@
 			/obj/item/weapon/storage/belt/security = 3,
 			/obj/item/clothing/glasses/sunglasses/sechud = 3,
 			/obj/item/device/radio/headset/headset_sec/alt = 3,
-			/obj/item/clothing/suit/storage/hooded/wintercoat/security = 3
+			/obj/item/clothing/suit/storage/hooded/wintercoat/security = 3,
+			/obj/item/clothing/glasses/sunglasses/sechud/tactical_sec_vis = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/nanothreads
@@ -667,9 +679,9 @@
 /datum/supply_pack/security/posters
 	name = "Gear - Morale Posters"
 	contains = list(
-			/obj/item/weapon/contraband/poster/nanotrasen = 6
+			/obj/item/poster/nanotrasen = 6
 			)
-	cost = 20
+	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Morale Posters"
 	access = access_maint_tunnels

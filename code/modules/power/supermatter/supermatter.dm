@@ -1,4 +1,3 @@
-
 #define NITROGEN_RETARDATION_FACTOR 0.15	//Higher == N2 slows reaction more
 #define THERMAL_RELEASE_MODIFIER 10000		//Higher == more heat released during reaction
 #define PHORON_RELEASE_MODIFIER 1500		//Higher == less phoron released by reaction
@@ -48,11 +47,14 @@
 
 /obj/machinery/power/supermatter
 	name = "Supermatter"
-	desc = "A strangely translucent and iridescent crystal. <font color='red'>You get headaches just from looking at it.</font>"
-	icon = 'icons/obj/engine.dmi'
+	desc = "A strangely translucent and iridescent crystal. <span class='red'>You get headaches just from looking at it.</span>"
+	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter"
-	density = 1
-	anchored = 0
+	plane = MOB_PLANE // So people can walk behind the top part
+	layer = ABOVE_MOB_LAYER // So people can walk behind the top part
+	density = TRUE
+	anchored = FALSE
+	unacidable = TRUE
 	light_range = 4
 
 	var/gasefficency = 0.25
@@ -101,8 +103,8 @@
 	var/config_hallucination_power = 0.1
 
 	var/debug = 0
-	
-	/// Cooldown tracker for accent sounds, 
+
+	/// Cooldown tracker for accent sounds,
 	var/last_accent_sound = 0
 
 	var/datum/looping_sound/supermatter/soundloop
@@ -162,9 +164,9 @@
 
 	set waitfor = 0
 
-	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	message_admins("Supermatter exploded at ([x],[y],[z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("SUPERMATTER([x],[y],[z]) Exploded. Power:[power], Oxygen:[oxygen], Damage:[damage], Integrity:[get_integrity()]")
-	anchored = 1
+	anchored = TRUE
 	grav_pulling = 1
 	exploded = 1
 	sleep(pull_time)
@@ -296,7 +298,7 @@
 		shift_light(4,initial(light_color))
 	if(grav_pulling)
 		supermatter_pull(src)
-	
+
 	// Vary volume by power produced.
 	if(power)
 		// Volume will be 1 at no power, ~12.5 at ENERGY_NITROGEN, and 20+ at ENERGY_PHORON.
@@ -309,7 +311,7 @@
 		soundloop.mid_sounds = list('sound/machines/sm/loops/delamming.ogg' = 1)
 	else
 		soundloop.mid_sounds = list('sound/machines/sm/loops/calm.ogg' = 1)
-	
+
 	// Play Delam/Neutral sounds at rate determined by power and damage.
 	if(last_accent_sound < world.time && prob(20))
 		var/aggression = min(((damage / 800) * (power / 2500)), 1.0) * 100
@@ -512,7 +514,7 @@
 
 /obj/machinery/power/supermatter/shard //Small subtype, less efficient and more sensitive, but less boom.
 	name = "Supermatter Shard"
-	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <font color='red'>You get headaches just from looking at it.</font>"
+	desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <span class='red'>You get headaches just from looking at it.</span>"
 	icon_state = "darkmatter_shard"
 	base_icon_state = "darkmatter_shard"
 
@@ -533,11 +535,11 @@
 /obj/item/broken_sm
 	name = "shattered supermatter plinth"
 	desc = "The shattered remains of a supermatter shard plinth. It doesn't look safe to be around."
-	icon = 'icons/obj/engine.dmi'
+	icon = 'icons/obj/supermatter.dmi'
 	icon_state = "darkmatter_broken"
 
 /obj/item/broken_sm/New()
-	message_admins("Broken SM shard created at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	message_admins("Broken SM shard created at ([x],[y],[z] - <A HREF='?_src_=holder;[HrefToken()];adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	START_PROCESSING(SSobj, src)
 	return ..()
 
@@ -547,3 +549,26 @@
 /obj/item/broken_sm/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	return ..()
+
+#undef NITROGEN_RETARDATION_FACTOR
+#undef THERMAL_RELEASE_MODIFIER
+#undef PHORON_RELEASE_MODIFIER
+#undef OXYGEN_RELEASE_MODIFIER
+#undef REACTION_POWER_MODIFIER
+
+#undef DETONATION_RADS
+#undef DETONATION_MOB_CONCUSSION
+
+#undef DETONATION_APC_OVERLOAD_PROB
+#undef DETONATION_SHUTDOWN_APC
+#undef DETONATION_SHUTDOWN_CRITAPC
+#undef DETONATION_SHUTDOWN_SMES
+#undef DETONATION_SHUTDOWN_RNG_FACTOR
+#undef DETONATION_SOLAR_BREAK_CHANCE
+
+#undef DETONATION_EXPLODE_MIN_POWER
+#undef DETONATION_EXPLODE_MAX_POWER
+
+#undef WARNING_DELAY
+
+#undef SUPERMATTER_ACCENT_SOUND_COOLDOWN

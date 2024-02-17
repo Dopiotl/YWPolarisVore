@@ -47,6 +47,7 @@
 #define ui_construct_purge "EAST:00,CENTER-1:15"
 #define ui_construct_fire "EAST-1:16,CENTER+1:13" //above health, slightly to the left
 #define ui_construct_pull "EAST-1:28,SOUTH+1:10" //above the zone_sel icon
+#define ui_pai_comms "EAST-1:28,SOUTH+1:5"
 
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,SOUTH:5"
@@ -103,12 +104,20 @@
 #define ui_alien_fire "EAST-1:28,NORTH-3:25"
 #define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
 
+// Goes above HUD, mid-right
+#define ui_ammo_hud1 "EAST-1:28,CENTER+1:25"
+#define ui_ammo_hud2 "EAST-1:28,CENTER+2:27"
+#define ui_ammo_hud3 "EAST-1:28,CENTER+3:29"
+#define ui_ammo_hud4 "EAST-1:28,CENTER+4:31"
+
 //Middle right (status indicators)
 #define ui_temp "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
 #define ui_internal "EAST-1:28,CENTER:17"
+#define ui_under_health "EAST-1:28,CENTER-2:13"
 									//borgs
 #define ui_borg_health "EAST-1:28,CENTER-2:13" //borgs have the health display where humans have the pressure damage indicator.
+#define ui_borg_under_health "EAST-1:31,CENTER-3:13"
 #define ui_alien_health "EAST-1:28,CENTER-2:13" //aliens have the health display where humans have the pressure damage indicator.
 
 #define ui_ling_chemical_display "EAST-1:28,CENTER-3:15"
@@ -187,3 +196,5 @@
 #define ui_mech_airtoggle "WEST+1:-7, SOUTH+8"
 #define ui_mech_deco1_f "WEST+2:-7, SOUTH+8"
 #define ui_mech_deco2_f "WEST+2:-7, SOUTH+9"
+
+#define ui_smallquad "EAST-4:22,SOUTH:5"

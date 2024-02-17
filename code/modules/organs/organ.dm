@@ -114,8 +114,7 @@ var/list/organ_cache = list()
 
 	handle_organ_mod_special()
 
-/obj/item/organ/Initialize()
-	. = ..()
+/obj/item/organ/proc/set_initial_meat()
 	if(owner)
 		if(!meat_type)
 			if(owner.isSynthetic())
@@ -177,7 +176,7 @@ var/list/organ_cache = list()
 
 	if(!owner && reagents)
 		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-		if(B && prob(40))
+		if(B && prob(40) && !isbelly(loc)) //VOREStation Edit
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
 		if(config.organs_decay && decays) damage += rand(1,3)
@@ -368,6 +367,9 @@ var/list/organ_cache = list()
 	robotize()
 
 /obj/item/organ/emp_act(severity)
+	for(var/obj/O as anything in src.contents)
+		O.emp_act(severity)
+
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
 	for(var/i = 1; i <= robotic; i++)
@@ -391,7 +393,7 @@ var/list/organ_cache = list()
 		var/obj/item/organ/external/affected = owner.get_organ(parent_organ)
 		if(affected) affected.internal_organs -= src
 
-		forceMove(owner.drop_location())
+		owner.remove_from_mob(src, owner.drop_location())
 		START_PROCESSING(SSobj, src)
 		rejecting = null
 
@@ -482,7 +484,7 @@ var/list/organ_cache = list()
 			return TRUE
 
 		if(robotic >= ORGAN_ROBOT)
-			if(O.is_screwdriver())
+			if(O.has_tool_quality(TOOL_SCREWDRIVER))
 				return TRUE
 
 		else

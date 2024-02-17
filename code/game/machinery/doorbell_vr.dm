@@ -7,7 +7,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 200
-	anchored = 1
+	anchored = TRUE
 	var/id_tag = null
 	var/chime_sound = 'sound/machines/doorbell.ogg'
 
@@ -33,9 +33,9 @@
 	update_icon()
 
 /obj/machinery/doorbell_chime/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(panel_open)
-		overlays += "dbchime-open"
+		add_overlay("dbchime-open")
 	if(inoperable())
 		icon_state = "dbchime-off"
 	if(!id_tag)
@@ -129,14 +129,14 @@
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	else if(panel_open && istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter the name for \the [src].", src.name, initial(src.name)), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			name = t
 	else if(panel_open && istype(W, /obj/item/device/multitool))
 		var/obj/item/device/multitool/M = W
 		M.connectable = src
 		to_chat(user, "<span class='caution'>You save the data in \the [M]'s buffer.</span>")
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		to_chat(user, "<span class='notice'>You start to unwrench \the [src].</span>")
 		playsound(src, 'sound/items/Ratchet.ogg', 50, 1)
 		if(do_after(user, 15) && !QDELETED(src))

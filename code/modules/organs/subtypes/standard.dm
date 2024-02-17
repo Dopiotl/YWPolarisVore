@@ -24,14 +24,22 @@
 	base_miss_chance = 10
 
 /obj/item/organ/external/chest/robotize()
-	if(..() && robotic != ORGAN_NANOFORM) //VOREStation Edit
-		// Give them fancy new organs.
-		owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
-		owner.internal_organs_by_name[O_VOICE] = new /obj/item/organ/internal/voicebox/robot(owner, 1)
-		owner.internal_organs_by_name[O_PUMP] = new /obj/item/organ/internal/heart/machine(owner,1)
-		owner.internal_organs_by_name[O_CYCLER] = new /obj/item/organ/internal/stomach/machine(owner,1)
-		owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
-		owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
+	if(..() && owner)
+		if(robotic != ORGAN_NANOFORM) //VOREStation Edit
+			// Give them fancy new organs.
+			owner.internal_organs_by_name[O_CELL] = new /obj/item/organ/internal/cell(owner,1)
+			owner.internal_organs_by_name[O_VOICE] = new /obj/item/organ/internal/voicebox/robot(owner, 1)
+			owner.internal_organs_by_name[O_PUMP] = new /obj/item/organ/internal/heart/machine(owner,1)
+			owner.internal_organs_by_name[O_CYCLER] = new /obj/item/organ/internal/stomach/machine(owner,1)
+			owner.internal_organs_by_name[O_HEATSINK] = new /obj/item/organ/internal/robotic/heatsink(owner,1)
+			owner.internal_organs_by_name[O_DIAGNOSTIC] = new /obj/item/organ/internal/robotic/diagnostic(owner,1)
+
+		var/datum/robolimb/R = all_robolimbs[model] // company should be set in parent by now
+		if(!R)
+			log_error("A torso was robotize() but has no model that can be found: [model]. May affect FBPs.")
+		owner.synthetic = R
+	return FALSE
+
 
 /obj/item/organ/external/chest/handle_germ_effects()
 	. = ..() //Should return an infection level
@@ -269,6 +277,7 @@
 	var/head_offset = 0
 	var/eye_icon = "eyes_s"
 	var/eye_icon_location = 'icons/mob/human_face.dmi'
+	var/eye_icon_override = FALSE		// if true, we dont reset our icon back to default
 	force = 3
 	throwforce = 7
 	var/eyes_over_markings = FALSE //VOREStation edit
@@ -279,7 +288,14 @@
 	return ..()
 
 /obj/item/organ/external/head/robotize(var/company, var/skip_prosthetics, var/keep_organs)
-	return ..(company, skip_prosthetics, 1)
+	. = ..(company, skip_prosthetics, 1)
+	if(model)
+		var/datum/robolimb/robohead = all_robolimbs[model]
+		if(robohead?.monitor_styles && robohead?.monitor_icon)
+			LAZYDISTINCTADD(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
+		else
+			LAZYREMOVE(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
+		handle_organ_mod_special()
 
 /obj/item/organ/external/head/removed()
 	if(owner)
@@ -324,7 +340,7 @@
 		"<span class='notice'>You make \the [I] kiss \the [src]!.</span>")
 	return ..()
 
-/obj/item/organ/external/head/get_icon()
+/obj/item/organ/external/head/get_icon(var/skeletal, var/can_apply_transparency = TRUE)
 	..()
 
 	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
@@ -371,6 +387,8 @@
 
 	//Head markings
 	for(var/M in markings)
+		if (!markings[M]["on"])
+			continue
 		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
 		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
 		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode)
@@ -384,6 +402,9 @@
 		icon_cache_key += "[eye_icon]"
 
 	add_overlay(get_hair_icon())
+
+	if (transparent && can_apply_transparency) //VOREStation Edit: transparent instead of nonsolid
+		mob_icon += rgb(,,,180) //do it here so any markings become transparent as well
 
 	return mob_icon
 

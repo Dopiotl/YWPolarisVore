@@ -1,7 +1,6 @@
 /mob/living/silicon/robot/syndicate
 	lawupdate = 0
 	scrambledcodes = 1
-	icon_state = "syndie_bloodhound"
 	modtype = "Syndicate"
 	lawchannel = "State"
 	braintype = "Drone"
@@ -12,7 +11,7 @@
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 
 	updatename("Syndicate")

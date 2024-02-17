@@ -4,8 +4,8 @@
 	icon = 'icons/obj/items.dmi'
 	icon_state = "rcdammo"
 	opacity = 0
-	density = 0
-	anchored = 0.0
+	density = FALSE
+	anchored = FALSE
 	var/fuel = 0
 	var/s_time = 1.0
 	var/content = null
@@ -77,7 +77,7 @@
 		if("Anti-Hydrogen")
 			M.gib() //Yikes!
 		if("Hydrogen")
-			to_chat(M, "<font color='blue'>You feel very light, as if you might just float away...</font>")
+			to_chat(M, span_blue("You feel very light, as if you might just float away..."))
 	qdel(src)
 	return
 
@@ -96,5 +96,5 @@
 			return
 	else
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("<font color='red'>[M] ate the [content ? content : "empty canister"]!</font>"), 1)
+			O.show_message(span_red(text("[M] ate the [content ? content : "empty canister"]!")), 1)
 		src.injest(M)

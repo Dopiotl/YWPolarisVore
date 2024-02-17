@@ -1,13 +1,13 @@
 /obj/structure/fitness
 	icon = 'icons/obj/stationobjs.dmi'
-	anchored = 1
+	anchored = TRUE
 	var/being_used = 0
 
 /obj/structure/fitness/punchingbag
 	name = "punching bag"
 	desc = "A punching bag."
 	icon_state = "punchingbag"
-	density = 1
+	density = TRUE
 	var/list/hit_message = list("hit", "punch", "kick", "robust")
 
 /obj/structure/fitness/punchingbag/attack_hand(var/mob/living/carbon/human/user)
@@ -29,11 +29,12 @@
 	name = "weightlifting machine"
 	desc = "A machine used to lift weights."
 	icon_state = "weightlifter"
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/weight = 1
 	var/list/qualifiers = list("with ease", "without any trouble", "with great effort")
 
 /obj/structure/fitness/weightlifter/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		playsound(src, 'sound/items/Deconstruct.ogg', 75, 1)
 		weight = ((weight) % qualifiers.len) + 1
 		to_chat(user, "You set the machine's weight level to [weight].")

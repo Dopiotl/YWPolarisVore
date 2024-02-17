@@ -2,7 +2,7 @@
 	name = "workout equipment"
 	desc = "A utility often used to lose weight."
 	icon = 'icons/obj/machines/fitness_machines_vr.dmi'
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0
@@ -32,8 +32,8 @@
 	name = "punching bag"
 	desc = "A bag often used to relieve stress and burn fat."
 	icon_state = "punchingbag"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	workout_sounds = list(
 		"punch")
 	messages = list(
@@ -55,7 +55,7 @@
 			"A honk emits from the punching bag as you hit it")
 
 /obj/machinery/fitness/heavy/attackby(obj/item/W, mob/living/user)
-	if(W.is_wrench())
+	if(W.has_tool_quality(TOOL_WRENCH))
 		add_fingerprint(user)
 		user.visible_message("<span class='warning'>[user] has [anchored ? "un" : ""]secured \the [src].</span>", "<span class='notice'>You [anchored ? "un" : ""]secure \the [src].</span>")
 		anchored = !anchored
@@ -87,7 +87,7 @@
 	icon = 'icons/obj/machines/fitness_machines_vr.dmi'
 	icon_state = "scale"
 	desc = "A scale used to measure ones weight relative to their size and species."
-	anchored = 1 // Set to 0 when we can construct or dismantle these.
+	anchored = TRUE // Set to 0 when we can construct or dismantle these.
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
 	active_power_usage = 0

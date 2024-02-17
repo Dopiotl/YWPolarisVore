@@ -40,36 +40,44 @@
 	else
 		living_mob_list += src
 	lastarea = get_area(src)
+	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	return ..()
 
 /mob/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
+	var/time = say_timestamp()
 
 	if(!client && !teleop)	return
 
 	if (type)
-		if((type & 1) && (is_blind() || paralysis) )//Vision related
+		if((type & VISIBLE_MESSAGE) && (is_blind() || paralysis) )//Vision related
 			if (!( alt ))
 				return
 			else
 				msg = alt
 				type = alt_type
-		if ((type & 2) && is_deaf())//Hearing related
+		if ((type & AUDIBLE_MESSAGE) && is_deaf())//Hearing related
 			if (!( alt ))
 				return
 			else
 				msg = alt
 				type = alt_type
-				if ((type & 1) && (sdisabilities & BLIND))
+				if ((type & VISIBLE_MESSAGE) && (sdisabilities & BLIND))
 					return
 	// Added voice muffling for Issue 41.
 	if(stat == UNCONSCIOUS || sleeping > 0)
-		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
+		to_chat(src, "<span class='filter_notice'><I>... You can almost hear someone talking ...</I></span>")
 	else
-		to_chat(src,msg)
-		if(teleop)
-			to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[msg]")
+		if(client && client.prefs.chat_timestamp)
+			// TG-Chat filters latch directly to the spans, we no longer need that
+			//msg = replacetext(msg, new/regex("^(<span(?: \[^>]*)?>)((?:.|\\n)*</span>)", ""), "$1[time] $2") // Insteres timestamps after the first qualifying span
+			//msg = replacetext(msg, new/regex("^\[^<]((?:.|\\n)*)", ""), "[time] $1") // Spanless messages also get timestamped
+			to_chat(src,"[time] [msg]")
+		else if(teleop)
+			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
+		else
+			to_chat(src,msg)
 	return
 
 // Show a message to all mobs and objects in sight of this one
@@ -77,14 +85,16 @@
 // message is the message output to anyone who can see e.g. "[src] does something!"
 // self_message (optional) is what the src mob sees  e.g. "You do something!"
 // blind_message (optional) is what blind people will hear e.g. "You hear something!"
-/mob/visible_message(var/message, var/self_message, var/blind_message, var/list/exclude_mobs = null)
+/mob/visible_message(var/message, var/self_message, var/blind_message, var/list/exclude_mobs = null, var/range = world.view, var/runemessage)
 	if(self_message)
 		if(LAZYLEN(exclude_mobs))
 			exclude_mobs |= src
 		else
 			exclude_mobs = list(src)
 		src.show_message(self_message, 1, blind_message, 2)
-	. = ..(message, blind_message, exclude_mobs)
+	if(isnull(runemessage))
+		runemessage = -1
+	. = ..(message, blind_message, exclude_mobs, range, runemessage) // Really not ideal that atom/visible_message has different arg numbering :(
 
 // Returns an amount of power drawn from the object (-1 if it's not viable).
 // If drain_check is set it will not actually drain power, just return a value.
@@ -99,7 +109,7 @@
 // self_message (optional) is what the src mob hears.
 // deaf_message (optional) is what deaf people will see.
 // hearing_distance (optional) is the range, how many tiles away the message can be heard.
-/mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message)
+/mob/audible_message(var/message, var/deaf_message, var/hearing_distance, var/self_message, var/radio_message, var/runemessage)
 
 	var/range = hearing_distance || world.view
 	var/list/hear = get_mobs_and_objs_in_view_fast(get_turf(src),range,remote_ghosts = FALSE)
@@ -107,16 +117,23 @@
 	var/list/hearing_mobs = hear["mobs"]
 	var/list/hearing_objs = hear["objs"]
 
-	for(var/obj in hearing_objs)
-		var/obj/O = obj
-		O.show_message(message, 2, deaf_message, 1)
+	if(isnull(runemessage))
+		runemessage = -1 // Symmetry with mob/audible_message, despite the fact this one doesn't call parent. Maybe it should!
 
-	for(var/mob in hearing_mobs)
-		var/mob/M = mob
+	if(radio_message)
+		for(var/obj/O as anything in hearing_objs)
+			O.hear_talk(src, list(new /datum/multilingual_say_piece(GLOB.all_languages["Noise"], radio_message)), null)
+	else
+		for(var/obj/O as anything in hearing_objs)
+			O.show_message(message, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
+
+	for(var/mob/M as anything in hearing_mobs)
 		var/msg = message
 		if(self_message && M==src)
 			msg = self_message
-		M.show_message(msg, 2, deaf_message, 1)
+		M.show_message(msg, AUDIBLE_MESSAGE, deaf_message, VISIBLE_MESSAGE)
+		if(runemessage != -1)
+			M.create_chat_message(src, "[runemessage || message]", FALSE, list("emote"), audible = FALSE)
 
 /mob/proc/findname(msg)
 	for(var/mob/M in mob_list)
@@ -225,7 +242,7 @@
 	return 1
 
 
-/mob/proc/ret_grab(obj/effect/list_container/mobl/L as obj, flag)
+/mob/proc/ret_grab(list/L, flag)
 	return
 
 /mob/verb/mode()
@@ -283,15 +300,15 @@
 	set src in usr
 	if(usr != src)
 		to_chat(usr, "No.")
-	var/msg = sanitize(input(usr,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text)) as message|null, extra = 0)	//VOREStation Edit: separating out OOC notes
+	var/msg = sanitize(tgui_input_text(usr,"Set the flavor text in your 'examine' verb.","Flavor Text",html_decode(flavor_text), multiline = TRUE, prevent_enter = TRUE), extra = 0)	//VOREStation Edit: separating out OOC notes
 
 	if(msg != null)
 		flavor_text = msg
 
 /mob/proc/warn_flavor_changed()
 	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
-		to_chat(src, "<h2 class='alert'>OOC Warning:</h2>")
-		to_chat(src, "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>")
+		to_chat(src, "<span class='filter_notice'><h2 class='alert'>OOC Warning:</h2></span>")
+		to_chat(src, "<span class='filter_notice'><span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span></span>")
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
@@ -352,12 +369,52 @@
 
 	// Final chance to abort "respawning"
 	if(mind && timeofdeath) // They had spawned before
-		var/choice = alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", "No, wait", "Yes, leave")
+		var/choice = tgui_alert(usr, "Returning to the menu will prevent your character from being revived in-round. Are you sure?", "Confirmation", list("No, wait", "Yes, leave"))
 		if(choice == "No, wait")
 			return
+		else if(mind.assigned_role)
+			var/extra_check = tgui_alert(usr, "Do you want to Quit This Round before you return to lobby?\
+			This will properly remove you from manifest, as well as prevent resleeving. BEWARE: Pressing 'NO' will STILL return you to lobby!",
+			"Quit This Round",list("Quit Round","No"))
+			if(extra_check == "Quit Round")
+				//Update any existing objectives involving this mob.
+				for(var/datum/objective/O in all_objectives)
+					if(O.target == src.mind)
+						if(O.owner && O.owner.current)
+							to_chat(O.owner.current,"<span class='warning'>You get the feeling your target is no longer within your reach...</span>")
+						qdel(O)
+
+				//Resleeving cleanup
+				if(mind)
+					SStranscore.leave_round(src)
+
+				//Job slot cleanup
+				var/job = src.mind.assigned_role
+				job_master.FreeRole(job)
+
+				//Their objectives cleanup
+				if(src.mind.objectives.len)
+					qdel(src.mind.objectives)
+					src.mind.special_role = null
+
+				//Cut the PDA manifest (ugh)
+				if(PDA_Manifest.len)
+					PDA_Manifest.Cut()
+				for(var/datum/data/record/R in data_core.medical)
+					if((R.fields["name"] == src.real_name))
+						qdel(R)
+				for(var/datum/data/record/T in data_core.security)
+					if((T.fields["name"] == src.real_name))
+						qdel(T)
+				for(var/datum/data/record/G in data_core.general)
+					if((G.fields["name"] == src.real_name))
+						qdel(G)
+
+				//This removes them from being 'active' list on join screen
+				src.mind.assigned_role = null
+				to_chat(src,"<span class='notice'>Your job has been free'd up, and you can rejoin as another character or quit. Thanks for properly quitting round, it helps the server!</span>")
 
 	// Beyond this point, you're going to respawn
-	to_chat(usr, config.respawn_message)
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -376,7 +433,9 @@
 		qdel(M)
 		return
 
+	M.has_respawned = TRUE //When we returned to main menu, send respawn message
 	M.key = key
+
 	if(M.mind)
 		M.mind.reset()
 	return
@@ -384,11 +443,14 @@
 /client/verb/changes()
 	set name = "Changelog"
 	set category = "OOC"
-	src << browse('html/changelog.html', "window=changes;size=675x650")
+	src << link("https://wiki.vore-station.net/Changelog")
+
+	/*
 	if(prefs.lastchangelog != changelog_hash)
 		prefs.lastchangelog = changelog_hash
 		SScharacter_setup.queue_preferences_save(prefs)
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
+	*/
 
 /mob/verb/observe()
 	set name = "Observe"
@@ -398,7 +460,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN|R_EVENT))
 		is_admin = 1
 	else if(stat != DEAD || istype(src, /mob/new_player))
-		to_chat(usr, "<font color='blue'>You must be observing to use this!</font>")
+		to_chat(usr, "<span class='filter_notice'>[span_blue("You must be observing to use this!")]</span>")
 		return
 
 	if(is_admin && stat == DEAD)
@@ -418,7 +480,7 @@
 	var/eye_name = null
 
 	var/ok = "[is_admin ? "Admin Observe" : "Observe"]"
-	eye_name = input("Please, select a player!", ok, null, null) as null|anything in targets
+	eye_name = tgui_input_list(usr, "Select something to [ok]:", "Select Target", targets)
 
 	if (!eye_name)
 		return
@@ -549,7 +611,27 @@
 		playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25) //Quieter than hugging/grabbing but we still want some audio feedback
 
 		if(H.pull_damage())
-			to_chat(src, "<font color='red'><B>Pulling \the [H] in their current condition would probably be a bad idea.</B></font>")
+			to_chat(src, "<span class='filter_notice'>[span_red("<B>Pulling \the [H] in their current condition would probably be a bad idea.</B>")]</span>")
+
+	//Attempted fix for people flying away through space when cuffed and dragged.
+	if(ismob(AM))
+		var/mob/pulled = AM
+		pulled.inertia_dir = 0
+
+// We have pulled something before, so we should be able to safely continue pulling it. This proc is only for portals!
+/mob/proc/continue_pulling(var/atom/movable/AM)
+
+	if ( !AM || src==AM || !isturf(src.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
+		return
+
+	if (AM.anchored)
+		return
+
+	src.pulling = AM
+	AM.pulledby = src
+
+	if(pullin)
+		pullin.icon_state = "pull1"
 
 	//Attempted fix for people flying away through space when cuffed and dragged.
 	if(ismob(AM))
@@ -576,7 +658,7 @@
 /mob/proc/get_gender()
 	return gender
 
-/mob/proc/get_visible_gender()
+/mob/proc/name_gender()
 	return gender
 
 /mob/proc/see(message)
@@ -598,7 +680,8 @@
 			stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
 			if(ticker && ticker.current_state != GAME_STATE_PREGAME)
 				stat("Station Time", stationtime2text())
-				stat("Station Date", stationdate2text())
+				var/date = "[stationdate2text()], [capitalize(world_time_season)]"
+				stat("Station Date", date)
 				stat("Round Duration", roundduration2text())
 
 		if(client.holder)
@@ -607,6 +690,10 @@
 				stat("CPU:","[world.cpu]")
 				stat("Instances:","[world.contents.len]")
 				stat(null, "Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)")
+				stat("Keys Held", keys2text(client.move_keys_held | client.mod_keys_held))
+				stat("Next Move ADD", dirs2text(client.next_move_dir_add))
+				stat("Next Move SUB", dirs2text(client.next_move_dir_sub))
+				stat("Current size:", size_multiplier * 100)
 
 			if(statpanel("MC"))
 				stat("Location:", "([x], [y], [z]) [loc]")
@@ -632,16 +719,20 @@
 					for(var/datum/controller/subsystem/SS in Master.subsystems)
 						SS.stat_entry()
 
+			if(check_rights(R_ADMIN|R_MOD, 0)) //YW EDIT: Only admins/mods can check Tickets
+				if(statpanel("Tickets"))
+					GLOB.ahelp_tickets.stat_entry()
+
+			if(check_rights(R_ADMIN|R_DEBUG, 0)) //YW EDIT: Only admins/debug can access SDQL
+				if(length(GLOB.sdql2_queries))
+					if(statpanel("SDQL2"))
+						stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
+						for(var/datum/SDQL2_query/Q as anything in GLOB.sdql2_queries)
+							Q.generate_stat()
+
+		if(has_mentor_powers(client))
 			if(statpanel("Tickets"))
-				GLOB.ahelp_tickets.stat_entry()
-
-
-			if(length(GLOB.sdql2_queries))
-				if(statpanel("SDQL2"))
-					stat("Access Global SDQL2 List", GLOB.sdql2_vv_statobj)
-					for(var/i in GLOB.sdql2_queries)
-						var/datum/SDQL2_query/Q = i
-						Q.generate_stat()
+				GLOB.mhelp_tickets.stat_entry()
 
 		if(listed_turf && client)
 			if(!TurfAdjacent(listed_turf))
@@ -680,6 +771,7 @@
 
 /mob/proc/facedir(var/ndir)
 	if(!canface() || (client && (client.moving || !checkMoveCooldown())))
+		DEBUG_INPUT("Denying Facedir for [src] (moving=[client?.moving])")
 		return 0
 	set_dir(ndir)
 	if(buckled && buckled.buckle_movable)
@@ -841,7 +933,7 @@
 /mob/proc/embedded_needs_process()
 	return (embedded.len > 0)
 
-mob/proc/yank_out_object()
+/mob/proc/yank_out_object()
 	set category = "Object"
 	set name = "Yank out object"
 	set desc = "Remove an embedded item at the cost of bleeding and pain."
@@ -852,11 +944,11 @@ mob/proc/yank_out_object()
 	usr.setClickCooldown(20)
 
 	if(usr.stat == 1)
-		to_chat(usr, "You are unconcious and cannot do that!")
+		to_chat(usr, "<span class='filter_notice'>You are unconcious and cannot do that!</span>")
 		return
 
 	if(usr.restrained())
-		to_chat(usr, "You are restrained and cannot do that!")
+		to_chat(usr, "<span class='filter_notice'>You are restrained and cannot do that!</span>")
 		return
 
 	var/mob/S = src
@@ -870,12 +962,12 @@ mob/proc/yank_out_object()
 	valid_objects = get_visible_implants(0)
 	if(!valid_objects.len)
 		if(self)
-			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
+			to_chat(src, "<span class='filter_notice'>You have nothing stuck in your body that is large enough to remove.</span>")
 		else
-			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
+			to_chat(U, "<span class='filter_notice'>[src] has nothing stuck in their wounds that is large enough to remove.</span>")
 		return
 
-	var/obj/item/weapon/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
+	var/obj/item/weapon/selection = tgui_input_list(usr, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(self)
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
@@ -931,7 +1023,7 @@ mob/proc/yank_out_object()
 		if(O == selection)
 			pinned -= O
 		if(!pinned.len)
-			anchored = 0
+			anchored = FALSE
 	return 1
 
 //Check for brain worms in head.
@@ -942,9 +1034,6 @@ mob/proc/yank_out_object()
 			return I
 
 	return 0
-
-/mob/proc/updateicon()
-	return
 
 // Please always use this proc, never just set the var directly.
 /mob/proc/set_stat(var/new_stat)
@@ -960,9 +1049,9 @@ mob/proc/yank_out_object()
 	set_face_dir()
 
 	if(!facing_dir)
-		to_chat(usr, "You are now not facing anything.")
+		to_chat(usr, "<span class='filter_notice'>You are now not facing anything.</span>")
 	else
-		to_chat(usr, "You are now facing [dir2text(facing_dir)].")
+		to_chat(usr, "<span class='filter_notice'>You are now facing [dir2text(facing_dir)].</span>")
 
 /mob/proc/set_face_dir(var/newdir)
 	if(newdir == facing_dir)
@@ -983,8 +1072,7 @@ mob/proc/yank_out_object()
 		else if(dir != facing_dir)
 			return ..(facing_dir)
 	else
-		var/returnval = ..()
-		return returnval
+		return ..()
 
 /mob/verb/northfaceperm()
 	set hidden = 1
@@ -1027,13 +1115,40 @@ mob/proc/yank_out_object()
 		pixel_x--
 		is_shifted = TRUE
 
-mob/verb/shifteast()
+/mob/verb/shifteast()
 	set hidden = TRUE
 	if(!canface())
 		return FALSE
 	if(pixel_x <= (default_pixel_x + 16))
 		pixel_x++
 		is_shifted = TRUE
+
+/mob/verb/planeup()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(plane >= MOB_PLANE + 3)	//Don't bother going too high!
+		return
+	if(layer == MOB_LAYER)	//Become higher
+		layer = ABOVE_MOB_LAYER
+	plane += 1		//Increase the plane
+	if(plane == MOB_PLANE)	//Return to normal
+		layer = MOB_LAYER
+	is_shifted = TRUE
+
+/mob/verb/planedown()
+	set hidden = TRUE
+	if(!canface())
+		return FALSE
+	if(plane <= MOB_PLANE - 3)	//Don't bother going too low!
+		return
+	if(layer == MOB_LAYER)	//Become lower
+		layer = BELOW_MOB_LAYER
+	plane -= 1		//Decrease the plane
+	if(plane == MOB_PLANE)	//Return to normal
+		layer = MOB_LAYER
+	is_shifted = TRUE
+
 // End VOREstation edit
 
 /mob/proc/adjustEarDamage()
@@ -1059,11 +1174,20 @@ mob/verb/shifteast()
 
 /mob/proc/throw_mode_off()
 	src.in_throw_mode = 0
+	if(client)
+		if(a_intent == I_HELP || client.prefs.throwmode_loud)
+			src.visible_message("<span class='notice'>[src] relaxes from their ready stance.</span>","<span class='notice'>You relax from your ready stance.</span>")
 	if(src.throw_icon) //in case we don't have the HUD and we use the hotkey
 		src.throw_icon.icon_state = "act_throw_off"
 
 /mob/proc/throw_mode_on()
 	src.in_throw_mode = 1
+	if(client)
+		if(a_intent == I_HELP || client.prefs.throwmode_loud)
+			if(src.get_active_hand())
+				src.visible_message("<span class='warning'>[src] winds up to throw [get_active_hand()]!</span>","<span class='notice'>You wind up to throw [get_active_hand()].</span>")
+			else
+				src.visible_message("<span class='warning'>[src] looks ready to catch anything thrown at them!</span>","<span class='notice'>You get ready to catch anything thrown at you.</span>")
 	if(src.throw_icon)
 		src.throw_icon.icon_state = "act_throw_on"
 
@@ -1138,7 +1262,7 @@ mob/verb/shifteast()
 
 //Throwing stuff
 /mob/proc/throw_item(atom/target)
-	return
+	return FALSE
 
 /mob/proc/will_show_tooltip()
 	if(alpha <= EFFECTIVE_INVIS)
@@ -1173,7 +1297,7 @@ mob/verb/shifteast()
 		else
 			registered_z = null
 
-GLOBAL_LIST_EMPTY(living_players_by_zlevel)
+GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/living/update_client_z(new_z)
 	var/precall_reg_z = registered_z
 	. = ..() // will update registered_z if necessary

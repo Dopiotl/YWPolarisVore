@@ -5,8 +5,8 @@
 	name = "machine frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/list/components = null
@@ -41,7 +41,7 @@
 							state = 2
 							icon_state = "box_1"
 				else
-					if(P.is_wrench())
+					if(P.has_tool_quality(TOOL_WRENCH))
 						playsound(src, W.usesound, 75, 1)
 						to_chat(user, "<span class='notice'>You dismantle the frame</span>")
 						new /obj/item/stack/material/steel(src.loc, 5)
@@ -50,6 +50,11 @@
 				if(istype(P, /obj/item/weapon/circuitboard))
 					var/obj/item/weapon/circuitboard/B = P
 					if(B.board_type == "machine")
+					//VOREStation Addition End
+						if(istype(B, /obj/item/weapon/circuitboard/quantumpad) && istype(get_area(src), /area/shuttle))
+							to_chat(user, "<span class='warning'>This is too unstable a platform for a quantum pad to operate on!</span>")
+							return
+					//VOREStation Addition End
 						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
 						circuit = P
@@ -71,7 +76,7 @@
 					else
 						to_chat(user, "<span class='warning'>This frame does not accept circuit boards of this type!</span>")
 				else
-					if(P.is_wirecutter())
+					if(P.has_tool_quality(TOOL_WIRECUTTER))
 						playsound(src, P.usesound, 50, 1)
 						to_chat(user, "<span class='notice'>You remove the cables.</span>")
 						state = 1
@@ -80,7 +85,7 @@
 						A.amount = 5
 
 			if(3)
-				if(P.is_crowbar())
+				if(P.has_tool_quality(TOOL_CROWBAR))
 					playsound(src, P.usesound, 50, 1)
 					state = 2
 					circuit.loc = src.loc
@@ -96,7 +101,7 @@
 					components = null
 					icon_state = "box_1"
 				else
-					if(P.is_screwdriver())
+					if(P.has_tool_quality(TOOL_SCREWDRIVER))
 						var/component_check = 1
 						for(var/R in req_components)
 							if(req_components[R] > 0)

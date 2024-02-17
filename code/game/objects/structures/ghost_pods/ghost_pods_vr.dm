@@ -11,11 +11,19 @@
 	var/activated = FALSE
 
 /obj/structure/ghost_pod/manual/attack_ghost(var/mob/observer/dead/user)
+	if(jobban_isbanned(user, "GhostRoles"))
+		to_chat(user, "<span class='warning'>You cannot inhabit this creature because you are banned from playing ghost roles.</span>")
+		return
+
+	//No OOC notes
+	if (not_has_ooc_text(user))
+		return
+
 	if(!remains_active || busy)
 		return
 
 	if(!activated)
-		to_chat(user, "<span class='warning'>\the [src] has not yet been activated.  Sorry.</span>")
+		to_chat(user, "<span class='warning'>\The [src] has not yet been activated.  Sorry.</span>")
 		return
 
 	if(used)
@@ -23,7 +31,7 @@
 		return
 
 	busy = TRUE
-	var/choice = input(user, "Are you certain you wish to activate this pod?", "Control Pod") as null|anything in list("Yes", "No")
+	var/choice = tgui_alert(user, "Are you certain you wish to activate this pod?", "Control Pod", list("Yes", "No"))
 
 	if(!choice || choice == "No")
 		busy = FALSE
@@ -44,6 +52,7 @@
 	if(notify)
 		trigger()
 
-/obj/structure/ghost_pod/ghost_activated/Initialize()
+/obj/structure/ghost_pod/ghost_activated/Initialize(var/mapload)
 	. = ..()
-	ghostpod_startup(spawn_active)
+	if(!mapload)
+		ghostpod_startup(spawn_active)

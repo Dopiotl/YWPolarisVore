@@ -25,7 +25,8 @@ Note: Must be placed within 3 tiles of the R&D Console
 	var/T = 0
 	for(var/obj/item/weapon/stock_parts/S in component_parts)
 		T += S.rating
-	decon_mod = T * 0.1
+	T *= 0.1
+	decon_mod = clamp(T, 0, 1)
 
 /obj/machinery/r_n_d/destructive_analyzer/update_icon()
 	if(panel_open)
@@ -109,7 +110,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			qdel(B)
 		playsound(get_turf(src), 'sound/machines/click.ogg', 50, 1)
 		rped_recycler_ready = FALSE
-		addtimer(CALLBACK(src, .proc/rped_ready), 5 SECONDS)
+		addtimer(CALLBACK(src, PROC_REF(rped_ready)), 5 SECONDS)
 		to_chat(user, "<span class='notice'>You deconstruct all the parts of rating [lowest_rating] in [replacer] with [src].</span>")
 		return 1
 	else

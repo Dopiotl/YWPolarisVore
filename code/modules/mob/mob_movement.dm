@@ -45,7 +45,7 @@
 				var/mob/living/carbon/C = usr
 				C.toggle_throw_mode()
 			else
-				to_chat(usr, "<font color='red'>This mob type cannot throw items.</font>")
+				to_chat(usr, span_red("This mob type cannot throw items."))
 			return
 		if(NORTHWEST)
 			if(isliving(usr))
@@ -54,11 +54,11 @@
 					if(C.pulling)
 						C.stop_pulling()
 						return
-					to_chat(usr, "<font color='red'>You have nothing to drop in your hand.</font>")
+					to_chat(usr, span_red("You have nothing to drop in your hand."))
 					return
 				drop_item()
 			else
-				to_chat(usr, "<font color='red'>This mob type cannot drop items.</font>")
+				to_chat(usr, span_red("This mob type cannot drop items."))
 			return
 
 //This gets called when you press the delete button.
@@ -66,7 +66,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, "<font color='blue'>You are not pulling anything.</font>")
+		to_chat(usr, span_blue("You are not pulling anything."))
 		return
 	usr.stop_pulling()
 
@@ -140,25 +140,36 @@
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
 
-	// We're controlling an object which is SOMEHOW DIFFERENT FROM AN EYE??
+	// We're controlling an object which is when admins possess an object.
 	if(my_mob.control_object)
 		Move_object(direct)
 
 	// Ghosty mob movement
 	if(my_mob.incorporeal_move && isobserver(my_mob))
 		Process_Incorpmove(direct)
+		DEBUG_INPUT("--------")
+		next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+		next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 		return
 
 	// We're in the middle of another move we've already decided to do
 	if(moving)
+		log_debug("Client [src] attempted to move while moving=[moving]")
 		return 0
 
 	// We're still cooling down from the last move
 	if(!my_mob.checkMoveCooldown())
+		DEBUG_INPUT("--------")
+		return
+	next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+	next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
+
+	if(!n || !direct)
 		return
 
 	// If dead and we try to move in our mob, it leaves our body
 	if(my_mob.stat == DEAD && isliving(my_mob) && !my_mob.forbid_seeing_deadchat)
+		my_mob.setMoveCooldown(my_mob.movement_delay(n, direct))
 		my_mob.ghostize()
 		return
 
@@ -214,13 +225,13 @@
 		for(var/mob/M in range(my_mob, 1))
 			if(M.pulling == my_mob)
 				if(!M.restrained() && M.stat == 0 && M.canmove && my_mob.Adjacent(M))
-					to_chat(src, "<font color='blue'>You're restrained! You can't move!</font>")
+					to_chat(src, span_blue("You're restrained! You can't move!"))
 					return 0
 				else
 					M.stop_pulling()
 
 	if(my_mob.pinned.len)
-		to_chat(src, "<font color='blue'>You're pinned to a wall by [my_mob.pinned[1]]!</font>")
+		to_chat(src, span_blue("You're pinned to a wall by [my_mob.pinned[1]]!"))
 		return 0
 
 	if(istype(my_mob.buckled, /obj/vehicle) || ismob(my_mob.buckled))
@@ -286,6 +297,10 @@
 		. = my_mob.buckled.relaymove(my_mob,direct)
 	else
 		. = my_mob.SelfMove(n, direct, total_delay)
+
+	// If we ended up moving diagonally, increase delay.
+	if((direct & (direct - 1)) && mob.loc == n)
+		my_mob.setMoveCooldown(total_delay * 2)
 
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
@@ -477,19 +492,26 @@
 /mob/proc/update_gravity()
 	return
 
+#define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);
+
 /client/verb/moveup()
 	set name = ".moveup"
 	set instant = 1
-	Move(get_step(mob, NORTH), NORTH)
+	DO_MOVE(NORTH)
+
 /client/verb/movedown()
 	set name = ".movedown"
 	set instant = 1
-	Move(get_step(mob, SOUTH), SOUTH)
+	DO_MOVE(SOUTH)
+
 /client/verb/moveright()
 	set name = ".moveright"
 	set instant = 1
-	Move(get_step(mob, EAST), EAST)
+	DO_MOVE(EAST)
+
 /client/verb/moveleft()
 	set name = ".moveleft"
 	set instant = 1
-	Move(get_step(mob, WEST), WEST)
+	DO_MOVE(WEST)
+
+#undef DO_MOVE

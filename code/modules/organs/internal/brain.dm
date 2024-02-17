@@ -104,6 +104,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 			brainmob.dna = H.dna.Clone()
 			brainmob.timeofhostdeath = H.timeofdeath
 			brainmob.ooc_notes = H.ooc_notes //VOREStation Edit
+			brainmob.ooc_notes_likes = H.ooc_notes_likes
+			brainmob.ooc_notes_dislikes = H.ooc_notes_dislikes
 
 		// Copy modifiers.
 		for(var/datum/modifier/M in H.modifiers)
@@ -237,7 +239,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 					return 0
 
 	for(var/modifier_type in R.genetic_modifiers)	//Can't be revived. Probably won't happen...?
-		if(istype(modifier_type, /datum/modifier/no_clone))
+		if(ispath(modifier_type, /datum/modifier/no_clone))
 			return 0
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(get_turf(src), R.dna.species)
@@ -254,6 +256,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		R.dna.real_name = "promethean ([rand(0,999)])"
 	H.real_name = R.dna.real_name
 	H.ooc_notes = brainmob.ooc_notes // VOREStation Edit
+	H.ooc_notes_likes = brainmob.ooc_notes_likes
+	H.ooc_notes_dislikes = brainmob.ooc_notes_dislikes
 
 	H.nutrition = 260 //Enough to try to regenerate ONCE.
 	H.adjustBruteLoss(40)
@@ -276,19 +280,19 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	qdel(src)
 	return 1
 
-/datum/chemical_reaction/promethean_brain_revival
+/decl/chemical_reaction/instant/promethean_brain_revival
 	name = "Promethean Revival"
 	id = "prom_revival"
 	result = null
 	required_reagents = list("phoron" = 40)
 	result_amount = 1
 
-/datum/chemical_reaction/promethean_brain_revival/can_happen(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/promethean_brain_revival/can_happen(var/datum/reagents/holder)
 	if(holder.my_atom && istype(holder.my_atom, /obj/item/organ/internal/brain/slime))
 		return ..()
 	return FALSE
 
-/datum/chemical_reaction/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
+/decl/chemical_reaction/instant/promethean_brain_revival/on_reaction(var/datum/reagents/holder)
 	var/obj/item/organ/internal/brain/slime/brain = holder.my_atom
 	if(brain.reviveBody())
 		brain.visible_message("<span class='notice'>[brain] bubbles, surrounding itself with a rapidly expanding mass of slime!</span>")

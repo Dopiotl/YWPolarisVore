@@ -3,7 +3,7 @@
 	desc = "A handy little spring-loaded trap for catching pesty rodents."
 	icon_state = "mousetrap"
 	origin_tech = list(TECH_COMBAT = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 100, "waste" = 10)
+	matter = list(MAT_STEEL = 100)
 	var/armed = 0
 
 
@@ -41,7 +41,7 @@
 			H.updatehealth()
 	else if(ismouse(target))
 		var/mob/living/simple_mob/animal/passive/mouse/M = target
-		visible_message("<font color='red'><b>SPLAT!</b></font>")
+		visible_message(span_red("<b>SPLAT!</b>"))
 		M.splat()
 	playsound(target, 'sound/effects/snap.ogg', 50, 1)
 	layer = MOB_LAYER - 0.2

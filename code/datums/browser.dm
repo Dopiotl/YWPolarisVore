@@ -290,7 +290,7 @@
 					winset(user, "mapwindow", "focus=true")
 				break
 	if (timeout)
-		addtimer(CALLBACK(src, .proc/close), timeout)
+		addtimer(CALLBACK(src, PROC_REF(close)), timeout)
 
 /datum/browser/modal/proc/wait()
 	while (opentime && selectedbutton <= 0 && (!timeout || opentime+timeout > world.time))
@@ -306,13 +306,9 @@
 	var/output =  {"<form><input type="hidden" name="src" value="\ref[src]"><ul class="sparse">"}
 	if (inputtype == "checkbox" || inputtype == "radio")
 		for (var/i in values)
-			var/div_slider = slidecolor
-			if(!i["allowed_edit"])
-				div_slider = "locked"
 			output += {"<li>
 						<label class="switch">
-							<input type="[inputtype]" value="1" name="[i["name"]]"[i["checked"] ? " checked" : ""][i["allowed_edit"] ? "" : " onclick='return false' onkeydown='return false'"]>
-								<div class="slider [div_slider ? "[div_slider]" : ""]"></div>
+							<input type="[inputtype]" value="1" name="[i["name"]]"[i["checked"] ? " checked" : ""][i["allowed_edit"] ? "" : " disabled onclick='return false' onkeydown='return false'"]>
 									<span>[i["name"]]</span>
 						</label>
 						</li>"}

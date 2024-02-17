@@ -82,10 +82,8 @@
 		player_setup.load_character(S)
 		S.cd = "/character[default_slot]"
 		player_setup.save_character(S)
-		sanitize_preferences()
 
-	player_setup.load_character(S)
-	clear_character_previews() // Recalculate them on next show
+	clear_character_previews() // VOREStation Edit
 	return 1
 
 /datum/preferences/proc/save_character()
@@ -109,7 +107,7 @@
 			default_slot = slot
 			nif_path = nif_durability = nif_savedata = null //VOREStation Add - Don't copy NIF
 			S["default_slot"] << slot
-			
+
 	else
 		S["default_slot"] << default_slot
 

@@ -9,7 +9,7 @@ SUBSYSTEM_DEF(ticker)
 	flags = SS_NO_TICK_CHECK | SS_KEEP_TIMING
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME | RUNLEVEL_POSTGAME // Every runlevel!
 
-	var/const/restart_timeout = 3 MINUTES	// Default time to wait before rebooting in desiseconds.
+	var/const/restart_timeout = 4 MINUTES	// Default time to wait before rebooting in desiseconds.
 	var/current_state = GAME_STATE_INIT	// We aren't even at pregame yet // TODO replace with CURRENT_GAME_STATE
 
 	/* Relies upon the following globals (TODO move those in here) */
@@ -49,6 +49,13 @@ var/global/datum/controller/subsystem/ticker/ticker
 /datum/controller/subsystem/ticker/Initialize()
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
+	SSwebhooks.send(
+		WEBHOOK_ROUNDPREP,
+		list(
+			"map" = station_name(),
+			"url" = get_world_url()
+		)
+	)
 	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
 	return ..()
 
@@ -175,7 +182,14 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if (S.name != "AI")
 				qdel(S)
 		to_world("<span class='boldannounce notice'><em>Enjoy the game!</em></span>")
-		world << sound('sound/AI/yawn/welcome.ogg') //YW EDIT: Custom message thanks to VerySoft
+		//YW Change start: Custom message thanks to VerySoft and a 5% chance to play a secret message
+		var/rssound = 1
+		if(rssound == 1)
+			if(prob(95))
+				world << sound('sound/AI/yawn/welcome.ogg') 
+			else
+				world << sound('sound/AI/yawn/welcome_secret.ogg')
+		//YW Change end:
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
 
@@ -213,7 +227,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 		end_game_state = END_GAME_READY_TO_END
 		current_state = GAME_STATE_FINISHED
 		Master.SetRunLevel(RUNLEVEL_POSTGAME)
-		INVOKE_ASYNC(src, .proc/declare_completion)
+		INVOKE_ASYNC(src, PROC_REF(declare_completion))
 	else if (mode_finished && (end_game_state < END_GAME_MODE_FINISHED))
 		end_game_state = END_GAME_MODE_FINISHED // Only do this cleanup once!
 		mode.cleanup()
@@ -314,7 +328,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			switch(M.z)
 				if(0)	//inside a crate or something
 					var/turf/T = get_turf(M)
-					if(T && T.z in using_map.station_levels)				//we don't use M.death(0) because it calls a for(/mob) loop and
+					if(T && (T.z in using_map.station_levels))				//we don't use M.death(0) because it calls a for(/mob) loop and
 						M.health = 0
 						M.set_stat(DEAD)
 				if(1)	//on a z-level 1 turf.
@@ -390,14 +404,19 @@ var/global/datum/controller/subsystem/ticker/ticker
 		if(player && player.ready && player.mind?.assigned_role)
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
 
+			// Ask their new_player mob to spawn them
+			if(!player.spawn_checks_vr(player.mind.assigned_role))
+				var/datum/job/job_datum = job_master.GetJob(J.title)
+				job_datum.current_positions--
+				player.mind.assigned_role = null
+				continue //VOREStation Add
+
 			// Snowflakey AI treatment
 			if(J?.mob_type & JOB_SILICON_AI)
 				player.close_spawn_windows()
 				player.AIize(move = TRUE)
 				continue
 
-			// Ask their new_player mob to spawn them
-			if(!player.spawn_checks_vr(player.mind.assigned_role)) continue //VOREStation Add
 			var/mob/living/carbon/human/new_char = player.create_character()
 
 			// Created their playable character, delete their /mob/new_player
@@ -428,6 +447,14 @@ var/global/datum/controller/subsystem/ticker/ticker
 				UpdateFactionList(player)
 				//equip_custom_items(player)	//VOREStation Removal
 				//player.apply_traits() //VOREStation Removal
+		//VOREStation Addition Start
+		if(player.client)
+			if(player.client.prefs.auto_backup_implant)
+				var/obj/item/weapon/implant/backup/imp = new(src)
+
+				if(imp.handle_implant(player,player.zone_sel.selecting))
+					imp.post_implant(player)
+		//VOREStation Addition End
 	if(captainless)
 		for(var/mob/M in player_list)
 			if(!istype(M,/mob/new_player))
@@ -442,22 +469,22 @@ var/global/datum/controller/subsystem/ticker/ticker
 				var/turf/playerTurf = get_turf(Player)
 				if(emergency_shuttle.departed && emergency_shuttle.evac)
 					if(isNotAdminLevel(playerTurf.z))
-						to_chat(Player, "<span class='filter_system'><font color='blue'><b>You survived the round, but remained on [station_name()] as [Player.real_name].</b></font></span>")
+						to_chat(Player, "<span class='filter_system'>[span_blue("<b>You survived the round, but remained on [station_name()] as [Player.real_name].</b>")]</span>")
 					else
-						to_chat(Player, "<span class='filter_system'><font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font></span>")
+						to_chat(Player, "<span class='filter_system'>[span_green("<b>You managed to survive the events on [station_name()] as [Player.real_name].</b>")]</span>")
 				else if(isAdminLevel(playerTurf.z))
-					to_chat(Player, "<span class='filter_system'><font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font></span>")
+					to_chat(Player, "<span class='filter_system'>[span_green("<b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b>")]</span>")
 				else if(issilicon(Player))
-					to_chat(Player, "<span class='filter_system'><font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font></span>")
+					to_chat(Player, "<span class='filter_system'>[span_green("<b>You remain operational after the events on [station_name()] as [Player.real_name].</b>")]</span>")
 				else
-					to_chat(Player, "<span class='filter_system'><font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font></span>")
+					to_chat(Player, "<span class='filter_system'>[span_blue("<b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b>")]</span>")
 			else
 				if(istype(Player,/mob/observer/dead))
 					var/mob/observer/dead/O = Player
 					if(!O.started_as_observer)
-						to_chat(Player, "<span class='filter_system'><font color='red'><b>You did not survive the events on [station_name()]...</b></font></span>")
+						to_chat(Player, "<span class='filter_system'>[span_red("<b>You did not survive the events on [station_name()]...</b>")]</span>")
 				else
-					to_chat(Player, "<span class='filter_system'><font color='red'><b>You did not survive the events on [station_name()]...</b></font></span>")
+					to_chat(Player, "<span class='filter_system'>[span_red("<b>You did not survive the events on [station_name()]...</b>")]</span>")
 	to_world("<br>")
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)

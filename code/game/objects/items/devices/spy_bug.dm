@@ -110,7 +110,7 @@
 		else
 			to_chat(user, "Error: The device is linked to another monitor.")
 
-	else if(W.is_wrench() && user.a_intent != I_HURT)
+	else if(W.has_tool_quality(TOOL_WRENCH) && user.a_intent != I_HURT)
 		if(isturf(loc))
 			anchored = !anchored
 
@@ -191,7 +191,7 @@
 
 	operating = 1
 	while(selected_camera && Adjacent(user))
-		selected_camera = input("Select camera to view.") as null|anything in cameras
+		selected_camera = tgui_input_list(usr, "Select camera to view.", "Camera Choice", cameras)
 	selected_camera = null
 	operating = 0
 

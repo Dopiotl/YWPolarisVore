@@ -20,7 +20,7 @@
 /obj/machinery/door/window/New()
 	..()
 	update_nearby_tiles()
-	if (src.req_access && src.req_access.len)
+	if(LAZYLEN(req_access))
 		src.icon_state = "[src.icon_state]"
 		src.base_state = src.icon_state
 	return
@@ -38,12 +38,10 @@
 	var/obj/item/weapon/airlock_electronics/ae
 	if(!electronics)
 		ae = new/obj/item/weapon/airlock_electronics( src.loc )
-		if(!src.req_access)
-			src.check_access()
-		if(src.req_access.len)
-			ae.conf_access = src.req_access
-		else if (src.req_one_access.len)
-			ae.conf_access = src.req_one_access
+		if(LAZYLEN(req_access))
+			ae.conf_access = req_access
+		else if (LAZYLEN(req_one_access))
+			ae.conf_access = req_one_access
 			ae.one_access = 1
 	else
 		ae = electronics
@@ -52,14 +50,14 @@
 	if(operating == -1)
 		ae.icon_state = "door_electronics_smoked"
 		operating = 0
-	src.density = 0
+	src.density = FALSE
 	playsound(src, "shatter", 70, 1)
 	if(display_message)
 		visible_message("[src] shatters!")
 	qdel(src)
 
 /obj/machinery/door/window/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	return ..()
 
@@ -69,13 +67,13 @@
 		if(istype(bot))
 			if(density && src.check_access(bot.botcard))
 				open()
-				addtimer(CALLBACK(src, .proc/close), 50)
+				addtimer(CALLBACK(src, PROC_REF(close)), 50)
 		else if(istype(AM, /obj/mecha))
 			var/obj/mecha/mecha = AM
 			if(density)
 				if(mecha.occupant && src.allowed(mecha.occupant))
 					open()
-					addtimer(CALLBACK(src, .proc/close), 50)
+					addtimer(CALLBACK(src, PROC_REF(close)), 50)
 		return
 	if (!( ticker ))
 		return
@@ -83,12 +81,19 @@
 		return
 	if (density && allowed(AM))
 		open()
-		addtimer(CALLBACK(src, .proc/close), check_access(null)? 50 : 20)
+		addtimer(CALLBACK(src, PROC_REF(close)), check_access(null)? 50 : 20)
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(mover, loc) == turn(dir, 180)) //Make sure looking at appropriate border
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+		return !density
+	return TRUE
+
+/obj/machinery/door/window/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
 		return !density
 	return TRUE
 
@@ -98,14 +103,6 @@
 			return FALSE
 		return !density  // Air can flow if open (density == FALSE).
 	return TRUE // Windoors don't block if not facing the right way.
-
-/obj/machinery/door/window/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
-	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(get_dir(loc, target) == dir)
-		return !density
-	else
-		return 1
 
 /obj/machinery/door/window/open()
 	if (operating == 1 || !density) //doors can still open when emag-disabled
@@ -119,7 +116,7 @@
 	sleep(10)
 
 	explosion_resistance = 0
-	density = 0
+	density = FALSE
 	update_icon()
 	update_nearby_tiles()
 
@@ -192,8 +189,8 @@
 
 	if(istype(I))
 		// Fixing.
-		if(istype(I, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
-			var/obj/item/weapon/weldingtool/WT = I
+		if(I.has_tool_quality(TOOL_WELDER) && user.a_intent == I_HELP)
+			var/obj/item/weapon/weldingtool/WT = I.get_welder()
 			if(health < maxhealth)
 				if(WT.remove_fuel(1 ,user))
 					to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
@@ -218,7 +215,7 @@
 			return 1
 
 		//If it's opened/emagged, crowbar can pry it out of its frame.
-		if (!density && I.is_crowbar())
+		if (!density && I.has_tool_quality(TOOL_CROWBAR))
 			playsound(src, I.usesound, 50, 1)
 			user.visible_message("[user] begins prying the windoor out of the frame.", "You start to pry the windoor out of the frame.")
 			if (do_after(user,40 * I.toolspeed))
@@ -230,7 +227,7 @@
 				if (src.base_state == "right" || src.base_state == "rightsecure")
 					wa.facing = "r"
 				wa.set_dir(src.dir)
-				wa.anchored = 1
+				wa.anchored = TRUE
 				wa.created_name = name
 				wa.state = "02"
 				wa.step = 2
@@ -241,12 +238,10 @@
 				else
 					if(!electronics)
 						wa.electronics = new/obj/item/weapon/airlock_electronics()
-						if(!src.req_access)
-							src.check_access()
-						if(src.req_access.len)
-							wa.electronics.conf_access = src.req_access
-						else if (src.req_one_access.len)
-							wa.electronics.conf_access = src.req_one_access
+						if(LAZYLEN(req_access))
+							wa.electronics.conf_access = req_access
+						else if (LAZYLEN(req_one_access))
+							wa.electronics.conf_access = req_one_access
 							wa.electronics.one_access = 1
 					else
 						wa.electronics = electronics

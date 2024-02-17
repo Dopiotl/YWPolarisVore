@@ -50,7 +50,7 @@
 
 /*
 /obj/machinery/computer/pod/attackby(I as obj, user as mob)
-	if(I.is_screwdriver())
+	if(I.has_tool_quality(TOOL_SCREWDRIVER))
 		playsound(src, W.usesound, 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)
@@ -75,7 +75,7 @@
 				A.circuit = M
 				A.state = 3
 				A.icon_state = "3"
-				A.anchored = 1
+				A.anchored = TRUE
 				qdel(src)
 			else
 				to_chat(to_chat(user, "<span class='notice'>You disconnect the monitor.</span>"))
@@ -98,7 +98,7 @@
 				A.circuit = M
 				A.state = 4
 				A.icon_state = "4"
-				A.anchored = 1
+				A.anchored = TRUE
 				qdel(src)
 	else
 		attack_hand(user)

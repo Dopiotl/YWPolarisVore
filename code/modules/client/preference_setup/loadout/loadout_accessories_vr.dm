@@ -40,6 +40,14 @@
 	display_name = "collar, pink"
 	path = /obj/item/clothing/accessory/collar/pink
 
+/datum/gear/collar/cowbell
+	display_name = "collar, cowbell"
+	path = /obj/item/clothing/accessory/collar/cowbell
+
+/datum/gear/collar/planet_earth
+	display_name = "collar, planet"
+	path = /obj/item/clothing/accessory/collar/collarplanet_earth
+
 /datum/gear/collar/holo
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo
@@ -49,44 +57,44 @@
 	path = /obj/item/clothing/accessory/collar/holo/indigestible
 
 /datum/gear/accessory/holster
-	display_name = "holster selection (Security, SM, HoP, Exploration)"
-	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Explorer","Pathfinder","Talon Guard", "Blueshield Guard","Security Pilot") //YW ADDITIONS
+	display_name = "holster selection (Security, SM, HoP, Exploration)" //YW ADDITIONS, Sec pilot, Exploration
+	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective","Field Medic","Explorer","Pathfinder","Talon Captain","Talon Guard","Field Medic","Explorer","Pathfinder","Blueshield Guard","Security Pilot") //YW ADDITIONS, Sec pilot, Exploration
 
 /datum/gear/accessory/brown_vest
-	display_name = "webbing, brown (Eng, Sec, Med, Exploration, Miner)"
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Blueshield Guard","Security Pilot") //YW ADDITIONS
+	display_name = "webbing, brown (Eng, Sec, Med, Miner, Exploration)" //YW ADDITIONS, Sec pilot, Exploration
+	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Talon Miner","Field Medic","Explorer","Pathfinder","Security Pilot") //YW ADDITIONS, Blueshield, Sec pilot, Exploration
 
 /datum/gear/accessory/black_vest
-	display_name = "webbing, black (Eng, Sec, Med, Exploration, Miner)"
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Blueshield Guard","Security Pilot") //YW ADDITIONS
+	display_name = "webbing, black (Eng, Sec, Med, Miner, Exploration)" //YW ADDITIONS, Sec pilot, Exploration
+	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Talon Miner","Field Medic","Explorer","Pathfinder","Security Pilot") //YW ADDITIONS, Sec pilot, Exploration
 
 /datum/gear/accessory/white_vest
 	display_name = "webbing, white (Medical)"
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Talon Doctor")
+	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Talon Doctor","Field Medic") //YW ADDITIONS, field medic
 
 /datum/gear/accessory/brown_drop_pouches
-	display_name = "drop pouches, brown (Eng, Sec, Med, Exploration, Miner)"
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Blueshield Guard","Security Pilot") //YW ADDITIONS
+	display_name = "drop pouches, brown (Eng, Sec, Med, Miner,  Exploration)" //YW ADDITIONS, Exploration
+	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Talon Miner","Field Medic","Explorer","Pathfinder","Security Pilot") //YW ADDITIONS, Exploration
 
 /datum/gear/accessory/black_drop_pouches
-	display_name = "drop pouches, black (Eng, Sec, Med, Exploration, Miner)"
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Blueshield Guard","Security Pilot") //YW ADDITIONS
+	display_name = "drop pouches, black (Eng, Sec, Med, Exploration, Miner)" //YW ADDITIONS, Exploration
+	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard", "Talon Miner","Field Medic","Explorer","Pathfinder","Security Pilot") //YW ADDITIONS, Sec pilot, Exploration
 
 /datum/gear/accessory/white_drop_pouches
 	display_name = "drop pouches, white (Medical)"
-	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Talon Doctor")
+	allowed_roles = list("Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Talon Doctor","Field Medic") //YW ADDITIONS, field medic
 
 /datum/gear/accessory/bluespace
-	display_name = "bluespace badge (Eng, Sec, Med, Exploration, Miner)"
+	display_name = "bluespace badge (Eng, Sec, Med, Miner, Pilot, Exploration)" //YW ADDITIONS, Exploration
 	path = /obj/item/clothing/accessory/storage/bluespace
-	allowed_roles = list("Station Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Field Medic","Explorer","Pathfinder","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard")
+	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor","Chemist","Shaft Miner","Talon Captain","Talon Doctor","Talon Engineer","Talon Guard","Talon Miner","Pilot","Field Medic","Explorer","Pathfinder","Security Pilot") //YW ADDITIONS, Exploration
 	cost = 2
 
 /datum/gear/accessory/webbing
 	cost = 1
 
 /datum/gear/accessory/stethoscope
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Field Medic","Talon Doctor")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Talon Doctor","Field Medic") //YW ADDITIONS, field medic
 
 /datum/gear/accessory/khcrystal
 	display_name = "Life Crystal"
@@ -102,7 +110,7 @@
 	display_name = "pilot qualification pin"
 	description = "An iron pin denoting the qualification to fly USG spacecraft."
 	path = /obj/item/clothing/accessory/solgov/specialty/pilot
-	allowed_roles = list("Pathfinder","Pilot","Field Medic","Talon Pilot","Security Pilot") //YW ADDITIONS
+	allowed_roles = list("Pathfinder","Pilot","Field Medic","Talon Pilot","Security Pilot") //YW ADDITIONS, Sec pilot, Exploration
 
 /datum/gear/accessory/flops
 	display_name = "drop straps"
@@ -112,3 +120,63 @@
 /datum/gear/accessory/flops/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/dosimeter
+	display_name = "Dosimeter"
+	path = /obj/item/weapon/storage/box/dosimeter
+	description = "A small device that will display dangerous levels of radiation."
+
+/*
+Talon pin
+*/
+/datum/gear/accessory/talonpin
+	display_name = "Talon pin"
+	description = "A small enamel pin of the Talon logo."
+	path = /obj/item/clothing/accessory/talon
+
+//Rat badge
+
+/datum/gear/accessory/altevian_badge
+	display_name = "altevian badge"
+	path = /obj/item/clothing/accessory/altevian_badge
+
+/datum/gear/accessory/maid_neck
+	display_name = "maid neck cover"
+	path = /obj/item/clothing/accessory/maid_neck
+
+/datum/gear/accessory/maid_corset
+	display_name = "maid corset"
+	path = /obj/item/clothing/accessory/maidcorset
+
+//Antediluvian accessories
+/datum/gear/accessory/antediluvian
+	display_name = "antediluvian bracers"
+	path = /obj/item/clothing/accessory/antediluvian
+
+/datum/gear/accessory/antediluvian/loin
+	display_name = "antediluvian loincloth"
+	path = /obj/item/clothing/accessory/antediluvian/loincloth
+
+//Replikant accessories
+
+/datum/gear/accessory/sleekpatch
+	display_name = "sleek uniform patch"
+	path = /obj/item/clothing/accessory/sleekpatch
+
+/datum/gear/accessory/poncho/roles/cloak/custom/gestaltjacket
+	display_name = "sleek uniform jacket"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom/gestaltjacket
+
+/datum/gear/accessory/replika
+	display_name = "replikant vest selection"
+	path = /obj/item/clothing/accessory/replika
+
+/datum/gear/accessory/replika/New()
+	..()
+	var/list/replika_vests = list(
+	"controller replikant chestplate" = /obj/item/clothing/accessory/replika/klbr,
+	"combat-engineer replikant chestplate" = /obj/item/clothing/accessory/replika/lstr,
+	"security-controller replikant chestplate" = /obj/item/clothing/accessory/replika/stcr,
+	"security-technician replikant chestplate" = /obj/item/clothing/accessory/replika/star
+	)
+	gear_tweaks += new/datum/gear_tweak/path(replika_vests)

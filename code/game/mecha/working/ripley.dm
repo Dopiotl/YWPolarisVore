@@ -27,6 +27,20 @@
 	icon_scale_x = 1.2
 	icon_scale_y = 1.2
 
+/obj/mecha/working/ripley/Move()
+	. = ..()
+	if(.)
+		collect_ore()
+
+/obj/mecha/working/ripley/proc/collect_ore()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in equipment)
+		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in cargo
+		if(ore_box)
+			for(var/obj/item/weapon/ore/ore in range(1, src))
+				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
+					ore_box.stored_ore[ore.material]++
+					qdel(ore)
+
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
 		A.loc = loc
@@ -45,7 +59,6 @@
 	max_temperature = 65000
 	health = 250
 	lights_power = 8
-	damage_absorption = list("fire"=0.5,"bullet"=0.8,"bomb"=0.5)
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley/firefighter
 	max_hull_equip = 2
 	max_weapon_equip = 0

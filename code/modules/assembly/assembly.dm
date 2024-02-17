@@ -4,7 +4,7 @@
 	icon = 'icons/obj/assemblies/new_assemblies.dmi'
 	icon_state = ""
 	w_class = ITEMSIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 100)
+	matter = list(MAT_STEEL = 100)
 	throwforce = 2
 	throw_speed = 3
 	throw_range = 10
@@ -70,7 +70,7 @@
 		if((!A.secured) && (!secured))
 			attach_assembly(A,user)
 			return
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(toggle_secure())
 			to_chat(user, "<span class='notice'>\The [src] is ready!</span>")
 		else

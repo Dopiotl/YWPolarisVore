@@ -41,7 +41,7 @@
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/oxy,
 		/obj/item/weapon/storage/pill_bottle/inaprovaline,
-		/obj/item/weapon/storage/pill_bottle/iron,
+		/obj/item/weapon/storage/pill_bottle/blood_regen,
 		/obj/item/weapon/storage/pill_bottle/dexalin
 	)
 
@@ -66,7 +66,7 @@
 		/obj/item/weapon/storage/pill_bottle/corophizine,
 		/obj/item/weapon/storage/pill_bottle/combat,
 		/obj/item/stack/medical/splint,
-		/obj/item/device/healthanalyzer/advanced
+		/obj/item/device/healthanalyzer/phasic
 	)
 
 /obj/item/weapon/storage/firstaid/surgery
@@ -83,7 +83,8 @@
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
 		/obj/item/device/healthanalyzer,
-		/obj/item/weapon/autopsy_scanner
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/weapon/surgical/bioregen
 		)
 
 	starts_with = list(
@@ -98,8 +99,10 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/device/healthanalyzer,
-		/obj/item/weapon/autopsy_scanner
+		/obj/item/weapon/autopsy_scanner,
+		/obj/item/weapon/surgical/bioregen
 		)
+
 
 /obj/item/weapon/storage/firstaid/clotting
 	icon_state = "clottingkit"
@@ -142,6 +145,12 @@
 
 /obj/item/weapon/storage/pill_bottle/iron
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/iron = 14)
+
+/obj/item/weapon/storage/pill_bottle/blood_regen
+	name = "pill bottle (blood regeneration)"
+	desc = "Contains iron and copper pills for treating bloodloss by employed species."
+	starts_with = list(/obj/item/weapon/reagent_containers/pill/iron = 9,
+	/obj/item/weapon/reagent_containers/pill/copper = 5)
 
 /obj/item/weapon/storage/pill_bottle/adminordrazine
 	name = "pill bottle (Adminordrazine)"
@@ -262,7 +271,8 @@
 	starts_with = list(
 			/obj/item/weapon/reagent_containers/pill/inaprovaline = 3,
 			/obj/item/weapon/reagent_containers/pill/antitox = 3,
-			/obj/item/weapon/reagent_containers/pill/iron = 2,
+			/obj/item/weapon/reagent_containers/pill/iron = 1,
+			/obj/item/weapon/reagent_containers/pill/copper = 1,
 			/obj/item/weapon/reagent_containers/pill/tramadol = 2,
 			/obj/item/weapon/reagent_containers/pill/hyronalin = 3,
 			/obj/item/weapon/reagent_containers/pill/spaceacillin

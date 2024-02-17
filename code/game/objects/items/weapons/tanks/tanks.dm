@@ -1,5 +1,3 @@
-#define TANK_MAX_RELEASE_PRESSURE (3*ONE_ATMOSPHERE)
-#define TANK_DEFAULT_RELEASE_PRESSURE 21
 #define TANK_IDEAL_PRESSURE 1015 //Arbitrary.
 
 var/list/global/tank_gauge_cache = list()
@@ -8,7 +6,7 @@ var/list/global/tank_gauge_cache = list()
 	name = "tank"
 	icon = 'icons/obj/tank.dmi'
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi'
+		SPECIES_TESHARI = 'icons/inventory/back/mob_teshari.dmi'
 		)
 	drop_sound = 'sound/items/drop/gascan.ogg'
 	pickup_sound = 'sound/items/pickup/gascan.ogg'
@@ -132,13 +130,13 @@ var/list/global/tank_gauge_cache = list()
 			to_chat(user, "<span class='notice'>You attach the wires to the tank.</span>")
 			src.add_bomb_overlay()
 
-	if(W.is_wirecutter())
+	if(W.has_tool_quality(TOOL_WIRECUTTER))
 		if(wired && src.proxyassembly.assembly)
 
 			to_chat(user, "<span class='notice'>You carefully begin clipping the wires that attach to the tank.</span>")
 			if(do_after(user, 100,src))
 				wired = 0
-				src.overlays -= "bomb_assembly"
+				cut_overlay("bomb_assembly")
 				to_chat(user, "<span class='notice'>You cut the wire and remove the device.</span>")
 
 				var/obj/item/device/assembly_holder/assy = src.proxyassembly.assembly
@@ -153,7 +151,7 @@ var/list/global/tank_gauge_cache = list()
 						assy.a_right = null
 						src.proxyassembly.assembly = null
 						qdel(assy)
-				src.overlays.Cut()
+				cut_overlays()
 				last_gauge_pressure = 0
 				update_gauge()
 
@@ -166,7 +164,7 @@ var/list/global/tank_gauge_cache = list()
 			if(do_after(user, 10, src))
 				to_chat(user, "<span class='notice'>You quickly clip the wire from the tank.</span>")
 				wired = 0
-				src.overlays -= "bomb_assembly"
+				cut_overlay("bomb_assembly")
 
 		else
 			to_chat(user, "<span class='notice'>There are no wires to cut!</span>")
@@ -187,7 +185,7 @@ var/list/global/tank_gauge_cache = list()
 			to_chat(user, "<span class='notice'>You need to wire the device up first.</span>")
 
 
-	if(istype(W, /obj/item/weapon/weldingtool/))
+	if(istype(W, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(1,user))
 			if(!valve_welded)
@@ -352,12 +350,12 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/weapon/tank/proc/add_bomb_overlay()
 	if(src.wired)
-		src.overlays += "bomb_assembly"
+		add_overlay("bomb_assembly")
 		if(src.proxyassembly.assembly)
 			var/icon/test = getFlatIcon(src.proxyassembly.assembly)
 			test.Shift(SOUTH,1)
 			test.Shift(WEST,3)
-			overlays += test
+			add_overlay(test)
 
 
 /obj/item/weapon/tank/proc/update_gauge()
@@ -373,12 +371,12 @@ var/list/global/tank_gauge_cache = list()
 		return
 
 	last_gauge_pressure = gauge_pressure
-	overlays.Cut()
+	cut_overlays()
 	add_bomb_overlay()
 	var/indicator = "[gauge_icon][(gauge_pressure == -1) ? "overload" : gauge_pressure]"
 	if(!tank_gauge_cache[indicator])
 		tank_gauge_cache[indicator] = image(icon, indicator)
-	overlays += tank_gauge_cache[indicator]
+	add_overlay(tank_gauge_cache[indicator])
 
 
 
@@ -457,7 +455,7 @@ var/list/global/tank_gauge_cache = list()
 				return
 			T.assume_air(air_contents)
 			playsound(src, 'sound/weapons/Gunshot_shotgun.ogg', 20, 1)
-			visible_message("[bicon(src)] <span class='danger'>\The [src] flies apart!</span>", "<span class='warning'>You hear a bang!</span>")
+			visible_message("\icon[src][bicon(src)] <span class='danger'>\The [src] flies apart!</span>", "<span class='warning'>You hear a bang!</span>")
 			T.hotspot_expose(air_contents.temperature, 70, 1)
 
 
@@ -502,7 +500,7 @@ var/list/global/tank_gauge_cache = list()
 
 			T.assume_air(leaked_gas)
 			if(!leaking)
-				visible_message("[bicon(src)] <span class='warning'>\The [src] relief valve flips open with a hiss!</span>", "You hear hissing.")
+				visible_message("\icon[src][bicon(src)] <span class='warning'>\The [src] relief valve flips open with a hiss!</span>", "You hear hissing.")
 				playsound(src, 'sound/effects/spray.ogg', 10, 1, -3)
 				leaking = 1
 				#ifdef FIREDBG
@@ -562,7 +560,7 @@ var/list/global/tank_gauge_cache = list()
 
 	H.update_icon()
 
-	src.overlays += "bomb_assembly"
+	add_overlay("bomb_assembly")
 
 
 /obj/item/weapon/tank/phoron/onetankbomb/New()
@@ -658,16 +656,16 @@ var/list/global/tank_gauge_cache = list()
 /obj/item/device/tankassemblyproxy/update_icon()
 	if(assembly)
 		tank.update_icon()
-		tank.overlays += "bomb_assembly"
+		tank.add_overlay("bomb_assembly")
 	else
 		tank.update_icon()
-		tank.overlays -= "bomb_assembly"
+		tank.cut_overlay("bomb_assembly")
 
 /obj/item/device/tankassemblyproxy/HasProximity(turf/T, atom/movable/AM, old_loc)
 	assembly?.HasProximity(T, AM, old_loc)
 
 /obj/item/device/tankassemblyproxy/Moved(old_loc, direction, forced)
 	if(isturf(old_loc))
-		unsense_proximity(callback = .HasProximity, center = old_loc)
+		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = .HasProximity)
+		sense_proximity(callback = /atom/proc/HasProximity)

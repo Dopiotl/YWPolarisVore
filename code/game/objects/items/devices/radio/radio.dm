@@ -14,7 +14,7 @@ var/global/list/default_internal_channels = list(
 	num2text(SCI_FREQ) = list(access_tox, access_robotics, access_xenobiology),
 	num2text(SUP_FREQ) = list(access_cargo, access_mining_station),
 	num2text(SRV_FREQ) = list(access_janitor, access_library, access_hydroponics, access_bar, access_kitchen),
-	num2text(EXP_FREQ) = list(access_explorer, access_pilot)
+	num2text(EXP_FREQ) = list(access_explorer)	//VOREStation Edit
 )
 
 var/global/list/default_medbay_channels = list(
@@ -56,12 +56,12 @@ var/global/list/default_medbay_channels = list(
 
 	// Bluespace radios talk directly to telecomms equipment
 	var/bluespace_radio = FALSE
-	var/weakref/bs_tx_weakref //Maybe misleading, this is the device to TRANSMIT TO
+	var/datum/weakref/bs_tx_weakref //Maybe misleading, this is the device to TRANSMIT TO
 	// For mappers or subtypes, to start them prelinked to these devices
 	var/bs_tx_preload_id
 	var/bs_rx_preload_id
 
-	matter = list("glass" = 25, DEFAULT_WALL_MATERIAL = 75, MAT_COPPER = 15)
+	matter = list(MAT_GLASS = 25,MAT_STEEL = 75)
 	var/const/FREQ_LISTENING = 1
 	var/list/internal_channels
 
@@ -104,14 +104,14 @@ var/global/list/default_medbay_channels = list(
 			//Try to find a receiver
 			for(var/obj/machinery/telecomms/receiver/RX in telecomms_list)
 				if(RX.id == bs_tx_preload_id) //Again, bs_tx is the thing to TRANSMIT TO, so a receiver.
-					bs_tx_weakref = weakref(RX)
+					bs_tx_weakref = WEAKREF(RX)
 					RX.link_radio(src)
 					break
 			//Hmm, howabout an AIO machine
 			if(!bs_tx_weakref)
 				for(var/obj/machinery/telecomms/allinone/AIO in telecomms_list)
 					if(AIO.id == bs_tx_preload_id)
-						bs_tx_weakref = weakref(AIO)
+						bs_tx_weakref = WEAKREF(AIO)
 						AIO.link_radio(src)
 						break
 			if(!bs_tx_weakref)
@@ -298,7 +298,8 @@ var/global/list/default_medbay_channels = list(
 
 GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels)
+/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels, var/states)	//VOREStation Edit
+
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
@@ -314,12 +315,15 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 	if(!LAZYLEN(zlevels))
 		zlevels = list(0)
-
+	//VOREStation Edit Start
+	if(!states)
+		states = "states"
+	//VOREStation Edit End
 	GLOB.autospeaker.SetName(from)
 	Broadcast_Message(connection, GLOB.autospeaker,
 						0, "*garbled automated announcement*", src,
-						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
-						DATA_FAKE, 0, zlevels, connection.frequency, "states")
+						message_to_multilingual(message, GLOB.all_languages[LANGUAGE_GALCOM]), from, "Automated Announcement", from, "synthesized voice",
+						DATA_FAKE, 0, zlevels, connection.frequency, states)	//VOREStation Edit
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, list/message_pieces, message_mode)
@@ -486,8 +490,13 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	else if(subspace_transmission)
 		var/list/jamming = is_jammed(src)
 		if(jamming)
-			var/distance = jamming["distance"]
-			to_chat(M, "<span class='danger'>[bicon(src)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
+			var/distance = 0
+			var/area/our_area = get_area(src)
+			if(our_area.no_comms)
+				distance = 99
+			else
+				distance = jamming["distance"]
+			to_chat(M, "<span class='danger'>\icon[src][bicon(src)] You hear the [distance <= 2 ? "loud hiss" : "soft hiss"] of static.</span>")
 			return FALSE
 
 		// First, we want to generate a new radio signal
@@ -532,7 +541,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	for(var/obj/machinery/telecomms/receiver/R in telecomms_list)
 		R.receive_signal(signal)
 
-		if(signal.data["done"] && pos_z in signal.data["level"])
+		if(signal.data["done"] && (pos_z in signal.data["level"]))
 			if(adhoc_fallback)
 				to_chat(loc, "<span class='notice'>\The [src] pings as it reestablishes subspace communications.</span>")
 				subspace_transmission = TRUE
@@ -605,7 +614,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/device/radio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	user.set_machine(src)
-	if (!W.is_screwdriver())
+	if (!W.has_tool_quality(TOOL_SCREWDRIVER))
 		return
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
@@ -657,10 +666,10 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/device/radio/borg/attackby(obj/item/weapon/W as obj, mob/user as mob)
 //	..()
 	user.set_machine(src)
-	if (!(W.is_screwdriver() || istype(W, /obj/item/device/encryptionkey)))
+	if (!(W.has_tool_quality(TOOL_SCREWDRIVER) || istype(W, /obj/item/device/encryptionkey)))
 		return
 
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		if(keyslot)
 
 

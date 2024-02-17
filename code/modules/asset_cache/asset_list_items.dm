@@ -1,11 +1,4 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-
-/datum/asset/simple/tgui
-	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
-	)
-
 /datum/asset/simple/headers
 	assets = list(
 		"alarm_green.gif" 			= 'icons/program_icons/alarm_green.gif',
@@ -152,11 +145,6 @@
 // 		/datum/asset/simple/fontawesome
 // 	)
 
-// /datum/asset/simple/jquery
-// 	assets = list(
-// 		"jquery.min.js"            = 'code/modules/goonchat/browserassets/js/jquery.min.js',
-// 	)
-
 // /datum/asset/simple/goonchat
 // 	assets = list(
 // 		"json2.min.js"             = 'code/modules/goonchat/browserassets/js/json2.min.js',
@@ -164,16 +152,6 @@
 // 		"browserOutput.css"	       = 'code/modules/goonchat/browserassets/css/browserOutput.css',
 // 		"browserOutput_white.css"  = 'code/modules/goonchat/browserassets/css/browserOutput_white.css',
 // 	)
-
-/datum/asset/simple/fontawesome
-	assets = list(
-		"fa-regular-400.eot"  = 'html/font-awesome/webfonts/fa-regular-400.eot',
-		"fa-regular-400.woff" = 'html/font-awesome/webfonts/fa-regular-400.woff',
-		"fa-solid-900.eot"    = 'html/font-awesome/webfonts/fa-solid-900.eot',
-		"fa-solid-900.woff"   = 'html/font-awesome/webfonts/fa-solid-900.woff',
-		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
-		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
-	)
 
 // /datum/asset/spritesheet/goonchat
 // 	name = "chat"
@@ -294,6 +272,16 @@
 	downscaled.Scale(240, 240)
 	InsertAll("", downscaled)
 	..()
+
+/datum/asset/spritesheet/vore_colorized //This should be getting loaded in the TGUI vore panel but the game refuses to do so, for some reason. It only loads the vore spritesheet.
+	name = "colorizedvore"
+
+/datum/asset/spritesheet/vore_colorized/register()
+	var/icon/downscaledVC = icon('icons/mob/screen_full_colorized_vore.dmi')
+	downscaledVC.Scale(240, 240)
+	InsertAll("", downscaledVC)
+	..()
+
 //VOREStation Add End
 
 // // Representative icons for each research design
@@ -359,8 +347,8 @@
 	name = "vending"
 
 /datum/asset/spritesheet/vending/register()
-	for(var/k in GLOB.vending_products)
-		var/atom/item = k
+	populate_vending_products()
+	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
 			continue
 
@@ -372,14 +360,6 @@
 		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
 			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
 			icon_state = initial(G.base_icon)
-		if(ispath(item, /obj/item/clothing/suit))
-			var/obj/item/clothing/suit/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/suits_[initial(U.index)].dmi"
-		if(ispath(item, /obj/item/clothing/under))
-			var/obj/item/clothing/under/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/uniforms_[initial(U.index)].dmi"
 		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
 
@@ -405,6 +385,22 @@
 
 		Insert(imgid, I)
 	return ..()
+
+// this is cursed but necessary or else vending product icons can be missing
+// basically, if there's any vending machines that aren't already mapped in, our register() will not know
+// that they exist, and therefore can't generate the entries in the spritesheet for them
+// and since assets are unique and can't be reloaded later, we have to make sure that GLOB.vending_products
+// is populated with every single type of vending machine
+// As this is only done at runtime, we have to create all the vending machines in existence and force them
+// to register their products when this asset initializes.
+/datum/asset/spritesheet/vending/proc/populate_vending_products()
+	SSatoms.map_loader_begin()
+	for(var/path in subtypesof(/obj/machinery/vending))
+		var/obj/machinery/vending/x = new path(null)
+		// force an inventory build; with map_loader_begin active, init isn't called
+		x.build_inventory()
+		qdel(x)
+	SSatoms.map_loader_stop()
 
 // /datum/asset/simple/genetics
 // 	assets = list(
@@ -490,14 +486,13 @@
 	// It REALLY doesnt matter too much if these arent up to date
 	// They are relatively big
 	assets = list(
-		// YawnWider Edit: We don't need Southern Cross or tether
+		// YW Edit: We don't need Southern Cross, groundbase or tether
 		// "southern_cross_nanomap_z1.png"		= 'icons/_nanomaps/southern_cross_nanomap_z1.png',
 		// "southern_cross_nanomap_z10.png"	= 'icons/_nanomaps/southern_cross_nanomap_z10.png',
 		// "southern_cross_nanomap_z2.png"		= 'icons/_nanomaps/southern_cross_nanomap_z2.png',
 		// "southern_cross_nanomap_z3.png"		= 'icons/_nanomaps/southern_cross_nanomap_z3.png',
 		// "southern_cross_nanomap_z5.png"		= 'icons/_nanomaps/southern_cross_nanomap_z5.png',
 		// "southern_cross_nanomap_z6.png"		= 'icons/_nanomaps/southern_cross_nanomap_z6.png',
-		
 		//"tether_nanomap_z1.png"				= 'icons/_nanomaps/tether_nanomap_z1.png',
 		//"tether_nanomap_z2.png"				= 'icons/_nanomaps/tether_nanomap_z2.png',
 		//"tether_nanomap_z3.png"				= 'icons/_nanomaps/tether_nanomap_z3.png',
@@ -510,13 +505,23 @@
 		//"tether_nanomap_z10.png"			= 'icons/_nanomaps/tether_nanomap_z10.png',
 		//"tether_nanomap_z13.png"			= 'icons/_nanomaps/tether_nanomap_z13.png',
 		//"tether_nanomap_z14.png"			= 'icons/_nanomaps/tether_nanomap_z14.png',
+		//"stellardelight_nanomap_z1.png"		= 'icons/_nanomaps/sd_deck1.png',
+		//"stellardelight_nanomap_z2.png"		= 'icons/_nanomaps/sd_deck2.png',
+		//"stellardelight_nanomap_z3.png"		= 'icons/_nanomaps/sd_deck3.png',
+		//"groundbase_nanomap_z1.png"			= 'icons/_nanomaps/gb1.png',
+		//"groundbase_nanomap_z2.png"			= 'icons/_nanomaps/gb2.png',
+		//"groundbase_nanomap_z3.png"			= 'icons/_nanomaps/gb3.png',
+		//"groundbase_nanomap_z4.png"			= 'icons/_nanomaps/gbnorth.png',
+		//"groundbase_nanomap_z5.png"			= 'icons/_nanomaps/gbsouth.png',
+		//"groundbase_nanomap_z6.png"			= 'icons/_nanomaps/gbeast.png',
+		//"groundbase_nanomap_z7.png"			= 'icons/_nanomaps/gbwest.png',
+		//"groundbase_nanomap_z10.png"		= 'icons/_nanomaps/gbmining.png',
 		"cryogaia_nanomap_z2.png"				= 'icons/_nanomaps/cryogaia_nanomap_z2.png',
 		"cryogaia_nanomap_z3.png"				= 'icons/_nanomaps/cryogaia_nanomap_z3.png',
 		"cryogaia_nanomap_z4.png"				= 'icons/_nanomaps/cryogaia_nanomap_z4.png',
 		"cryogaia_nanomap_z5.png"				= 'icons/_nanomaps/cryogaia_nanomap_z5.png',
 		"cryogaia_nanomap_z6.png"				= 'icons/_nanomaps/cryogaia_nanomap_z6.png',
-		"cryogaia_nanomap_z23.png"				= 'icons/_nanomaps/cryogaia_nanomap_z13.png',
-		"cryogaia_nanomap_z24.png"				= 'icons/_nanomaps/cryogaia_nanomap_z14.png',
-		// YawnWider Edit End
+		"cryogaia_nanomap_z13.png"				= 'icons/_nanomaps/cryogaia_nanomap_z13.png',
+		// YW Edit End
 
 	)

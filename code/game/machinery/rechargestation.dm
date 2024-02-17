@@ -3,8 +3,9 @@
 	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/recharge_station
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
@@ -71,9 +72,12 @@
 /obj/machinery/recharge_station/proc/process_occupant()
 	if(isrobot(occupant))
 		var/mob/living/silicon/robot/R = occupant
-		if(R.module)
+		var/overcharged = FALSE
+		if(R.cell.maxcharge < R.cell.charge)
+			overcharged = TRUE
+		if(R.module && !overcharged)
 			R.module.respawn_consumable(R, charging_power * CELLRATE / 250) //consumables are magical, apparently
-		if(R.cell && !R.cell.fully_charged())
+		if(R.cell && !R.cell.fully_charged() && !overcharged)
 			var/diff = min(R.cell.maxcharge - R.cell.charge, charging_power * CELLRATE) // Capped by charging_power / tick
 			var/charge_used = cell.use(diff)
 			R.cell.give(charge_used)
@@ -83,6 +87,16 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
+
+	//VOREStation Add Start
+	else if(ispAI(occupant))
+		var/mob/living/silicon/pai/P = occupant
+
+		if(P.nutrition < 400)
+			P.nutrition = min(P.nutrition+10, 400)
+			cell.use(7000/450*10)
+	//VOREStation Add End
+
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 
@@ -99,12 +113,13 @@
 
 			// Also recharge their internal battery.
 			if(H.isSynthetic() && H.nutrition < 500) //VOREStation Edit
-				H.nutrition = min(H.nutrition+10, 500) //VOREStation Edit
+				H.nutrition = min(H.nutrition+(10*(1-min(H.species.synthetic_food_coeff, 0.9))), 500) //VOREStation Edit
 				cell.use(7000/450*10)
 
 			// And clear up radiation
-			if(H.radiation > 0)
-				H.radiation = max(H.radiation - rand(5, 15), 0)
+			if(H.radiation > 0 || H.accumulated_rads > 0)
+				H.radiation = max(H.radiation - 25, 0)
+				H.accumulated_rads = max(H.accumulated_rads - 25, 0)
 
 		if(H.wearing_rig) // stepping into a borg charger to charge your rig and fix your shit
 			var/obj/item/weapon/rig/wornrig = H.get_rig()
@@ -197,20 +212,20 @@
 		desc += "<br>It is capable of repairing burn damage."
 
 /obj/machinery/recharge_station/proc/build_overlays()
-	overlays.Cut()
+	cut_overlays()
 	switch(round(chargepercentage()))
 		if(1 to 20)
-			overlays += image('icons/obj/objects.dmi', "statn_c0")
+			add_overlay("statn_c0")
 		if(21 to 40)
-			overlays += image('icons/obj/objects.dmi', "statn_c20")
+			add_overlay("statn_c20")
 		if(41 to 60)
-			overlays += image('icons/obj/objects.dmi', "statn_c40")
+			add_overlay("statn_c40")
 		if(61 to 80)
-			overlays += image('icons/obj/objects.dmi', "statn_c60")
+			add_overlay("statn_c60")
 		if(81 to 98)
-			overlays += image('icons/obj/objects.dmi', "statn_c80")
+			add_overlay("statn_c80")
 		if(99 to 110)
-			overlays += image('icons/obj/objects.dmi', "statn_c100")
+			add_overlay("statn_c100")
 
 /obj/machinery/recharge_station/update_icon()
 	..()
@@ -246,7 +261,7 @@
 		if(!R.cell)
 			return
 
-		if(R.mob_size >= MOB_LARGE)
+		if(istype(R, /mob/living/silicon/robot/platform))
 			to_chat(R, SPAN_WARNING("You are too large to fit into \the [src]."))
 			return
 
@@ -256,6 +271,21 @@
 		occupant = R
 		update_icon()
 		return 1
+
+	//VOREStation Add Start
+	else if(istype(L, /mob/living/silicon/pai))
+		var/mob/living/silicon/pai/P = L
+
+		if(P.incapacitated())
+			return
+
+		add_fingerprint(P)
+		P.reset_view(src)
+		P.forceMove(src)
+		occupant = P
+		update_icon()
+		return 1
+	//VOREStation Add End
 
 	else if(istype(L,  /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L

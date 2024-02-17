@@ -8,8 +8,8 @@
 /obj/machinery/xenobio2/manualinjector
 	name = "biological injector"
 	desc = "Injects biological organisms that are inserted with the contents of an inserted beaker at the command of a remote computer."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	icon = 'icons/obj/biogenerator.dmi'
 	icon_state = "biogen-work"
@@ -88,11 +88,11 @@
 /obj/machinery/xenobio2/manualinjector/attackby(var/obj/item/W, var/mob/user)
 
 	//Let's try to deconstruct first.
-	if(W.is_screwdriver())
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))
 		default_deconstruction_screwdriver(user, W)
 		return
 
-	if(W.is_crowbar() && !occupant)
+	if(W.has_tool_quality(TOOL_CROWBAR) && !occupant)
 		default_deconstruction_crowbar(user, W)
 		return
 

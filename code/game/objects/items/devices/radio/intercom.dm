@@ -4,10 +4,14 @@
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "intercom"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
+	light_color = "#00ff00"
+	light_power = 0.25
+	blocks_emissive = NONE
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
 	var/wiresexposed = 0
@@ -16,12 +20,13 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		GLOB.apc_event.register(A, src, /obj/update_icon)
+		GLOB.apc_event.register(A, src, /atom/proc/update_icon)
+	update_icon()
 
 /obj/item/device/radio/intercom/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		GLOB.apc_event.unregister(A, src, /obj/update_icon)
+		GLOB.apc_event.unregister(A, src, /atom/proc/update_icon)
 	return ..()
 
 /obj/item/device/radio/intercom/custom
@@ -57,11 +62,13 @@
 /obj/item/device/radio/intercom/department/medbay
 	name = "station intercom (Medbay)"
 	icon_state = "medintercom"
+	light_color = "#00aaff"
 	frequency = MED_I_FREQ
 
 /obj/item/device/radio/intercom/department/security
 	name = "station intercom (Security)"
 	icon_state = "secintercom"
+	light_color = "#ff0000"
 	frequency = SEC_I_FREQ
 
 /obj/item/device/radio/intercom/entertainment
@@ -130,12 +137,12 @@
 
 /obj/item/device/radio/intercom/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
-	if(W.is_screwdriver())  // Opening the intercom up.
+	if(W.has_tool_quality(TOOL_SCREWDRIVER))  // Opening the intercom up.
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		playsound(src, W.usesound, 50, 1)
 		update_icon()
-	else if(wiresexposed && W.is_wirecutter())
+	else if(wiresexposed && W.has_tool_quality(TOOL_WIRECUTTER))
 		user.visible_message("<span class='warning'>[user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
 		playsound(src, W.usesound, 50, 1)
 		new/obj/item/stack/cable_coil(get_turf(src), 5)
@@ -146,7 +153,7 @@
 		A.pixel_y = pixel_y
 		A.circuit = M
 		A.set_dir(dir)
-		A.anchored = 1
+		A.anchored = TRUE
 		A.state = 2
 		A.update_icon()
 		M.deconstruct(src)
@@ -173,7 +180,11 @@
 	var/area/A = get_area(src)
 	on = A?.powered(EQUIP)
 
+	cut_overlays()
+
 	if(!on)
+		set_light(0)
+		set_light_on(FALSE)
 		if(wiresexposed)
 			icon_state = "intercom-p_open"
 		else
@@ -181,8 +192,14 @@
 	else
 		if(wiresexposed)
 			icon_state = "intercom_open"
+			set_light(0)
+			set_light_on(FALSE)
 		else
 			icon_state = initial(icon_state)
+			add_overlay(mutable_appearance(icon, "[icon_state]_ov"))
+			add_overlay(emissive_appearance(icon, "[icon_state]_ov"))
+			set_light(2)
+			set_light_on(TRUE)
 
 //VOREStation Add Start
 /obj/item/device/radio/intercom/AICtrlClick(var/mob/user)
@@ -192,10 +209,10 @@
 /obj/item/device/radio/intercom/AIAltClick(var/mob/user)
 	if(frequency == AI_FREQ)
 		set_frequency(initial(frequency))
-		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='green'><b>Default</b></font>.</span>")
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to [span_green("<b>Default</b>")].</span>")
 	else
 		set_frequency(AI_FREQ)
-		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='pink'><b>AI Private</b></font>.</span>")
+		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to [span_pink("<b>AI Private</b>")].</span>")
 //VOREStation Add End
 /obj/item/device/radio/intercom/locked
     var/locked_frequency

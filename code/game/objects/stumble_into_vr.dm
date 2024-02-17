@@ -23,6 +23,7 @@
 /obj/machinery/disposal/stumble_into(mob/living/M)
 	playsound(src, 'sound/effects/clang.ogg', 25, 1, -1)
 	visible_message("<span class='warning'>[M] [pick("tripped", "stumbled")] into \the [src]!</span>")
+	log_and_message_admins("stumbled into \the [src]", M)
 	if(M.client)
 		M.client.perspective = EYE_PERSPECTIVE
 		M.client.eye = src
@@ -41,7 +42,7 @@
 /obj/structure/kitchenspike/stumble_into(mob/living/M)
 	playsound(src, "sound/weapons/pierce.ogg", 25, 1, -1)
 	visible_message("<span class='warning'>[M] [pick("ran", "slammed")] into the spikes on \the [src]!</span>")
-	M.apply_damage(15, BRUTE, sharp=1)
+	M.apply_damage(15, BRUTE, sharp = TRUE)
 	M.Weaken(5)
 	M.stop_flying()
 
@@ -77,7 +78,9 @@
 	M.Weaken(2)
 	M.stop_flying()
 	if(get_turf(M) == get_turf(src))
-		M.forceMove(get_step(src, src.dir))
+		var/turf/T = get_step(src, src.dir)
+		if(T?.Enter(M, get_turf(src)))
+			M.forceMove(T)
 	else
 		M.forceMove(get_turf(src))
 
@@ -116,7 +119,7 @@
 
 /obj/machinery/space_heater/stumble_into(mob/living/M)
 	..()
-	if(on)
+	if(state)
 		M.apply_damage(10, BURN)
 		M.emote("scream")
 

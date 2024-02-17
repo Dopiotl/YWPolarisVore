@@ -1,10 +1,11 @@
 //Simulated
 CRYOGAIA_TURF_CREATE(/turf/simulated/open)
 /turf/simulated/open/cryogaia
-	edge_blending_priority = 0.5 //Turfs which also have e_b_p and higher than this will plop decorative edges onto this turf
-/turf/simulated/open/cryogaia/New()
-	..()
-	if(outdoors)
+	CRYOGAIA_SET_ATMOS
+
+/turf/simulated/open/cryogaia/Initialize(mapload)
+	. = ..()
+	if(is_outdoors())
 		SSplanets.addTurf(src)
 
 CRYOGAIA_TURF_CREATE(/turf/simulated/floor)
@@ -28,6 +29,18 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/floor/tiled/old_tile/gray)
 	turf_layers = list(
 		/turf/simulated/floor/outdoors/snow,
 		/turf/simulated/floor/tiled/cryogaia,
+		)
+
+CRYOGAIA_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
+/turf/simulated/floor/outdoors/dirt
+	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon_state = "asteroid"
+
+CRYOGAIA_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
+/turf/simulated/floor/outdoors/grass/sif
+	turf_layers = list(
+		/turf/simulated/floor/outdoors/rocks/cryogaia,
+		/turf/simulated/floor/outdoors/dirt
 		)
 
 //a set of 'covered' outdoor tiles. can be used as shelter from storms and the inside of the caves.
@@ -96,10 +109,6 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 			"uranium" = 10,
 			"platinum" = 10,
 			"hematite" = 20,
-			"copper" = 8,
-			"tin" = 4,
-			"bauxite" = 4,
-			"rutile" = 4,
 			"carbon" = 20,
 			"diamond" = 1,
 			"gold" = 8,
@@ -113,17 +122,13 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 			"uranium" = 5,
 			"platinum" = 5,
 			"hematite" = 35,
-			"copper" = 15,
-			"tin" = 10,
-			"bauxite" = 10,
-			"rutile" = 10,
 			"carbon" = 35,
 			"gold" = 3,
 			"silver" = 3,
 			"phoron" = 25,
 			"lead" = 1))
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
+	if(mineral_name && (mineral_name in GLOB.ore_data))
+		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
 
@@ -149,8 +154,8 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 			"diamond" = 2,
 			"gold" = 7,
 			"silver" = 7))
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
+	if(mineral_name && (mineral_name in GLOB.ore_data))
+		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
 
@@ -167,7 +172,8 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 			"carbon" = 10,
 			"diamond" = 4,
 			"gold" = 15,
-			"silver" = 15))
+			"silver" = 15,
+			"hydrogen" = 2))
 	else
 		mineral_name = pickweight(list(
 			"uranium" = 7,
@@ -177,8 +183,8 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 			"diamond" = 2,
 			"gold" = 7,
 			"silver" = 7))
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
+	if(mineral_name && (mineral_name in GLOB.ore_data))
+		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
 
@@ -287,3 +293,11 @@ CRYOGAIA_TURF_CREATE(/turf/simulated/mineral/floor)
 /turf/simulated/sky/snowscroll/Initialize()
 	SSplanets.addTurf(src)
 	set_light(2, 2, "#E0FFFF")
+
+
+// Misc
+/area/mine/explored/cryogaia_wilds
+	name = "\improper cryogaia Wilderness Outer Perimeter"
+
+/area/mine/unexplored/cryogaia_wilds
+	name = "\improper cryogaia Wilderness Inner Perimeter"

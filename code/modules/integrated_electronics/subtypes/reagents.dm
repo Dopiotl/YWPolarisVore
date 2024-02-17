@@ -1,7 +1,7 @@
 /obj/item/integrated_circuit/reagent
 	category_text = "Reagent"
 	var/volume = 0
-	unacidable = 1
+	unacidable = TRUE
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
 /obj/item/integrated_circuit/reagent/New()
@@ -32,7 +32,7 @@
 
 
 /obj/item/integrated_circuit/reagent/smoke/interact(mob/user)
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 	..()
 
@@ -66,7 +66,7 @@
 	var/transfer_amount = 10
 
 /obj/item/integrated_circuit/reagent/injector/interact(mob/user)
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 	..()
 
@@ -147,7 +147,6 @@
 						activate_pin(2)
 					else
 						activate_pin(3)
-					return
 					return
 				var/datum/reagent/B
 				if(istype(T, /mob/living/carbon/human))
@@ -252,7 +251,7 @@
 
 
 /obj/item/integrated_circuit/reagent/storage/interact(mob/user)
-	set_pin_data(IC_OUTPUT, 2, weakref(src))
+	set_pin_data(IC_OUTPUT, 2, WEAKREF(src))
 	push_data()
 	..()
 
@@ -357,6 +356,3 @@
 					source.reagents.trans_id_to(target, G.id, transfer_amount)
 		activate_pin(2)
 		push_data()
-
-
-

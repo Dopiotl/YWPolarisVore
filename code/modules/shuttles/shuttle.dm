@@ -312,6 +312,8 @@
 				//	continue
 				if(!AM.simulated)
 					continue
+				if(isobserver(AM) || isEye(AM))
+					continue
 				if(isliving(AM))
 					var/mob/living/bug = AM
 					bug.gib()
@@ -330,10 +332,10 @@
 			for(var/mob/living/M in A)
 				spawn(0)
 					if(M.buckled)
-						to_chat(M, "<font color='red'>Sudden acceleration presses you into \the [M.buckled]!</font>")
+						to_chat(M, span_red("Sudden acceleration presses you into \the [M.buckled]!"))
 						shake_camera(M, 3, 1)
 					else
-						to_chat(M, "<font color='red'>The floor lurches beneath you!</font>")
+						to_chat(M, span_red("The floor lurches beneath you!"))
 						shake_camera(M, 10, 1)
 						// TODO - tossing?
 						//M.visible_message("<span class='warning'>[M.name] is tossed around by the sudden acceleration!</span>")
@@ -347,6 +349,11 @@
 		// We only need to rebuild powernets for our cables.  No need to check machines because they are on top of cables.
 		for(var/obj/structure/cable/C in A)
 			powernets |= C.powernet
+
+	// Update our base turfs before we move, so that transparent turfs look good.
+	var/new_base = destination.base_turf || /turf/space
+	for(var/area/A as anything in shuttle_area)
+		A.base_turf = new_base
 
 	// Actually do the movement of everything - This replaces origin.move_contents_to(destination)
 	translate_turfs(turf_translation, current_location.base_area, current_location.base_turf)

@@ -37,7 +37,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<font color='blue'><b>You are now nearly invisible to normal detection.</b></font>")
+	to_chat(H, span_blue("<b>You are now nearly invisible to normal detection.</b>"))
 	H.alpha = 5
 
 	anim(get_turf(H), H, 'icons/effects/effects.dmi', "electricity",null,20,null)
@@ -209,7 +209,7 @@
 		engage(1)
 
 /obj/item/rig_module/self_destruct/engage(var/skip_check)
-	if(!skip_check && usr && alert(usr, "Are you sure you want to push that button?", "Self-destruct", "No", "Yes") == "No")
+	if(!skip_check && usr && tgui_alert(usr, "Are you sure you want to push that button?", "Self-destruct", list("No", "Yes")) == "No")
 		return
 	if(holder && holder.wearer)
 		smoke.set_up(10, 0, holder.loc)

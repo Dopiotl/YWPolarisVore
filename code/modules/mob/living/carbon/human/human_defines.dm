@@ -36,6 +36,8 @@
 	var/b_synth							//Same as above
 	var/synth_markings = 0				//Enables/disables markings on synth parts.
 
+	var/digitigrade = 0 // 0 = no digi, 1 = default, 2+ = digi styles... (Not used yet)
+
 	//var/size_multiplier = 1 //multiplier for the mob's icon size //VOREStation Edit (Moved to /mob/living)
 	var/damage_multiplier = 1 //multiplies melee combat damage
 	var/icon_update = 1 //whether icon updating shall take place
@@ -43,6 +45,9 @@
 	var/lip_style = null	//no lipstick by default- arguably misleading, as it could be used for general makeup
 
 	var/age = 30		//Player's age (pure fluff)
+	var/bday_month = 0	//Character birth month
+	var/bday_day = 0	//Character birthday day
+
 	var/b_type = "A+"	//Player's bloodtype
 	var/datum/robolimb/synthetic		//If they are a synthetic (aka synthetic torso). Also holds the datum for the type of robolimb.
 
@@ -54,6 +59,7 @@
 
 	// General information
 	var/home_system = ""
+	var/birthplace = ""
 	var/citizenship = ""
 	var/personal_faction = ""
 	var/religion = ""
@@ -81,7 +87,6 @@
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
-	var/miming = null //Toggle for the mime's abilities.
 	var/special_voice = "" // For changing our voice. Used by a symptom.
 
 	var/last_dam = -1	//Used for determining if we need to process all organs or just some or even none.
@@ -156,4 +161,3 @@
 
 	// Custom Species Name
 	var/custom_species
-

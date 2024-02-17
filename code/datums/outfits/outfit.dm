@@ -41,7 +41,7 @@ var/list/outfits_decls_by_type_
 	var/l_hand = null
 	// In the list(path=count,otherpath=count) format
 	var/list/uniform_accessories = list() // webbing, armbands etc - fits in slot_tie
-	var/list/backpack_contents = list() 
+	var/list/backpack_contents = list()
 
 	var/id_type
 	var/id_desc
@@ -56,6 +56,8 @@ var/list/outfits_decls_by_type_
 	var/satchel_one  = /obj/item/weapon/storage/backpack/satchel/norm
 	var/satchel_two  = /obj/item/weapon/storage/backpack/satchel
 	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
+	var/sports_bag = /obj/item/weapon/storage/backpack/sport
+	var/satchel_three = /obj/item/weapon/storage/backpack/satchel/strapless
 
 	var/flags // Specific flags
 
@@ -76,6 +78,8 @@ var/list/outfits_decls_by_type_
 			if(3) back = satchel_one
 			if(4) back = satchel_two
 			if(5) back = messenger_bag
+			if(6) back = sports_bag
+			if(7) back = satchel_three
 			else back = null
 
 /decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H)
@@ -178,8 +182,8 @@ var/list/outfits_decls_by_type_
 		pda.ownjob = assignment
 		pda.ownrank = rank
 		pda.name = "PDA-[H.real_name] ([assignment])"
-		if(H.client.prefs.ttone) // YW Edit
-			pda.ttone = H.client.prefs.ttone
+		if(H.client.prefs.ringtone) // if null we use the job default
+			pda.ttone = H.client.prefs.ringtone
 		return pda
 
 /decl/hierarchy/outfit/dd_SortValue()

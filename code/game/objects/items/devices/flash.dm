@@ -1,6 +1,6 @@
 /obj/item/device/flash
 	name = "flash"
-	desc = "Used for blinding and being an asshole."
+	desc = "Used for blinding and disorienting."
 	icon_state = "flash"
 	item_state = "flashtool"
 	throwforce = 5
@@ -37,11 +37,11 @@
 	power_supply = new cell_type(src)
 
 /obj/item/device/flash/attackby(var/obj/item/W, var/mob/user)
-	if(W.is_screwdriver() && broken)
+	if(W.has_tool_quality(TOOL_SCREWDRIVER) && broken)
 		if(repairing)
 			to_chat(user, "<span class='notice'>\The [src] is already being repaired!</span>")
 			return
-		user.visible_message("<span class='notice'>\The [user] starts trying to repair \the [src]'s bulb.</span>")
+		user.visible_message("<b>\The [user]</b> starts trying to repair \the [src]'s bulb.")
 		repairing = TRUE
 		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
 			if(prob(30))
@@ -50,7 +50,7 @@
 				update_icon()
 			playsound(src, W.usesound, 50, 1)
 		else
-			user.visible_message("<span class='notice'>\The [user] fails to repair \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> fails to repair \the [src].")
 		repairing = FALSE
 	else
 		..()

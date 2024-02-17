@@ -92,8 +92,8 @@
 
 	return
 
-/obj/machinery/teleport/station/attack_ai()
-	attack_hand()
+/obj/machinery/teleport/station/attack_ai(mob/user)
+	attack_hand(user)
 
 /obj/machinery/computer/teleporter/attack_ai(mob/user)
 	teleport_control.tgui_interact(user)
@@ -122,8 +122,8 @@
 /obj/machinery/teleport
 	name = "teleport"
 	icon = 'icons/obj/stationobjs.dmi'
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	var/lockeddown = 0
 
 //////

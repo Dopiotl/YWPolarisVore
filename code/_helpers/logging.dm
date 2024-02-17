@@ -35,13 +35,20 @@
 	if (config.log_admin)
 		WRITE_LOG(diary, "ADMINPM: [key_name(source)]->[key_name(dest)]: [html_decode(text)]")
 
+/proc/log_pray(text, client/source)
+	admin_log.Add(text)
+	if (config.log_admin)
+		WRITE_LOG(diary, "PRAY: [key_name(source)]: [text]")
+
 /proc/log_debug(text)
 	if (config.log_debug)
-		WRITE_LOG(debug_log, "DEBUG: [text]")
+		WRITE_LOG(debug_log, "DEBUG: [sanitize(text)]")
 
 	for(var/client/C in GLOB.admins)
 		if(C.is_preference_enabled(/datum/client_preference/debug/show_debug_logs))
-			to_chat(C, "<span class='filter_debuglog'>DEBUG: [text]</span>")
+			to_chat(C,
+					type = MESSAGE_TYPE_DEBUG,
+					html = "<span class='filter_debuglog'>DEBUG: [text]</span>")
 
 /proc/log_game(text)
 	if (config.log_game)
@@ -96,7 +103,6 @@
 		speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style=\"color:gray\"><i>[text]</i></span>"
 		GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>SAY:</u> - <span style=\"color:gray\"><i>[text]</i></span>"
 
-
 /proc/log_emote(text, mob/speaker)
 	if (config.log_emote)
 		WRITE_LOG(diary, "EMOTE: [speaker.simple_info_line()]: [html_decode(text)]")
@@ -126,8 +132,7 @@
 		WRITE_LOG(diary, "DEADCHAT: [speaker.simple_info_line()]: [html_decode(text)]")
 
 	speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>DEADSAY:</u> - <span style=\"color:green\">[text]</span>"
-	GLOB.round_text_log += "<font size=1><span style=\"color:#7e668c\"><b>([time_stamp()])</b> (<b>[src]/[speaker.client]</b>) <u>DEADSAY:</u> - [text]</span></font>"
-
+	GLOB.round_text_log += "<font size=1><span style=\"color:#7e668c\"><b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>DEADSAY:</u> - [text]</span></font>"
 
 /proc/log_ghostemote(text, mob/speaker)
 	if (config.log_emote)
@@ -143,7 +148,6 @@
 
 	speaker.dialogue_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>MSG:</u> - <span style=\"color:[COLOR_GREEN]\">[text]</span>"
 	GLOB.round_text_log += "<b>([time_stamp()])</b> (<b>[speaker]/[speaker.client]</b>) <u>MSG:</u> - <span style=\"color:[COLOR_GREEN]\">[text]</span>"
-
 
 /proc/log_to_dd(text)
 	to_world_log(text) //this comes before the config check because it can't possibly runtime
@@ -161,25 +165,14 @@
 	if(Debug2)
 		WRITE_LOG(diary, "TOPIC: [text]")
 
-/proc/log_href(text)
-	// Configs are checked by caller
-	WRITE_LOG(href_logfile, "HREF: [text]")
-
 /proc/log_unit_test(text)
 	to_world_log("## UNIT_TEST: [text]")
 
-/proc/log_tgui(user_or_client, text)
-	var/entry = ""
-	if(!user_or_client)
-		entry += "no user"
-	else if(istype(user_or_client, /mob))
-		var/mob/user = user_or_client
-		entry += "[user.ckey] (as [user])"
-	else if(istype(user_or_client, /client))
-		var/client/client = user_or_client
-		entry += "[client.ckey]"
-	entry += ":\n[text]"
-	WRITE_LOG(diary, entry)
+#ifdef REFERENCE_TRACKING_LOG
+#define log_reftracker(msg) log_world("## REF SEARCH [msg]")
+#else
+#define log_reftracker(msg)
+#endif
 
 /proc/log_asset(text)
 	WRITE_LOG(diary, "ASSET: [text]")

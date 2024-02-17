@@ -95,7 +95,7 @@ var/datum/uplink/uplink = new()
 	log_and_message_admins("\the [M] bought \a [src] through the uplink")
 	M.mind.purchase_log[src] += 1
 
-datum/uplink_item/dd_SortValue()
+/datum/uplink_item/dd_SortValue()
 	return item_cost
 
 /********************************
@@ -130,7 +130,7 @@ datum/uplink_item/dd_SortValue()
 
 /datum/uplink_item/item/log_icon()
 	var/obj/I = path
-	return "[bicon(I)]"
+	return "\icon[I][bicon(I)]"
 
 /********************************
 *                           	*
@@ -144,7 +144,7 @@ datum/uplink_item/dd_SortValue()
 	if(!default_abstract_uplink_icon)
 		default_abstract_uplink_icon = image('icons/obj/pda.dmi', "pda-syn")
 
-	return "[bicon(default_abstract_uplink_icon)]"
+	return "\icon[default_abstract_uplink_icon][bicon(default_abstract_uplink_icon)]"
 
 /*
  * Crated goods.

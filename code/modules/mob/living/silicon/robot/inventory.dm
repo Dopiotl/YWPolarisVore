@@ -51,7 +51,7 @@
 		module_state_3:loc = module
 		module_state_3 = null
 		inv3.icon_state = "inv3"
-	updateicon()
+	update_icon()
 	hud_used.update_robot_modules_display()
 
 /mob/living/silicon/robot/proc/uneq_all()
@@ -84,7 +84,7 @@
 		module_state_3:loc = module
 		module_state_3 = null
 		inv3.icon_state = "inv3"
-	updateicon()
+	update_icon()
 
 /mob/living/silicon/robot/proc/activated(obj/item/O)
 	if(module_state_1 == O)
@@ -95,7 +95,6 @@
 		return 1
 	else
 		return 0
-	updateicon()
 
 // This one takes an object's type instead of an instance, as above.
 /mob/living/silicon/robot/proc/has_active_type(var/type_to_compare)
@@ -225,7 +224,7 @@
 	return
 
 /mob/living/silicon/robot/proc/activate_module(var/obj/item/O)
-	if(!(locate(O) in src.module.modules) && O != src.module.emag)
+	if(!(locate(O) in src.module.modules) && !(locate(O) in src.module.emag))
 		return
 	if(activated(O))
 		to_chat(src, "<span class='notice'>Already activated</span>")

@@ -80,7 +80,7 @@
 		M.loc = src.loc
 		for(var/mob/N in viewers(src, null))
 			if(N.client)
-				N.show_message(text("<font color='red'><B>[M] bursts out of [src]!</B></font>"), 2)
+				N.show_message(span_red(text("<B>[M] bursts out of [src]!</B>")), 2)
 	..()
 
 /mob/living/carbon/attack_hand(mob/M as mob)
@@ -91,7 +91,7 @@
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]
 		if(temp && !temp.is_usable())
-			to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
+			to_chat(H, span_red("You can't use your [temp.name]"))
 			return
 
 	return
@@ -236,7 +236,7 @@
 					status += "MISSING"
 				if(org.status & ORGAN_MUTATED)
 					status += "weirdly shapen"
-				if(org.dislocated == 2)
+				if(org.dislocated == 1) //VOREStation Edit Bugfix
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
 					status += "hurts when touched"
@@ -400,9 +400,9 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "<font color='red'>You are already sleeping</font>")
+		to_chat(usr, span_red("You are already sleeping"))
 		return
-	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+	if(tgui_alert(src,"You sure you want to sleep for a while?","Sleep",list("Yes","No")) == "Yes")
 		usr.AdjustSleeping(20)
 
 /mob/living/carbon/Bump(atom/A)
@@ -429,6 +429,10 @@
 		chem_effects[effect] += magnitude
 	else
 		chem_effects[effect] = magnitude
+
+/mob/living/carbon/proc/remove_chemical_effect(var/effect, var/magnitude)
+	if(effect in chem_effects)
+		chem_effects[effect] = magnitude ? max(0,chem_effects[effect]-magnitude) : 0
 
 /mob/living/carbon/get_default_language()
 	if(default_language)

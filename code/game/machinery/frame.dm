@@ -5,7 +5,7 @@
 	//Create global frame type list if it hasn't been made already.
 	construction_frame_wall = list()
 	construction_frame_floor = list()
-	for(var/R in typesof(/datum/frame/frame_types) - /datum/frame/frame_types)
+	for(var/R in subtypesof(/datum/frame/frame_types))
 		var/datum/frame/frame_types/type = new R
 		if(type.frame_style == FRAME_STYLE_WALL)
 			construction_frame_wall += type
@@ -78,31 +78,6 @@
 
 /datum/frame/frame_types/microwave
 	name = "Microwave"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/oven
-	name = "Oven"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/fryer
-	name = "Fryer"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/grill
-	name = "Grill"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/cerealmaker
-	name = "Cereal Maker"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/candymachine
-	name = "Candy Machine"
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 4
 
@@ -214,13 +189,33 @@
 	x_offset = 24
 	y_offset = 24
 
-/datum/frame/frame_types/geiger //yw edit start
+/datum/frame/frame_types/geiger
 	name = "Geiger Counter"
 	frame_class = FRAME_CLASS_ALARM
 	frame_size = 2
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
-	y_offset = 28 //yw edit ends
+	y_offset = 28
+
+/datum/frame/frame_types/arfgs
+	name = "ARF Generator"
+	frame_class = FRAME_CLASS_MACHINE
+	frame_size = 3
+
+/datum/frame/frame_types/injector_maker
+	name = "Ready-to-Use Medicine 3000"
+	frame_class = FRAME_CLASS_MACHINE
+	circuit = /obj/machinery/atmospheric_field_generator
+	frame_size = 3
+
+/datum/frame/frame_types/electrochromic_button
+	name = "Electrochromic Window Button"
+	frame_class = FRAME_CLASS_ALARM
+	frame_size = 1
+	frame_style = FRAME_STYLE_WALL
+	x_offset = 24
+	y_offset = 24
+
 //////////////////////////////
 // Frame Object (Structure)
 //////////////////////////////
@@ -271,9 +266,8 @@
 	for(var/A in circuit.req_components)
 		req_components[A] = circuit.req_components[A]
 	req_component_names = circuit.req_components.Copy()
-	for(var/A in req_components)
-		var/obj/ct = A
-		req_component_names[A] = initial(ct.name)
+	for(var/obj/ct as anything in req_components)
+		req_component_names[ct] = initial(ct.name)
 
 /obj/structure/frame/New(var/loc, var/dir, var/building = 0, var/datum/frame/frame_types/type, mob/user as mob)
 	..()
@@ -306,7 +300,7 @@
 	update_icon()
 
 /obj/structure/frame/attackby(obj/item/P as obj, mob/user as mob)
-	if(P.is_wrench())
+	if(P.has_tool_quality(TOOL_WRENCH))
 		if(state == FRAME_PLACED && !anchored)
 			to_chat(user, "<span class='notice'>You start to wrench the frame into place.</span>")
 			playsound(src, P.usesound, 50, 1)
@@ -326,9 +320,9 @@
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				anchored = FALSE
 
-	else if(istype(P, /obj/item/weapon/weldingtool))
+	else if(P.has_tool_quality(TOOL_WELDER))
 		if(state == FRAME_PLACED)
-			var/obj/item/weapon/weldingtool/WT = P
+			var/obj/item/weapon/weldingtool/WT = P.get_welder()
 			if(WT.remove_fuel(0, user))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
@@ -359,7 +353,7 @@
 				to_chat(user, "<span class='warning'>This frame does not accept circuit boards of this type!</span>")
 				return
 
-	else if(P.is_screwdriver())
+	else if(P.has_tool_quality(TOOL_SCREWDRIVER))
 		if(state == FRAME_UNFASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
@@ -454,7 +448,7 @@
 				qdel(src)
 				return
 
-	else if(P.is_crowbar())
+	else if(P.has_tool_quality(TOOL_CROWBAR))
 		if(state == FRAME_UNFASTENED)
 			if(need_circuit && circuit)
 				playsound(src, P.usesound, 50, 1)
@@ -514,9 +508,8 @@
 						if(istype(P, /obj/item/stack/cable_coil))
 							var/obj/item/stack/cable_coil/CP = P
 							if(CP.get_amount() > 1)
-								var/camt = min(CP.amount, req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src)
-								CC.amount = camt
+								var/camt = min(CP.get_amount(), req_components[I]) // amount of cable to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/cable_coil/CC = new /obj/item/stack/cable_coil(src, camt)
 								CC.update_icon()
 								CP.use(camt)
 								components += CC
@@ -532,7 +525,7 @@
 						break
 				to_chat(user, desc)
 
-	else if(P.is_wirecutter())
+	else if(P.has_tool_quality(TOOL_WIRECUTTER))
 		if(state == FRAME_WIRED)
 			if( \
 				frame_type.frame_class == FRAME_CLASS_COMPUTER || \
@@ -587,9 +580,8 @@
 						if(istype(P, /obj/item/stack))
 							var/obj/item/stack/ST = P
 							if(ST.get_amount() > 1)
-								var/camt = min(ST.amount, req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
-								var/obj/item/stack/NS = new ST.stacktype(src)
-								NS.amount = camt
+								var/camt = min(ST.get_amount(), req_components[I]) // amount of stack to take, idealy amount required, but limited by amount provided
+								var/obj/item/stack/NS = new ST.stacktype(src, camt)
 								NS.update_icon()
 								ST.use(camt)
 								components += NS

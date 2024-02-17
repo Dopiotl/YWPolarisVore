@@ -13,8 +13,8 @@ Deployable items
 	name = "deployable barrier"
 	desc = "A deployable barrier. Swipe your ID card to lock/unlock it."
 	icon = 'icons/obj/objects.dmi'
-	anchored = 0.0
-	density = 1.0
+	anchored = FALSE
+	density = TRUE
 	icon_state = "barrier0"
 	var/health = 100.0
 	var/maxhealth = 100.0
@@ -47,7 +47,7 @@ Deployable items
 				visible_message("<span class='warning'>BZZzZZzZZzZT</span>")
 				return
 		return
-	else if(W.is_wrench())
+	else if(W.has_tool_quality(TOOL_WRENCH))
 		if(health < maxhealth)
 			health = maxhealth
 			emagged = 0
@@ -130,8 +130,8 @@ Deployable items
 /obj/machinery/deployable/barrier/emag_act(var/remaining_charges, var/mob/user)
 	if(emagged == 0)
 		emagged = 1
-		req_access.Cut()
-		req_one_access.Cut()
+		LAZYCLEARLIST(req_access)
+		LAZYCLEARLIST(req_one_access)
 		to_chat(user, "You break the ID authentication lock on \the [src].")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(2, 1, src)

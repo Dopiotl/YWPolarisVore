@@ -4,8 +4,8 @@
 	desc = "A portable generator for emergency backup power"
 	icon = 'icons/obj/power_vr.dmi' //VOREStation Edit
 	icon_state = "portgen0" //VOREStation Edit
-	density = 1
-	anchored = 0
+	density = TRUE
+	anchored = FALSE
 	use_power = USE_POWER_OFF
 	interact_offline = TRUE
 
@@ -32,11 +32,11 @@
 /obj/machinery/power/port_gen/proc/TogglePower()
 	if(active)
 		active = FALSE
-		icon_state = "[initial(icon_state)]"
+		update_icon()
 		// soundloop.stop()
 	else if(HasFuel())
 		active = TRUE
-		icon_state = "[initial(icon_state)]on"
+		update_icon()
 		// soundloop.start()
 
 /obj/machinery/power/port_gen/process()
@@ -45,8 +45,14 @@
 		UseFuel()
 	else
 		active = FALSE
-		icon_state = initial(icon_state)
+		update_icon()
 		handleInactive()
+
+/obj/machinery/power/port_gen/update_icon()
+	if(active)
+		icon_state = "[initial(icon_state)]on"
+	else
+		icon_state = initial(icon_state)
 
 /obj/machinery/power/powered()
 	return 1 //doesn't require an external power source
@@ -125,7 +131,7 @@
 	default_apply_parts()
 	if(anchored)
 		connect_to_network()
-		
+
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
 	return ..()
@@ -163,10 +169,8 @@
 //Removes one stack's worth of material from the generator.
 /obj/machinery/power/port_gen/pacman/DropFuel()
 	if(sheets)
-		var/obj/item/stack/material/S = new sheet_path(loc)
-		var/amount = min(sheets, S.max_amount)
-		S.amount = amount
-		sheets -= amount
+		var/obj/item/stack/material/S = new sheet_path(loc, sheets)
+		sheets -= S.get_amount()
 
 /obj/machinery/power/port_gen/pacman/UseFuel()
 
@@ -265,7 +269,7 @@
 /obj/machinery/power/port_gen/pacman/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, sheet_path))
 		var/obj/item/stack/addstack = O
-		var/amount = min((max_sheets - sheets), addstack.amount)
+		var/amount = min((max_sheets - sheets), addstack.get_amount())
 		if(amount < 1)
 			to_chat(user, "<span class='warning'>The [src.name] is full!</span>")
 			return
@@ -275,7 +279,7 @@
 		updateUsrDialog()
 		return
 	else if(!active)
-		if(O.is_wrench())
+		if(O.has_tool_quality(TOOL_WRENCH))
 			if(!anchored)
 				connect_to_network()
 				to_chat(user, "<span class='notice'>You secure the generator to the floor.</span>")
@@ -312,7 +316,7 @@
 	if(!ui)
 		ui = new(user, src, "PortableGenerator", name)
 		ui.open()
-	
+
 /obj/machinery/power/port_gen/pacman/tgui_data(mob/user)
 	var/list/data = list()
 
@@ -324,7 +328,7 @@
 		data["is_ai"] = TRUE
 	else
 		data["is_ai"] = FALSE
-	
+
 	data["sheet_name"] = capitalize(sheet_name)
 	data["fuel_stored"] = round((sheets * 1000) + (sheet_left * 1000))
 	data["fuel_capacity"] = round(max_sheets * 1000, 0.1)

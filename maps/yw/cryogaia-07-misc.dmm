@@ -5,6 +5,11 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
+"af" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/hopdouble,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "ag" = (
 /obj/structure/table/holotable,
 /obj/item/clothing/gloves/boxing/hologlove{
@@ -54,6 +59,10 @@
 	},
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source_wildlife)
+"at" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "av" = (
 /obj/structure/frame/computer,
 /turf/simulated/shuttle/floor/darkred,
@@ -117,12 +126,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"aJ" = (
-/mob/living/simple_mob/humanoid/merc/ranged/laser,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
 "aK" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-20"
@@ -159,6 +162,11 @@
 /obj/effect/floor_decal/sign/small_8,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
+"aP" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/unknown/dorm5)
 "aQ" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/toy/sword,
@@ -263,6 +271,10 @@
 /obj/structure/table/woodentable/holotable,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_courtroom)
+"br" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "bt" = (
 /turf/unsimulated/floor{
 	icon_state = "dark"
@@ -281,20 +293,9 @@
 /area/syndicate_mothership{
 	name = "\improper Ninja Base"
 	})
-"bx" = (
-/obj/structure/sign/department/armory,
-/turf/unsimulated/wall/cult,
-/area/vrworld)
-"by" = (
-/obj/item/weapon/chainsaw,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
-"bA" = (
-/obj/item/weapon/gun/projectile/silenced,
-/turf/unsimulated/floor{
-	icon_state = "freezerfloor"
-	},
-/area/vrworld)
+"bz" = (
+/turf/simulated/shuttle/wall/alien/blue,
+/area/unknown/dorm6)
 "bB" = (
 /obj/structure/flora/grass/brown,
 /obj/structure/flora/tree/dead,
@@ -501,11 +502,6 @@
 /obj/machinery/light/small,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
-"co" = (
-/turf/unsimulated/floor{
-	icon_state = "steel"
-	},
-/area/vrworld)
 "cr" = (
 /obj/item/weapon/beach_ball,
 /turf/unsimulated/beach/sand,
@@ -566,13 +562,6 @@
 /obj/effect/floor_decal/sign/small_b,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
-"cL" = (
-/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
-/area/vrworld)
 "cN" = (
 /turf/unsimulated/beach/water{
 	density = 1;
@@ -624,17 +613,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"de" = (
-/mob/living/simple_mob/creature{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
-"df" = (
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
 "dg" = (
 /obj/structure/flora/ausbushes/brflowers,
 /obj/effect/floor_decal/spline/fancy/wood/corner,
@@ -654,12 +632,6 @@
 	name = "plating"
 	},
 /area/syndicate_mothership)
-"dl" = (
-/obj/item/weapon/gun/projectile/automatic/p90,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
 "dm" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -714,6 +686,11 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"dA" = (
+/obj/item/weapon/bedsheet/rddouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "dB" = (
 /turf/unsimulated/floor{
 	icon_state = "cult";
@@ -791,7 +768,7 @@
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/mercenary)
 "dO" = (
-/obj/structure/sign/double/map/right{
+/obj/structure/sign/scenery/map/right{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -847,10 +824,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_boxingcourt)
-"ec" = (
-/obj/item/weapon/reagent_containers/food/snacks/stew,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "ed" = (
 /obj/structure/closet,
 /obj/item/weapon/reagent_containers/food/snacks/tastybread,
@@ -859,6 +832,12 @@
 /obj/item/weapon/reagent_containers/food/snacks/tastybread,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"eh" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "ej" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -920,6 +899,10 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/trade/centcom)
+"ev" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "eB" = (
 /obj/structure/closet/crate/secure/weapon,
 /turf/simulated/shuttle/floor/black,
@@ -967,6 +950,16 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership)
+"eL" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "eM" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/simulated/floor/holofloor/desert,
@@ -979,6 +972,10 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"eS" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "eU" = (
 /obj/structure/window/reinforced,
 /obj/machinery/door/blast/shutters{
@@ -1011,16 +1008,6 @@
 	name = "plating"
 	},
 /area/syndicate_mothership)
-"eW" = (
-/obj/structure/closet/secure_closet/guncabinet/sidearm{
-	locked = 0;
-	name = "pistols cabinet"
-	},
-/obj/random/multiple/gun/projectile/handgun,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "eY" = (
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_emptycourt)
@@ -1113,12 +1100,6 @@
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/shuttle/trade/centcom)
-"fn" = (
-/obj/structure/closet/crate/medical/blood,
-/obj/item/roller/adv,
-/obj/item/roller/adv,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "fq" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 9
@@ -1180,6 +1161,28 @@
 /obj/item/weapon/rig/light/stealth,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
+"fF" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "fG" = (
 /obj/structure/table/standard,
 /obj/effect/decal/cleanable/cobweb2,
@@ -1193,16 +1196,14 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"fH" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "fI" = (
 /obj/machinery/light,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/trade/centcom)
-"fK" = (
-/mob/living/simple_mob/humanoid/russian/ranged{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "fQ" = (
 /obj/machinery/teleport/station,
 /turf/simulated/shuttle/floor/darkred,
@@ -1290,17 +1291,17 @@
 /area/syndicate_mothership{
 	name = "\improper Trader Base"
 	})
-"gp" = (
-/obj/structure/closet/secure_closet/guncabinet/rifle{
-	locked = 0;
-	name = "unlocked rifle cabinet"
-	},
-/obj/item/weapon/storage/box/scattershot/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
+"gm" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
+"gq" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
+"gr" = (
+/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/area/unknown/dorm5)
 "gv" = (
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
@@ -1433,6 +1434,10 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"gU" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "gX" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/floor_decal/spline/fancy/wood,
@@ -1469,6 +1474,10 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
+"hl" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "hm" = (
 /turf/simulated/floor/holofloor/reinforced,
 /area/holodeck/source_plating)
@@ -1520,6 +1529,9 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"hu" = (
+/turf/simulated/floor/smole/desert,
+/area/holodeck/source_smoleworld)
 "hv" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -1552,9 +1564,19 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"hF" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "hG" = (
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"hM" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
 "hO" = (
 /turf/simulated/shuttle/wall/dark/hard_corner,
 /area/wizard_station)
@@ -1596,11 +1618,6 @@
 /obj/item/clothing/under/dress/maid/janitor,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"hS" = (
-/turf/unsimulated/floor{
-	icon_state = "freezerfloor"
-	},
-/area/vrworld)
 "hT" = (
 /obj/effect/floor_decal/carpet{
 	dir = 4
@@ -1615,6 +1632,10 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"hV" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "hW" = (
 /obj/item/toy/chess/knight_white,
 /turf/simulated/floor/holofloor/wmarble,
@@ -1623,11 +1644,10 @@
 /obj/machinery/body_scanconsole,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"hY" = (
-/obj/item/weapon/storage/box/scattershot/large,
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
+"hZ" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "ib" = (
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
@@ -1639,6 +1659,10 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"id" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "ie" = (
 /obj/machinery/door/window/westleft{
 	name = "Storefront";
@@ -1652,12 +1676,6 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_boxingcourt)
-"ig" = (
-/mob/living/simple_mob/humanoid/merc/ranged/ionrifle,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
 "ij" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -1673,6 +1691,10 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"ik" = (
+/obj/machinery/door/airlock/alien/blue/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
 "im" = (
 /obj/effect/landmark{
 	name = "Syndicate-Spawn"
@@ -1685,6 +1707,10 @@
 /obj/structure/table/woodentable/holotable,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/holodorm/source_basic)
+"ip" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "ir" = (
 /obj/structure/table/steel_reinforced,
 /obj/structure/mirror,
@@ -1709,6 +1735,9 @@
 	icon_state = "snow"
 	},
 /area/syndicate_mothership)
+"iu" = (
+/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/area/unknown/dorm4)
 "iv" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 10
@@ -1737,59 +1766,6 @@
 /obj/effect/floor_decal/carpet,
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_meetinghall)
-"iA" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/shoes/boots/combat,
-/obj/item/clothing/shoes/leg_guard/bulletproof,
-/obj/item/clothing/shoes/leg_guard/laserproof,
-/obj/item/clothing/shoes/leg_guard/combat,
-/obj/item/clothing/suit/armor/combat,
-/obj/item/clothing/gloves/arm_guard/combat,
-/obj/item/clothing/gloves/arm_guard/bulletproof,
-/obj/item/clothing/gloves/arm_guard/laserproof,
-/obj/item/clothing/head/helmet/combat,
-/obj/item/clothing/head/helmet/bulletproof,
-/obj/item/clothing/head/helmet/laserproof,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava/tactical,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/under/tactical,
-/obj/machinery/light/small{
-	dir = 8
-	},
-/turf/unsimulated/floor/steel,
-/area/vrworld)
-"iC" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/shoes/boots/combat,
-/obj/item/clothing/shoes/leg_guard/bulletproof,
-/obj/item/clothing/shoes/leg_guard/laserproof,
-/obj/item/clothing/shoes/leg_guard/combat,
-/obj/item/clothing/suit/armor/combat,
-/obj/item/clothing/gloves/arm_guard/combat,
-/obj/item/clothing/gloves/arm_guard/bulletproof,
-/obj/item/clothing/gloves/arm_guard/laserproof,
-/obj/item/clothing/head/helmet/combat,
-/obj/item/clothing/head/helmet/bulletproof,
-/obj/item/clothing/head/helmet/laserproof,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava/tactical,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/under/tactical,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "iD" = (
 /obj/item/robot_parts/robot_suit,
 /obj/item/robot_parts/r_leg,
@@ -2019,18 +1995,10 @@
 /obj/structure/bed/padded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
-"jy" = (
-/mob/living/simple_mob/humanoid/merc/ranged/sniper,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
-"jD" = (
-/obj/random/tetheraid,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
+"jz" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "jG" = (
 /obj/structure/table/rack,
 /obj/item/weapon/tank/jetpack/oxygen,
@@ -2065,22 +2033,13 @@
 "jO" = (
 /turf/simulated/floor/holofloor/beach/water,
 /area/holodeck/holodorm/source_beach)
-"jU" = (
-/mob/living/simple_mob/humanoid/merc/ranged/smg,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
+"jR" = (
+/turf/simulated/shuttle/wall/alien,
+/area/unknown/dorm3)
 "jX" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
-"jY" = (
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
-/area/vrworld)
 "jZ" = (
 /obj/machinery/door/airlock/external{
 	req_access = list(150)
@@ -2106,6 +2065,13 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
+"kg" = (
+/turf/simulated/shuttle/wall/alien/hard_corner,
+/area/unknown/dorm3)
+"kj" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "kk" = (
 /obj/structure/table/standard,
 /obj/item/device/pda/syndicate,
@@ -2164,6 +2130,10 @@
 /obj/structure/closet/crate/freezer/rations,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"ku" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "kw" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -2187,15 +2157,6 @@
 /obj/item/device/suit_cooling_unit,
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
-"kB" = (
-/mob/living/simple_mob/humanoid/russian/ranged{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
-	},
-/area/vrworld)
 "kD" = (
 /obj/effect/floor_decal/carpet{
 	dir = 4
@@ -2266,20 +2227,10 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership/elite_squad)
-"kS" = (
-/obj/machinery/recharger/wallcharger{
-	dir = 1;
-	pixel_x = 4;
-	pixel_y = 30
-	},
-/obj/item/weapon/reagent_containers/pill/protein,
-/obj/item/weapon/reagent_containers/pill/protein,
-/obj/item/weapon/reagent_containers/pill/protein,
-/obj/item/weapon/reagent_containers/pill/protein,
-/obj/item/weapon/reagent_containers/pill/protein,
-/obj/item/weapon/reagent_containers/pill/protein,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
+"kX" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "kY" = (
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -2308,6 +2259,10 @@
 /obj/item/modular_computer/laptop,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/trade/centcom)
+"ld" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "lf" = (
 /obj/structure/closet,
 /turf/simulated/shuttle/floor/darkred,
@@ -2327,18 +2282,15 @@
 /obj/item/weapon/bedsheet/captain,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"lo" = (
-/obj/structure/closet/secure_closet/guncabinet/rifle{
-	locked = 0;
-	name = "unlocked rifle cabinet"
-	},
-/obj/item/weapon/storage/box/scattershot/large,
-/obj/item/weapon/storage/box/shotgunammo/large,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/item/weapon/material/knife/tacknife/combatknife,
-/obj/machinery/light/small,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
+"lk" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
+"ln" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/unknown/dorm4)
 "lq" = (
 /obj/structure/table/holotable,
 /obj/item/clothing/head/helmet/thunderdome,
@@ -2350,6 +2302,12 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
+"lt" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "lv" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/book/manual/robotics_cyborgs,
@@ -2396,12 +2354,6 @@
 /obj/item/weapon/plastique,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
-"lH" = (
-/obj/random/tetheraid,
-/turf/unsimulated/floor{
-	icon_state = "freezerfloor"
-	},
-/area/vrworld)
 "lI" = (
 /obj/structure/table/rack,
 /obj/item/clothing/shoes/magboots,
@@ -2425,6 +2377,11 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"lR" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/hopdouble,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "lT" = (
 /obj/machinery/shower{
 	pixel_y = 32
@@ -2484,6 +2441,11 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"mb" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/unknown/dorm2)
 "mc" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/tray{
@@ -2531,7 +2493,7 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
 "mn" = (
-/obj/structure/sign/double/map/right{
+/obj/structure/sign/scenery/map/right{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -2539,6 +2501,9 @@
 	name = "plating"
 	},
 /area/syndicate_mothership)
+"mo" = (
+/turf/simulated/shuttle/wall/alien,
+/area/unknown/dorm2)
 "mp" = (
 /obj/item/weapon/firstaid_arm_assembly,
 /turf/unsimulated/floor{
@@ -2564,12 +2529,41 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"mu" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unktwo"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "mx" = (
 /obj/machinery/suit_cycler/syndicate{
 	locked = 0
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"my" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "mz" = (
 /obj/structure/table/standard,
 /obj/item/device/radio/headset/syndicate/alt,
@@ -2668,6 +2662,10 @@
 /area/syndicate_mothership{
 	name = "\improper Trader Base"
 	})
+"nb" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "nf" = (
 /obj/item/seeds/potatoseed,
 /obj/item/seeds/potatoseed,
@@ -2692,6 +2690,10 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"nj" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "nl" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -2702,25 +2704,12 @@
 "np" = (
 /turf/simulated/floor/airless,
 /area/shuttle/syndicate_elite/mothership)
-"nr" = (
-/obj/item/weapon/gun/projectile/garand,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
 "ns" = (
 /obj/structure/table/steel,
 /obj/item/clothing/glasses/regular,
 /obj/item/clothing/glasses/regular,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
-"nv" = (
-/obj/random/multiple/gun/projectile/shotgun,
-/obj/item/weapon/storage/box/scattershot/large,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
 "nw" = (
 /obj/effect/landmark{
 	name = "voxstart"
@@ -2817,6 +2806,13 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/trade/centcom)
+"ob" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkone"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "od" = (
 /turf/unsimulated/floor{
 	icon_state = "plating";
@@ -2896,6 +2892,10 @@
 /obj/mecha/working/ripley/firefighter,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"oz" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "oA" = (
 /obj/item/weapon/weldingtool,
 /obj/machinery/light{
@@ -2952,6 +2952,12 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"oX" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "oZ" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -2982,14 +2988,10 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
-"pi" = (
-/obj/machinery/recharger/wallcharger{
-	dir = 1;
-	pixel_x = 4;
-	pixel_y = 30
-	},
-/turf/unsimulated/floor/steel,
-/area/vrworld)
+"pc" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "pk" = (
 /mob/living/simple_mob/animal/passive/crab/Coffee,
 /turf/unsimulated/beach/sand,
@@ -3027,12 +3029,23 @@
 	icon_state = "snow"
 	},
 /area/syndicate_mothership)
-"pA" = (
-/obj/item/weapon/gun/magnetic/railgun/automatic,
-/turf/unsimulated/floor{
-	icon_state = "lino"
+"pB" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unksix"
 	},
-/area/vrworld)
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
+"pE" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "pF" = (
 /obj/structure/bed/chair/office/dark,
 /turf/simulated/shuttle/floor/darkred,
@@ -3070,9 +3083,6 @@
 /obj/structure/holostool,
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
-"pT" = (
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "pU" = (
 /obj/effect/overlay/palmtree_r,
 /turf/simulated/floor/holofloor/beach/sand,
@@ -3203,6 +3213,10 @@
 	icon_state = "white"
 	},
 /area/syndicate_mothership)
+"qt" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "qu" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -3230,6 +3244,12 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
+"qy" = (
+/obj/structure/prop/alien/computer{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "qA" = (
 /obj/effect/floor_decal/carpet{
 	dir = 1
@@ -3269,11 +3289,6 @@
 	icon_state = "white"
 	},
 /area/syndicate_mothership)
-"qH" = (
-/obj/random/multiple/gun/projectile/shotgun,
-/obj/item/weapon/storage/box/scattershot/large,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "qK" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/shuttle/floor/black,
@@ -3416,6 +3431,12 @@
 /obj/item/toy/chess/rook_white,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
+"rr" = (
+/obj/structure/prop/alien/computer{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "rs" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -3492,11 +3513,10 @@
 /obj/item/weapon/handcuffs/legcuffs,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
-"rM" = (
-/obj/machinery/door/airlock,
-/obj/effect/mobblocker,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
+"rL" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "rP" = (
 /obj/structure/closet/acloset,
 /turf/unsimulated/floor{
@@ -3545,19 +3565,6 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/trade/centcom)
-"rX" = (
-/obj/random/multiple/gun/projectile/shotgun,
-/obj/item/weapon/storage/box/scattershot/large,
-/turf/unsimulated/floor{
-	icon_state = "freezerfloor"
-	},
-/area/vrworld)
-"rY" = (
-/mob/living/simple_mob/humanoid/russian{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "rZ" = (
 /obj/effect/decal/cleanable/blood,
 /turf/unsimulated/floor{
@@ -3567,7 +3574,7 @@
 	name = "\improper Raider Base"
 	})
 "sb" = (
-/obj/structure/sign/double/map/left{
+/obj/structure/sign/scenery/map/left{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -3582,6 +3589,10 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
+"sf" = (
+/obj/machinery/door/airlock/alien/blue/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "sg" = (
 /obj/effect/floor_decal/corner/blue/full{
 	dir = 8
@@ -3615,6 +3626,10 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"sl" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "sm" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/ionrifle,
@@ -3627,6 +3642,28 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership)
+"so" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "sq" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/item/weapon/tool/crowbar,
@@ -3666,6 +3703,11 @@
 "sv" = (
 /turf/unsimulated/wall,
 /area)
+"sw" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/hopdouble,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "sy" = (
 /obj/structure/toilet{
 	dir = 4
@@ -3811,22 +3853,10 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/source_picnicarea)
-"to" = (
-/obj/item/weapon/reagent_containers/pill/protein,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "tp" = (
 /obj/structure/table/standard,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"tq" = (
-/mob/living/simple_mob/humanoid/russian/ranged{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor{
-	icon_state = "freezerfloor"
-	},
-/area/vrworld)
 "tr" = (
 /obj/item/weapon/antag_spawner/technomancer_apprentice,
 /turf/unsimulated/floor{
@@ -3836,6 +3866,10 @@
 "ts" = (
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
+"tv" = (
+/obj/structure/table/alien/blue,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "tw" = (
 /obj/effect/landmark/ai_multicam_room,
 /turf/unsimulated/ai_visible,
@@ -3855,6 +3889,10 @@
 /obj/item/weapon/storage/belt/medical/emt,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"tD" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "tE" = (
 /turf/unsimulated/beach/sand{
 	density = 1;
@@ -3890,6 +3928,16 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership)
+"tN" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "tO" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /turf/simulated/floor/holofloor/grass,
@@ -3947,10 +3995,16 @@
 	name = "plating"
 	},
 /area/syndicate_mothership)
+"ug" = (
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "uj" = (
 /obj/item/toy/chess/bishop_black,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
+"uk" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "ul" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -3975,6 +4029,17 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"up" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
+"uq" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkfour"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
 "ut" = (
 /obj/structure/mirror{
 	pixel_x = -28
@@ -4029,13 +4094,11 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
-"uA" = (
-/obj/item/weapon/storage/box/scattershot/large,
-/obj/item/weapon/gun/projectile/automatic/z8,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
+"uz" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/unknown/dorm6)
 "uB" = (
 /obj/machinery/button/remote/blast_door{
 	id = "syndieshutters_telebay";
@@ -4086,6 +4149,12 @@
 /obj/item/weapon/bedsheet/rd,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"uT" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "uU" = (
 /obj/machinery/door/window/westleft{
 	name = "Storefront";
@@ -4116,6 +4185,12 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
+"uW" = (
+/obj/structure/prop/alien/computer/hybrid{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "uZ" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -4247,6 +4322,9 @@
 	icon_state = "lino"
 	},
 /area/syndicate_mothership)
+"vH" = (
+/turf/simulated/shuttle/wall/alien/blue,
+/area/unknown/dorm4)
 "vI" = (
 /obj/structure/table/rack,
 /obj/item/device/camera_film,
@@ -4306,11 +4384,11 @@
 	dir = 1
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/contraband/poster,
-/obj/item/weapon/contraband/poster,
-/obj/item/weapon/contraband/poster,
-/obj/item/weapon/contraband/poster,
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
+/obj/item/poster,
+/obj/item/poster,
+/obj/item/poster,
+/obj/item/poster,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
 "vW" = (
@@ -4374,10 +4452,18 @@
 /obj/structure/lattice,
 /turf/space,
 /area/space)
+"wn" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
 "wp" = (
 /obj/machinery/computer/syndicate_elite_shuttle,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/syndicate_elite/mothership)
+"wq" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "wr" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 6
@@ -4447,12 +4533,6 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
-"wI" = (
-/obj/item/weapon/gun/energy/sizegun,
-/turf/unsimulated/floor{
-	icon_state = "steel"
-	},
-/area/vrworld)
 "wJ" = (
 /obj/machinery/photocopier,
 /turf/simulated/shuttle/floor/darkred,
@@ -4488,6 +4568,10 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"wP" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "wR" = (
 /obj/structure/urinal{
 	pixel_y = 32
@@ -4510,14 +4594,6 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
-"wW" = (
-/mob/living/simple_mob/faithless{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
 "wX" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -4623,7 +4699,7 @@
 	name = "\improper Trader Base"
 	})
 "xt" = (
-/obj/structure/sign/double/map/left{
+/obj/structure/sign/scenery/map/left{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -4642,6 +4718,9 @@
 "xA" = (
 /turf/unsimulated/wall,
 /area/prison/solitary)
+"xB" = (
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "xC" = (
 /obj/structure/table/standard,
 /obj/item/clothing/under/color/rainbow,
@@ -4708,12 +4787,6 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
-"xP" = (
-/obj/effect/landmark/virtual_reality{
-	name = "The Abyss"
-	},
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "xQ" = (
 /obj/machinery/gibber,
 /turf/unsimulated/floor{
@@ -4832,6 +4905,15 @@
 "yB" = (
 /turf/unsimulated/wall,
 /area/syndicate_mothership)
+"yC" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
+"yD" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "yE" = (
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/trade/centcom)
@@ -4911,10 +4993,6 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
-"zf" = (
-/obj/item/weapon/gun/energy/gun/nuclear,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "zg" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
@@ -4933,13 +5011,13 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
-"zp" = (
-/obj/item/weapon/reagent_containers/food/snacks/stew,
-/turf/unsimulated/floor{
-	icon_state = "plating";
-	name = "plating"
+"zn" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkthree"
 	},
-/area/vrworld)
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "zr" = (
 /obj/effect/overlay/palmtree_r,
 /turf/unsimulated/beach/sand,
@@ -4956,9 +5034,6 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
-"zu" = (
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "zv" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
@@ -4973,6 +5048,16 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"zy" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "zA" = (
 /obj/item/device/suit_cooling_unit,
 /obj/structure/table/steel_reinforced,
@@ -5045,12 +5130,9 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
-"zO" = (
-/obj/item/weapon/shield/energy,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
+"zQ" = (
+/turf/unsimulated/mineral,
+/area/space)
 "zR" = (
 /turf/space,
 /area/space)
@@ -5074,6 +5156,10 @@
 /area/syndicate_mothership{
 	name = "\improper Trader Base"
 	})
+"zX" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "zZ" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -5087,6 +5173,12 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_meetinghall)
+"Ab" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "Ae" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/clothing/gloves/black,
@@ -5119,6 +5211,10 @@
 "Ah" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_theatre)
+"Ai" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "Ap" = (
 /obj/structure/bed/chair{
 	dir = 8
@@ -5138,6 +5234,10 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"As" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "At" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
@@ -5447,6 +5547,9 @@
 	},
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/holodorm/source_boxing)
+"Ce" = (
+/turf/simulated/shuttle/wall/alien/hard_corner,
+/area/unknown/dorm2)
 "Cg" = (
 /obj/structure/closet/wardrobe/mixed,
 /turf/unsimulated/floor{
@@ -5513,6 +5616,10 @@
 	icon_state = "white"
 	},
 /area/wizard_station)
+"Cv" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "Cx" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/sniperrifle,
@@ -5604,6 +5711,9 @@
 /obj/machinery/computer/security/nuclear,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"CS" = (
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "CT" = (
 /obj/structure/bed/chair{
 	dir = 1
@@ -5701,6 +5811,10 @@
 "Do" = (
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/mercenary)
+"Dq" = (
+/obj/machinery/door/airlock/alien/blue/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "Ds" = (
 /obj/structure/reagent_dispensers/beerkeg,
 /turf/unsimulated/floor{
@@ -5729,6 +5843,10 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/mercenary)
+"DA" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "DB" = (
 /obj/structure/table/woodentable/holotable,
 /obj/structure/window/reinforced/holowindow,
@@ -5745,11 +5863,6 @@
 /area/syndicate_mothership{
 	name = "\improper Trader Base"
 	})
-"DD" = (
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
 "DE" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -5778,6 +5891,12 @@
 	},
 /turf/space,
 /area/space)
+"DF" = (
+/obj/structure/prop/alien/computer{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "DG" = (
 /obj/machinery/microwave{
 	pixel_x = -1;
@@ -5861,6 +5980,10 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_theatre)
+"DV" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "DY" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/secure/loot,
@@ -5903,12 +6026,6 @@
 /obj/structure/lattice,
 /turf/space,
 /area/space)
-"Ek" = (
-/obj/item/weapon/holder/cat/kitten{
-	name = "Enola"
-	},
-/turf/simulated/shuttle/floor/darkred,
-/area/shuttle/mercenary)
 "Em" = (
 /obj/structure/bed/chair/holochair{
 	dir = 1
@@ -5956,13 +6073,14 @@
 	name = "plating"
 	},
 /area/prison/solitary)
-"Ev" = (
-/obj/item/weapon/storage/box/scattershot/large,
-/obj/item/weapon/gun/projectile/automatic/glock,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
+"Ey" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
+"Ez" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "EB" = (
 /obj/machinery/light/small{
 	dir = 4
@@ -5988,6 +6106,16 @@
 /obj/structure/flora/tree/pine,
 /turf/simulated/floor/holofloor/snow,
 /area/holodeck/holodorm/source_snow)
+"EG" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
 "EI" = (
 /obj/effect/overlay/palmtree_l,
 /turf/simulated/floor/holofloor/beach/sand,
@@ -6055,6 +6183,10 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership)
+"EX" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "EY" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 6
@@ -6081,6 +6213,16 @@
 /obj/item/weapon/bikehorn,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"Fg" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
+"Fh" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "Fi" = (
 /obj/effect/floor_decal/sign/small_7,
 /turf/simulated/floor/holofloor/wood,
@@ -6091,6 +6233,9 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"Fk" = (
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "Fo" = (
 /obj/machinery/door/window{
 	base_state = "right";
@@ -6129,16 +6274,16 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
-"Fu" = (
-/obj/item/weapon/gun/projectile/automatic/stg,
-/turf/unsimulated/floor{
-	icon_state = "dark"
+"Fy" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
+"FF" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
 	},
-/area/vrworld)
-"FJ" = (
-/mob/living/simple_mob/humanoid/merc/melee,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "FM" = (
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
@@ -6184,37 +6329,16 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"FR" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
+"FS" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "FT" = (
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/skipjack)
-"FU" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/shoes/boots/combat,
-/obj/item/clothing/shoes/leg_guard/bulletproof,
-/obj/item/clothing/shoes/leg_guard/laserproof,
-/obj/item/clothing/shoes/leg_guard/combat,
-/obj/item/clothing/suit/armor/combat,
-/obj/item/clothing/gloves/arm_guard/combat,
-/obj/item/clothing/gloves/arm_guard/bulletproof,
-/obj/item/clothing/gloves/arm_guard/laserproof,
-/obj/item/clothing/head/helmet/combat,
-/obj/item/clothing/head/helmet/bulletproof,
-/obj/item/clothing/head/helmet/laserproof,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava/tactical,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/under/tactical,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "FV" = (
 /obj/structure/closet{
 	icon_state = "cabinet_closed"
@@ -6232,6 +6356,9 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
+"FW" = (
+/turf/simulated/shuttle/wall/alien,
+/area/unknown/dorm1)
 "FX" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/stack/material/mhydrogen,
@@ -6287,6 +6414,9 @@
 	},
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/syndicate_elite/mothership)
+"Gp" = (
+/turf/simulated/shuttle/wall/alien/blue/hard_corner,
+/area/unknown/dorm6)
 "Gr" = (
 /obj/machinery/door/window{
 	dir = 8;
@@ -6300,12 +6430,10 @@
 /obj/item/weapon/deck/cards,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
-"Gt" = (
-/obj/item/weapon/gun/projectile/automatic/stg,
-/turf/unsimulated/floor{
-	icon_state = "freezerfloor"
-	},
-/area/vrworld)
+"Gu" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "Gv" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 8
@@ -6353,6 +6481,28 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"GJ" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "GK" = (
 /obj/machinery/power/emitter{
 	anchored = 1;
@@ -6376,6 +6526,9 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"GP" = (
+/turf/simulated/shuttle/wall/alien/blue,
+/area/unknown/dorm5)
 "GQ" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -6415,6 +6568,12 @@
 	},
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
+"GS" = (
+/obj/structure/prop/alien/computer/hybrid{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "GT" = (
 /turf/unsimulated/beach/coastline,
 /area/beach)
@@ -6476,6 +6635,9 @@
 	},
 /turf/space,
 /area/space)
+"Hf" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "Hg" = (
 /obj/structure/table/woodentable,
 /obj/machinery/librarycomp{
@@ -6498,6 +6660,10 @@
 /obj/item/weapon/rig/industrial,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
+"Hk" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "Hl" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/unsimulated/floor{
@@ -6584,31 +6750,6 @@
 "Hz" = (
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_theatre)
-"HB" = (
-/obj/structure/closet,
-/obj/item/clothing/suit/armor/laserproof,
-/obj/item/clothing/suit/armor/bulletproof,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/shoes/boots/combat,
-/obj/item/clothing/shoes/leg_guard/bulletproof,
-/obj/item/clothing/shoes/leg_guard/laserproof,
-/obj/item/clothing/shoes/leg_guard/combat,
-/obj/item/clothing/suit/armor/combat,
-/obj/item/clothing/gloves/arm_guard/combat,
-/obj/item/clothing/gloves/arm_guard/bulletproof,
-/obj/item/clothing/gloves/arm_guard/laserproof,
-/obj/item/clothing/head/helmet/combat,
-/obj/item/clothing/head/helmet/bulletproof,
-/obj/item/clothing/head/helmet/laserproof,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava,
-/obj/item/clothing/mask/balaclava/tactical,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/clothing/under/tactical,
-/obj/item/clothing/under/tactical,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "HD" = (
 /obj/structure/closet,
 /turf/unsimulated/beach/sand,
@@ -6622,10 +6763,6 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership)
-"HF" = (
-/obj/item/weapon/gun/energy/x01,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "HG" = (
 /obj/machinery/door/blast/shutters{
 	density = 0;
@@ -6832,6 +6969,9 @@
 "Iy" = (
 /turf/simulated/floor/wood,
 /area/syndicate_mothership)
+"IC" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "II" = (
 /turf/unsimulated/beach/sand{
 	icon_state = "beach"
@@ -6889,6 +7029,15 @@
 /obj/structure/shuttle/engine/propulsion,
 /turf/simulated/shuttle/plating/airless/carry,
 /area/syndicate_mothership)
+"Ja" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/unknown/dorm3)
+"Jc" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "Jd" = (
 /obj/effect/floor_decal/carpet{
 	dir = 5
@@ -6975,13 +7124,6 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/holodorm/source_seating)
-"Jx" = (
-/obj/random/multiple/gun/projectile/shotgun,
-/obj/item/weapon/storage/box/scattershot/large,
-/turf/unsimulated/floor{
-	icon_state = "lino"
-	},
-/area/vrworld)
 "Jy" = (
 /obj/effect/step_trigger/teleporter/random{
 	affect_ghosts = 1;
@@ -7012,10 +7154,11 @@
 /obj/machinery/vending/tool,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"JE" = (
-/obj/item/weapon/gun/projectile/automatic/glock,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
+"JF" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/teleport/hub,
+/turf/simulated/shuttle/floor/voidcraft,
+/area/unknown/dorm1)
 "JI" = (
 /obj/machinery/computer/teleporter,
 /turf/simulated/shuttle/floor{
@@ -7165,6 +7308,10 @@
 "Kr" = (
 /turf/unsimulated/wall,
 /area/alien)
+"Ks" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "Kw" = (
 /obj/machinery/newscaster{
 	layer = 3.3;
@@ -7195,6 +7342,10 @@
 /obj/item/device/defib_kit/compact/combat/loaded,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/skipjack)
+"KD" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm4)
 "KE" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/unsimulated/floor{
@@ -7260,12 +7411,6 @@
 /obj/item/weapon/bedsheet/red,
 /turf/simulated/floor/wood,
 /area/syndicate_mothership)
-"KT" = (
-/obj/item/weapon/storage/box/scattershot/large,
-/turf/unsimulated/floor{
-	icon_state = "steel"
-	},
-/area/vrworld)
 "KU" = (
 /obj/machinery/optable,
 /turf/simulated/shuttle/floor/black,
@@ -7354,10 +7499,6 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership/elite_squad)
-"Lr" = (
-/obj/structure/reagent_dispensers/fueltank/high,
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "Lt" = (
 /obj/structure/shuttle/engine/propulsion{
 	dir = 4;
@@ -7365,10 +7506,6 @@
 	},
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/trade/centcom)
-"Lv" = (
-/obj/random/tetheraid,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "Lw" = (
 /obj/structure/holostool,
 /obj/effect/floor_decal/carpet{
@@ -7652,6 +7789,14 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"ML" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
+"MR" = (
+/obj/structure/prop/alien/dispenser,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "MT" = (
 /obj/machinery/door/airlock/vault{
 	name = "Armory";
@@ -7704,7 +7849,7 @@
 /obj/item/clothing/head/collectable/pirate,
 /obj/item/clothing/head/collectable/wizard,
 /obj/item/clothing/head/collectable/xenom,
-/obj/item/clothing/head/cowboy_hat,
+/obj/item/clothing/head/cowboy,
 /obj/item/clothing/head/pin/flower/violet,
 /obj/item/clothing/head/pin/flower/blue,
 /obj/item/clothing/head/pin/flower/orange,
@@ -7772,6 +7917,13 @@
 	},
 /turf/space/transit/east,
 /area/space)
+"Np" = (
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
+"Nt" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "Nu" = (
 /obj/machinery/computer/arcade/orion_trail,
 /turf/unsimulated/floor{
@@ -7796,6 +7948,12 @@
 /obj/structure/flora/grass/green,
 /turf/simulated/floor/holofloor/snow,
 /area/holodeck/source_snowfield)
+"NF" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "NH" = (
 /obj/effect/landmark/start{
 	name = "wizard"
@@ -7815,20 +7973,6 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
-"NK" = (
-/obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/device/defib_kit/compact/combat,
-/obj/machinery/light/small{
-	dir = 4
-	},
-/turf/unsimulated/floor/steel,
-/area/vrworld)
 "NL" = (
 /obj/structure/window/reinforced,
 /obj/structure/window/reinforced{
@@ -7895,6 +8039,10 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/mercenary)
+"Od" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "Oe" = (
 /obj/structure/window/reinforced{
 	dir = 4
@@ -8015,14 +8163,6 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/skipjack)
-"OF" = (
-/mob/living/simple_mob/humanoid/russian/ranged{
-	faction = "syndicate"
-	},
-/turf/unsimulated/floor{
-	icon_state = "steel"
-	},
-/area/vrworld)
 "OI" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin,
@@ -8048,6 +8188,10 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"OO" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm2)
 "OP" = (
 /obj/machinery/door/blast/shutters{
 	dir = 8;
@@ -8155,6 +8299,32 @@
 /obj/machinery/microwave,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"Pe" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
+"Pg" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "Pi" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 6
@@ -8212,6 +8382,16 @@
 /obj/item/weapon/gun/projectile/revolver/mateba,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"Pz" = (
+/obj/machinery/shower{
+	pixel_y = 13
+	},
+/obj/structure/curtain/open/shower,
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 5
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "PB" = (
 /obj/structure/table/standard,
 /obj/item/weapon/tool/screwdriver,
@@ -8233,6 +8413,10 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"PJ" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "PK" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/glasses/square,
@@ -8297,10 +8481,6 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
-"PY" = (
-/obj/item/weapon/gun/projectile/lamia,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "Qa" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 8
@@ -8336,14 +8516,14 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
+"Qh" = (
+/obj/structure/table/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "Qi" = (
 /obj/item/toy/chess/pawn_black,
 /turf/simulated/floor/holofloor/wmarble,
 /area/holodeck/source_chess)
-"Qj" = (
-/obj/item/weapon/storage/box/scattershot/large,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "Qm" = (
 /obj/item/robot_parts/l_leg,
 /turf/unsimulated/floor{
@@ -8410,6 +8590,10 @@
 	icon_state = "vault"
 	},
 /area/wizard_station)
+"QH" = (
+/obj/structure/closet/secure_closet/personal,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "QI" = (
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -8428,6 +8612,13 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"QJ" = (
+/obj/item/device/perfect_tele_beacon/stationary{
+	tele_name = "Unknown";
+	tele_network = "unkfive"
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "QK" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -8460,6 +8651,10 @@
 /obj/effect/floor_decal/sign/small_e,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
+"QR" = (
+/obj/structure/closet/alien,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "QT" = (
 /obj/structure/table/standard,
 /obj/item/clothing/gloves/yellow,
@@ -8479,6 +8674,10 @@
 	icon_state = "wood"
 	},
 /area/wizard_station)
+"QY" = (
+/obj/machinery/sleeper/survival_pod,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "Rb" = (
 /obj/machinery/door/window{
 	dir = 1;
@@ -8487,6 +8686,10 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"Rd" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "Rf" = (
 /obj/item/toy/chess/queen_white,
 /turf/simulated/floor/holofloor/wmarble,
@@ -8516,6 +8719,10 @@
 /obj/item/device/multitool,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"Rr" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm1)
 "Rv" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/unsimulated/floor{
@@ -8558,6 +8765,11 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"Ry" = (
+/obj/item/weapon/bedsheet/rddouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "Rz" = (
 /obj/structure/flora/ausbushes/ywflowers,
 /obj/effect/floor_decal/spline/fancy/wood/corner{
@@ -8565,6 +8777,10 @@
 	},
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/source_picnicarea)
+"RA" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "RB" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -8669,6 +8885,9 @@
 /area/syndicate_mothership{
 	name = "\improper Ninja Base"
 	})
+"Sa" = (
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "Sb" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-06"
@@ -8707,12 +8926,6 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
-"Sr" = (
-/obj/machinery/door/airlock,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
 "Ss" = (
 /obj/item/pizzabox/meat,
 /turf/simulated/shuttle/floor/red,
@@ -8729,6 +8942,15 @@
 	icon_state = "lino"
 	},
 /area/wizard_station)
+"SB" = (
+/obj/item/weapon/bedsheet/rddouble,
+/obj/structure/bed/double/padded,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
+"SC" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "SD" = (
 /obj/structure/closet{
 	icon_state = "cabinet_closed"
@@ -8774,6 +8996,10 @@
 /obj/structure/frame/computer,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"SM" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "SO" = (
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/syndicate_elite/mothership)
@@ -8900,6 +9126,9 @@
 	icon_state = "dark"
 	},
 /area/syndicate_mothership)
+"Tr" = (
+/turf/simulated/shuttle/wall/alien/hard_corner,
+/area/unknown/dorm1)
 "Tt" = (
 /obj/structure/table/standard,
 /obj/item/weapon/surgical/cautery,
@@ -8943,6 +9172,10 @@
 	},
 /turf/space/transit/north,
 /area/space)
+"Tx" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
 "TD" = (
 /obj/structure/window/reinforced/holowindow/disappearing,
 /obj/effect/floor_decal/corner/red/full{
@@ -9018,6 +9251,14 @@
 /area/syndicate_mothership{
 	name = "\improper Trader Base"
 	})
+"TY" = (
+/obj/machinery/teleport/station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm4)
+"TZ" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "Ua" = (
 /obj/effect/floor_decal/corner/green/full{
 	dir = 4
@@ -9047,12 +9288,6 @@
 /obj/effect/floor_decal/sign/small_1,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
-"Uk" = (
-/obj/item/weapon/gun/projectile/automatic/tommygun,
-/turf/unsimulated/floor{
-	icon_state = "dark"
-	},
-/area/vrworld)
 "Ul" = (
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_boxingcourt)
@@ -9071,6 +9306,12 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"Up" = (
+/obj/machinery/computer/teleporter{
+	dir = 1
+	},
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
 "Uq" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/simulated/floor/holofloor/grass,
@@ -9094,6 +9335,10 @@
 /obj/structure/filingcabinet/filingcabinet,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
+"UA" = (
+/obj/machinery/recharge_station,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "UG" = (
 /obj/effect/floor_decal/corner/red/full{
 	dir = 1
@@ -9231,11 +9476,6 @@
 /area/syndicate_mothership{
 	name = "\improper Ninja Base"
 	})
-"Vt" = (
-/turf/simulated/wall/cult{
-	can_open = 1
-	},
-/area/vrworld)
 "Vv" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/largecrate/hoverpod,
@@ -9254,10 +9494,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"Vz" = (
-/obj/item/weapon/gun/energy/retro,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "VD" = (
 /obj/structure/table/rack,
 /obj/item/device/suit_cooling_unit,
@@ -9301,6 +9537,10 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
+"VO" = (
+/obj/structure/toilet,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm6)
 "VP" = (
 /obj/structure/table/woodentable,
 /turf/unsimulated/floor{
@@ -9383,7 +9623,7 @@
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_theatre)
 "Wi" = (
-/obj/structure/sign/double/map/right{
+/obj/structure/sign/scenery/map/right{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -9476,7 +9716,7 @@
 	},
 /area/syndicate_mothership)
 "WS" = (
-/obj/structure/sign/double/map/left{
+/obj/structure/sign/scenery/map/left{
 	pixel_y = 32
 	},
 /turf/unsimulated/floor{
@@ -9509,16 +9749,6 @@
 	},
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"Xd" = (
-/obj/fiftyspawner/glass,
-/obj/fiftyspawner/steel,
-/obj/machinery/autolathe{
-	desc = "Your typical Autolathe. It appears to have much more options than your regular one, however...";
-	hacked = 1;
-	name = "Unlocked Autolathe"
-	},
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "Xf" = (
 /obj/machinery/light/small{
 	dir = 1
@@ -9567,9 +9797,6 @@
 "Xm" = (
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
-"Xn" = (
-/turf/unsimulated/wall/cult,
-/area/vrworld)
 "Xo" = (
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/donkpockets{
@@ -9583,6 +9810,9 @@
 "Xq" = (
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_basketball)
+"Xr" = (
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm3)
 "Xs" = (
 /obj/structure/table/rack,
 /obj/item/weapon/tank/jetpack/carbondioxide,
@@ -9606,6 +9836,10 @@
 /obj/structure/bed/chair/holochair,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_courtroom)
+"Xy" = (
+/obj/structure/fans,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm5)
 "Xz" = (
 /obj/structure/table/steel_reinforced,
 /turf/unsimulated/floor{
@@ -9666,7 +9900,7 @@
 "XQ" = (
 /obj/structure/sign/poster{
 	pixel_x = -32;
-	poster_type = "/datum/poster/bay_50"
+	target_poster_decl_path = /decl/poster/bay_50
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
@@ -9680,10 +9914,6 @@
 /obj/machinery/vending/sovietsoda,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"XX" = (
-/obj/item/weapon/gun/energy/gun,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "Yc" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/meter,
@@ -9702,6 +9932,9 @@
 /obj/structure/flora/ausbushes/ywflowers,
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/holodorm/source_garden)
+"Yh" = (
+/turf/simulated/floor/smole/megablocks,
+/area/holodeck/source_smoleworld)
 "Yi" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -9799,6 +10032,28 @@
 	},
 /turf/space,
 /area/space)
+"YG" = (
+/obj/machinery/smartfridge/survival_pod,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu11,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu13,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu10,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/menu9,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/storage/mre/random,
+/obj/item/weapon/towel/random,
+/obj/item/weapon/towel/random,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "YK" = (
 /turf/simulated/shuttle/wall/dark,
 /area/shuttle/mercenary)
@@ -9808,6 +10063,16 @@
 	},
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"YR" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm5)
+"YT" = (
+/obj/structure/prop/alien/computer/hybrid{
+	dir = 8
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm6)
 "YV" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1331;
@@ -9818,6 +10083,10 @@
 /obj/machinery/atmospherics/pipe/simple/visible,
 /turf/simulated/shuttle/floor/darkred,
 /area/shuttle/mercenary)
+"YX" = (
+/obj/structure/prop/alien/power,
+/turf/simulated/shuttle/floor/alienplating,
+/area/unknown/dorm2)
 "YY" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -9873,6 +10142,12 @@
 /obj/item/weapon/storage/firstaid/regular,
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/mercenary)
+"Zd" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm1)
 "Ze" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/paper_bin{
@@ -9929,10 +10204,6 @@
 /area/syndicate_mothership{
 	name = "\improper Raider Base"
 	})
-"Zn" = (
-/obj/machinery/door/airlock,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "Zp" = (
 /obj/structure/window/reinforced/holowindow,
 /obj/machinery/door/window/holowindoor{
@@ -9942,6 +10213,10 @@
 /obj/structure/bed/chair/holochair,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_courtroom)
+"Zq" = (
+/obj/structure/bed/chair/comfy/black,
+/turf/simulated/shuttle/floor/alien,
+/area/unknown/dorm3)
 "Zt" = (
 /obj/item/device/radio/intercom{
 	desc = "Talk through this. Evilly";
@@ -10023,11 +10298,6 @@
 /obj/item/device/kit/paint/ripley,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/trade/centcom)
-"ZG" = (
-/obj/item/weapon/reagent_containers/pill/protein,
-/obj/item/weapon/reagent_containers/pill/protein,
-/turf/unsimulated/floor/techfloor_grid,
-/area/vrworld)
 "ZL" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_x = 32
@@ -10099,26 +10369,26 @@ sv
 sv
 yO
 zR
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 Vh
@@ -10261,26 +10531,26 @@ sv
 sv
 sv
 zR
-Xn
-Lv
-XX
-Xn
-pT
-pT
-pT
-Xn
-pT
-pT
-pT
-PY
-Xn
-kS
-iA
-iC
-iA
-zu
-eW
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -10423,26 +10693,26 @@ sv
 sv
 sv
 zR
-Xn
-pT
-pT
-Xn
-JE
-FJ
-pT
-Xn
-pT
-pT
-pT
-pT
-Xn
-pi
-xP
-xP
-xP
-zu
-lo
-bx
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -10585,26 +10855,26 @@ sv
 sv
 sv
 zR
-Xn
-pT
-pT
-Xn
-pT
-pT
-pT
-Zn
-pT
-pT
-pT
-pT
-rM
-zu
-xP
-xP
-xP
-zu
-gp
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -10747,26 +11017,26 @@ sv
 sv
 sv
 zR
-Xn
-pT
-FJ
-pT
-pT
-pT
-pT
-Xn
-pT
-FJ
-pT
-pT
-Xn
-pi
-xP
-xP
-xP
-zu
-lo
-bx
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -10909,26 +11179,26 @@ sv
 sv
 sv
 zR
-Xn
-to
-pT
-pT
-FJ
-pT
-pT
-Xn
-ZG
-pT
-pT
-Xd
-Xn
-fn
-NK
-HB
-FU
-zu
-eW
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -11071,26 +11341,26 @@ sv
 sv
 sv
 zR
-Xn
-Xn
-Xn
-Zn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -11233,26 +11503,26 @@ sv
 sv
 sv
 zR
-Xn
-jD
-DD
-DD
-Xn
-Lr
-zu
-by
-by
-Xn
-qH
-pT
-pT
-de
-pT
-Xn
-cL
-jY
-jY
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -11395,26 +11665,26 @@ sv
 sv
 sv
 zR
-Xn
-DD
-DD
-DD
-Vt
-zu
-zu
-by
-by
-Xn
-pT
-de
-pT
-pT
-pT
-Xn
-jY
-kB
-jY
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -11557,26 +11827,26 @@ sv
 sv
 sv
 zR
-Xn
-nr
-DD
-DD
-Xn
-hY
-zu
-by
-by
-Xn
-Xn
-Xn
-Xn
-pT
-pT
-pT
-zp
-jY
-jY
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -11719,26 +11989,26 @@ sv
 sv
 sv
 zR
-Xn
-zO
-DD
-DD
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Lv
-pT
-pT
-pT
-rY
-Xn
-Xn
-Xn
-Xn
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -11881,26 +12151,26 @@ sv
 sv
 sv
 zR
-Xn
-Xn
-Xn
-jU
-Xn
-KT
-co
-co
-co
-Xn
-pT
-de
-pT
-HF
-pT
-Xn
-pT
-pT
-zf
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -12043,26 +12313,26 @@ sv
 sv
 sv
 zR
-Xn
-pA
-DD
-DD
-Xn
-co
-OF
-co
-co
-Xn
-Zn
-Xn
-Xn
-pT
-pT
-Xn
-pT
-rY
-pT
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -12205,26 +12475,26 @@ sv
 sv
 sv
 zR
-Xn
-DD
-DD
-DD
-Xn
-co
-co
-co
-co
-Xn
-pT
-pT
-Xn
-pT
-pT
-pT
-pT
-pT
-pT
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -12367,26 +12637,26 @@ sv
 sv
 sv
 zR
-Xn
-jU
-Xn
-Xn
-Xn
-co
-co
-OF
-co
-Zn
-pT
-pT
-Xn
-pT
-rY
-pT
-pT
-rY
-ec
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -12529,26 +12799,26 @@ zR
 zR
 zR
 zR
-Xn
-zO
-DD
-DD
-Xn
-Xn
-Xn
-co
-wI
-Xn
-pT
-fK
-Xn
-Xn
-Xn
-Xn
-Zn
-Xn
-Xn
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -12691,26 +12961,26 @@ zR
 zR
 zR
 zR
-Xn
-DD
-DD
-DD
-DD
-DD
-Xn
-Xn
-Xn
-Xn
-pT
-pT
-Xn
-nv
-df
-Xn
-hS
-hS
-bA
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -12853,26 +13123,26 @@ zR
 zR
 zR
 zR
-Xn
-DD
-dl
-DD
-wW
-DD
-DD
-Jx
-Xn
-Qj
-pT
-Vz
-Xn
-df
-df
-Xn
-hS
-tq
-Gt
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -13015,26 +13285,26 @@ zR
 zR
 zR
 zR
-Xn
-DD
-DD
-DD
-Xn
-DD
-DD
-DD
-Xn
-Xn
-Xn
-Xn
-Xn
-df
-df
-Xn
-hS
-hS
-hS
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -13177,26 +13447,26 @@ zR
 zR
 zR
 zR
-Xn
-DD
-wW
-DD
-Xn
-DD
-DD
-DD
-DD
-Xn
-Uk
-df
-df
-df
-ig
-Xn
-rX
-lH
-hS
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -13339,26 +13609,26 @@ zR
 zR
 zR
 zR
-Xn
-DD
-Xn
-Xn
-Xn
-DD
-DD
-wW
-DD
-Xn
-df
-df
-aJ
-Fu
-df
-Xn
-Xn
-Xn
-Sr
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -13501,26 +13771,26 @@ zR
 zR
 zR
 zR
-Xn
-Jx
-wW
-uA
-Xn
-DD
-wW
-DD
-DD
-Sr
-df
-df
-df
-df
-df
-df
-df
-df
-df
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 tE
@@ -13663,26 +13933,26 @@ zR
 zR
 zR
 zR
-Xn
-DD
-DD
-Ev
-Xn
-DD
-DD
-DD
-DD
-Xn
-df
-df
-df
-df
-aJ
-df
-df
-df
-jy
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 Vh
 Vh
@@ -13825,26 +14095,26 @@ zR
 zR
 zR
 zR
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
-Xn
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
+zR
 zR
 zR
 zR
@@ -16810,41 +17080,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -16972,41 +17242,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -17134,41 +17404,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+Tr
+FW
+Tr
+FW
+FW
+FW
+FW
+FW
+FW
+Tr
+FW
+FW
+Tr
+zQ
+zQ
+zQ
+zQ
+zQ
+iu
+vH
+iu
+vH
+vH
+vH
+vH
+vH
+vH
+iu
+vH
+vH
+iu
+zQ
+zQ
 zR
 zR
 Tw
@@ -17296,41 +17566,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+FW
+Rr
+Tr
+QY
+ip
+Ez
+qy
+tD
+tD
+Tr
+Np
+JF
+FW
+zQ
+zQ
+zQ
+zQ
+zQ
+vH
+Ey
+iu
+Gu
+hl
+KD
+uW
+nb
+nb
+iu
+Fk
+ln
+vH
+zQ
+zQ
 zR
 zR
 Tw
@@ -17458,41 +17728,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+FW
+Hf
+Ai
+Np
+Hf
+ob
+Hf
+Hf
+Np
+Ai
+Np
+at
+FW
+zQ
+zQ
+zQ
+zQ
+zQ
+vH
+yC
+ik
+Fk
+yC
+uq
+yC
+yC
+Fk
+ik
+Fk
+TY
+vH
+zQ
+zQ
 zR
 zR
 Tw
@@ -17620,41 +17890,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+FW
+nj
+Tr
+RA
+Hf
+Hf
+Hf
+Hf
+Zd
+Tr
+Np
+yD
+FW
+zQ
+zQ
+zQ
+zQ
+zQ
+vH
+Tx
+iu
+eS
+yC
+yC
+yC
+yC
+oX
+iu
+Fk
+hM
+vH
+zQ
+zQ
 zR
 zR
 Tw
@@ -17782,41 +18052,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+FW
+tN
+FW
+my
+Np
+Ry
+hZ
+ML
+id
+FW
+Np
+sl
+FW
+zQ
+zQ
+zQ
+zQ
+zQ
+vH
+EG
+vH
+fF
+Fk
+af
+As
+kj
+hV
+vH
+Fk
+wn
+vH
+zQ
+zQ
 zR
 zR
 Tw
@@ -17944,41 +18214,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+Tr
+FW
+Tr
+FW
+FW
+FW
+FW
+FW
+FW
+Tr
+FW
+FW
+Tr
+zQ
+zQ
+zQ
+zQ
+zQ
+iu
+vH
+iu
+vH
+vH
+vH
+vH
+vH
+vH
+iu
+vH
+vH
+iu
+zQ
+zQ
 zR
 zR
 Tw
@@ -18106,41 +18376,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -18268,41 +18538,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -18430,41 +18700,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -18592,41 +18862,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -18754,41 +19024,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -18916,41 +19186,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -19078,41 +19348,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+Ce
+mo
+Ce
+mo
+mo
+mo
+mo
+mo
+mo
+Ce
+mo
+mo
+Ce
+zQ
+zQ
+zQ
+zQ
+zQ
+gr
+GP
+gr
+GP
+GP
+GP
+GP
+GP
+GP
+gr
+GP
+GP
+gr
+zQ
+zQ
 zR
 zR
 Tw
@@ -19240,41 +19510,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+mo
+rL
+Ce
+pc
+OO
+Ks
+DF
+zX
+zX
+Ce
+ug
+mb
+mo
+zQ
+zQ
+zQ
+zQ
+zQ
+GP
+DV
+gr
+ev
+hF
+ld
+GS
+Fy
+Fy
+gr
+Sa
+aP
+GP
+zQ
+zQ
 zR
 zR
 Tw
@@ -19402,41 +19672,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+mo
+IC
+TZ
+ug
+IC
+mu
+IC
+IC
+ug
+TZ
+ug
+Jc
+mo
+zQ
+zQ
+zQ
+zQ
+zQ
+GP
+uk
+Dq
+Sa
+uk
+QJ
+uk
+uk
+Sa
+Dq
+Sa
+SM
+GP
+zQ
+zQ
 zR
 zR
 Tw
@@ -19564,41 +19834,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+mo
+FS
+Ce
+Nt
+IC
+IC
+IC
+IC
+lt
+Ce
+ug
+eh
+mo
+zQ
+zQ
+zQ
+zQ
+zQ
+GP
+up
+gr
+Xy
+uk
+uk
+uk
+uk
+Ab
+gr
+Sa
+Up
+GP
+zQ
+zQ
 zR
 zR
 Tw
@@ -19726,41 +19996,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+mo
+Pz
+mo
+GJ
+ug
+dA
+DA
+oz
+Fg
+mo
+ug
+YX
+mo
+zQ
+zQ
+zQ
+zQ
+zQ
+GP
+eL
+GP
+so
+Sa
+sw
+MR
+SC
+qt
+GP
+Sa
+YR
+GP
+zQ
+zQ
 zR
 zR
 Tw
@@ -19888,41 +20158,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+Ce
+mo
+Ce
+mo
+mo
+mo
+mo
+mo
+mo
+Ce
+mo
+mo
+Ce
+zQ
+zQ
+zQ
+zQ
+zQ
+gr
+GP
+gr
+GP
+GP
+GP
+GP
+GP
+GP
+gr
+GP
+GP
+gr
+zQ
+zQ
 zR
 zR
 Tw
@@ -20050,41 +20320,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -20212,41 +20482,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -20374,41 +20644,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -20536,41 +20806,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -20698,41 +20968,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 Tw
@@ -20860,41 +21130,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 zR
 zR
@@ -21022,41 +21292,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+kg
+jR
+kg
+jR
+jR
+jR
+jR
+jR
+jR
+kg
+jR
+jR
+kg
+zQ
+zQ
+zQ
+zQ
+zQ
+Gp
+bz
+Gp
+bz
+bz
+bz
+bz
+bz
+bz
+Gp
+bz
+bz
+Gp
+zQ
+zQ
 zR
 Tw
 Tw
@@ -21184,41 +21454,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+jR
+Od
+kg
+Pg
+Qh
+PJ
+rr
+QH
+QH
+kg
+xB
+Ja
+jR
+zQ
+zQ
+zQ
+zQ
+zQ
+bz
+UA
+Gp
+gm
+wP
+QR
+YT
+br
+br
+Gp
+CS
+uz
+bz
+zQ
+zQ
 zR
 Tw
 Qf
@@ -21346,41 +21616,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+jR
+Xr
+wq
+xB
+Xr
+zn
+Xr
+Xr
+xB
+wq
+xB
+gq
+jR
+zQ
+zQ
+zQ
+zQ
+zQ
+bz
+FR
+sf
+CS
+FR
+pB
+FR
+FR
+CS
+sf
+CS
+EX
+bz
+zQ
+zQ
 zR
 Tw
 Qf
@@ -21508,41 +21778,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+jR
+Rd
+kg
+Cv
+Xr
+Xr
+Xr
+Xr
+Fh
+kg
+xB
+NF
+jR
+zQ
+zQ
+zQ
+zQ
+zQ
+bz
+VO
+Gp
+Hk
+FR
+FR
+FR
+FR
+FF
+Gp
+CS
+uT
+bz
+zQ
+zQ
 zR
 Tw
 Qf
@@ -21597,6 +21867,17 @@ SU
 SU
 SU
 Vh
+SU
+SU
+SU
+SU
+SU
+SU
+SU
+SU
+SU
+SU
+Vh
 zR
 zR
 zR
@@ -21659,52 +21940,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+jR
+pE
+jR
+Pe
+xB
+SB
+ku
+Zq
+lk
+jR
+xB
+kX
+jR
+zQ
+zQ
+zQ
+zQ
+zQ
+bz
+zy
+bz
+YG
+CS
+lR
+gU
+jz
+tv
+bz
+CS
+fH
+bz
+zQ
+zQ
 zR
 Tw
 Qf
@@ -21758,6 +22028,17 @@ ao
 JT
 Uj
 MC
+Bf
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
 DT
 zR
 zR
@@ -21821,52 +22102,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+kg
+jR
+kg
+jR
+jR
+jR
+jR
+jR
+jR
+kg
+jR
+jR
+kg
+zQ
+zQ
+zQ
+zQ
+zQ
+Gp
+bz
+Gp
+bz
+bz
+bz
+bz
+bz
+bz
+Gp
+bz
+bz
+Gp
+zQ
+zQ
 zR
 Tw
 Qf
@@ -21920,6 +22190,17 @@ nP
 Bd
 Ta
 sS
+Bf
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
 DT
 zR
 zR
@@ -21983,52 +22264,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 Tw
 Qf
@@ -22082,6 +22352,17 @@ wS
 bQ
 hW
 cG
+Bf
+hu
+hu
+Yh
+Yh
+Yh
+Yh
+Yh
+Yh
+hu
+hu
 DT
 zR
 zR
@@ -22145,52 +22426,41 @@ zR
 zR
 zR
 zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
+zQ
 zR
 Tw
 Qf
@@ -22244,18 +22514,18 @@ nP
 Bd
 dY
 LN
+Bf
+hu
+hu
+Yh
+Yh
+Yh
+Yh
+Yh
+Yh
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -22406,18 +22676,18 @@ wS
 bQ
 Rf
 Wz
+Bf
+hu
+hu
+Yh
+Yh
+Yh
+Yh
+Yh
+Yh
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -22568,18 +22838,18 @@ nP
 Bd
 bf
 QO
+Bf
+hu
+hu
+Yh
+Yh
+Yh
+Yh
+Yh
+Yh
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -22730,18 +23000,18 @@ wS
 bQ
 Je
 cy
+Bf
+hu
+hu
+Yh
+Yh
+Yh
+Yh
+Yh
+Yh
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -22892,18 +23162,18 @@ nP
 Bd
 tc
 Hy
+Bf
+hu
+hu
+Yh
+Yh
+Yh
+Yh
+Yh
+Yh
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -23054,18 +23324,18 @@ wS
 bQ
 rp
 bk
+Bf
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -23216,18 +23486,18 @@ MC
 MC
 MC
 MC
+Bf
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
+hu
 DT
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
-zR
 zR
 zR
 zR
@@ -23379,16 +23649,16 @@ mU
 mU
 mU
 Vh
-SU
-SU
-SU
-SU
-SU
-SU
-SU
-SU
-SU
-SU
+sr
+sr
+sr
+sr
+sr
+sr
+sr
+sr
+sr
+sr
 Vh
 zR
 zR
@@ -30591,7 +30861,7 @@ GO
 Xm
 Fd
 Xm
-Ek
+Xm
 Xm
 Xm
 Xm

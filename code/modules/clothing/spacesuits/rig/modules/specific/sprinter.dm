@@ -3,7 +3,7 @@
 	desc = "A robust hardsuit-integrated sprint module."
 	icon_state = "sprinter"
 
-	var/sprint_speed = 1
+	var/sprint_speed = 0.5
 
 	toggleable = 1
 	disruptable = 1
@@ -27,7 +27,7 @@
 
 	var/mob/living/carbon/human/H = holder.wearer
 
-	to_chat(H, "<font color='blue'><b>You activate the suit's sprint mode.</b></font>")
+	to_chat(H, span_blue("<b>You activate the suit's sprint mode.</b>"))
 
 	holder.slowdown = initial(holder.slowdown) - sprint_speed
 

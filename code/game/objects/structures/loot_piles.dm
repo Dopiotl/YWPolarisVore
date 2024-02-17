@@ -21,6 +21,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	icon_state = "randompile"
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 
 	var/list/icon_states_to_use = list() // List of icon states the pile can choose from on initialization. If empty or null, it will stay the initial icon_state.
 
@@ -189,6 +190,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/clothing/under/harness,
 		/obj/item/clothing/accessory/storage/webbing,
 		/obj/item/weapon/spacecash/c1,
+		/obj/item/weapon/spacecash/c5,
 		/obj/item/weapon/spacecash/c10,
 		/obj/item/weapon/spacecash/c20,
 		/obj/item/weapon/camera_assembly,
@@ -247,15 +249,14 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/trash/waffles,
 		/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
 		/obj/item/weapon/reagent_containers/food/snacks/mysterysoup,
-		/obj/item/weapon/reagent_containers/food/snacks/hotdog/old,
+		/obj/item/weapon/reagent_containers/food/snacks/old/hotdog,
 		/obj/item/pizzabox/old,
 		/obj/item/ammo_casing/spent,
 		/obj/item/stack/rods{amount = 5},
 		/obj/item/stack/material/steel{amount = 5},
 		/obj/item/stack/material/cardboard{amount = 5},
-		/obj/item/weapon/contraband/poster,
-		/obj/item/weapon/contraband/poster/custom,
-		/obj/item/weapon/material/wirerod,
+		/obj/item/poster,
+		/obj/item/poster/custom,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/paper/crumpled,
 		/obj/item/weapon/paper/crumpled/bloody
@@ -300,8 +301,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 	uncommon_loot = list(
 		/obj/item/weapon/storage/box/sinpockets,
-		/obj/item/weapon/storage/box/practiceshells,
-		/obj/item/weapon/storage/box/blanks,
+		/obj/item/ammo_magazine/ammo_box/b12g/practice,
+		/obj/item/ammo_magazine/ammo_box/b12g/blank,
 		/obj/item/weapon/storage/box/smokes,
 		/obj/item/weapon/storage/box/metalfoam,
 		/obj/item/weapon/storage/box/handcuffs,
@@ -311,8 +312,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	rare_loot = list(
 		/obj/item/weapon/storage/box/flashbangs,
 		/obj/item/weapon/storage/box/empslite,
-		/obj/item/weapon/storage/box/flashshells,
-		/obj/item/weapon/storage/box/stunshells,
+		/obj/item/ammo_magazine/ammo_box/b12g/flash,
+		/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 		/obj/item/weapon/storage/box/teargas
 	)
 
@@ -348,7 +349,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/stock_parts/subspace/treatment,
 		/obj/item/frame,
 		/obj/item/broken_device/random,
-		/obj/item/borg/upgrade/restart,
+		/obj/item/borg/upgrade/utility/restart,
 		/obj/item/weapon/cell,
 		/obj/item/weapon/cell/high,
 		/obj/item/weapon/cell/device,
@@ -406,10 +407,10 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/device/tvcamera,
 		/obj/item/device/universal_translator,
 		/obj/item/device/aicard,
-		/obj/item/borg/upgrade/jetpack,
-		/obj/item/borg/upgrade/advhealth,
-		/obj/item/borg/upgrade/vtec,
-		/obj/item/borg/upgrade/tasercooler,
+		/obj/item/borg/upgrade/advanced/jetpack,
+		/obj/item/borg/upgrade/advanced/advhealth,
+		/obj/item/borg/upgrade/basic/vtec,
+		/obj/item/borg/upgrade/restricted/tasercooler,
 		/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser,
 		/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill,
 		/obj/item/rig_module/device/drill,
@@ -916,11 +917,11 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 	rare_loot = list(
 		/obj/item/weapon/cell/super,
-		/obj/item/borg/upgrade/restart,
-		/obj/item/borg/upgrade/jetpack,
-		/obj/item/borg/upgrade/tasercooler,
-		/obj/item/borg/upgrade/syndicate,
-		/obj/item/borg/upgrade/vtec
+		/obj/item/borg/upgrade/utility/restart,
+		/obj/item/borg/upgrade/advanced/jetpack,
+		/obj/item/borg/upgrade/restricted/tasercooler,
+		/obj/item/borg/upgrade/basic/syndicate,
+		/obj/item/borg/upgrade/basic/vtec
 		)
 
 // Contains old mediciation, most of it unidentified and has a good chance of being useless.

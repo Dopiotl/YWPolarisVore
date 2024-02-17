@@ -26,14 +26,15 @@
 //Hoooo boy.
 /datum/riding/taur/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
-	var/scale_x = L.icon_scale_x
-	var/scale_y = L.icon_scale_y
+	var/scale_x = L.icon_scale_x * L.size_multiplier //VOREStation Edit Start
+	var/scale_y = L.icon_scale_y * L.size_multiplier
+	var/scale_difference = (L.size_multiplier - rider_size) * 10
 
 	var/list/values = list(
-		"[NORTH]" = list(0, 8*scale_y, ABOVE_MOB_LAYER),
-		"[SOUTH]" = list(0, 8*scale_y, BELOW_MOB_LAYER),
-		"[EAST]" = list(-10*scale_x, 8*scale_y, ABOVE_MOB_LAYER),
-		"[WEST]" = list(10*scale_x, 8*scale_y, ABOVE_MOB_LAYER))
+		"[NORTH]" = list(0, 8*scale_y + scale_difference, ABOVE_MOB_LAYER),
+		"[SOUTH]" = list(0, 8*scale_y + scale_difference, BELOW_MOB_LAYER),
+		"[EAST]" = list(-10*scale_x, 8*scale_y + scale_difference, ABOVE_MOB_LAYER),
+		"[WEST]" = list(10*scale_x, 8*scale_y + scale_difference, ABOVE_MOB_LAYER)) //VOREStation Edit End
 
 	return values
 
@@ -47,7 +48,7 @@
 /mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
-	if(!isTaurTail(tail_style))
+	if(!istaurtail(tail_style))
 		return FALSE
 	else
 		var/datum/sprite_accessory/tail/taur/taurtype = tail_style
@@ -68,12 +69,13 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(isTaurTail(H.tail_style))
+	if(istaurtail(H.tail_style))
 		to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
 
 	. = ..()
 	if(.)
+		riding_datum.rider_size = M.size_multiplier
 		buckled_mobs[M] = "riding"
 
 /mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
@@ -123,6 +125,7 @@
 	icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
 	do_colouration = 1 // Yes color, using tail color
 	color_blend_mode = ICON_MULTIPLY  // The sprites for taurs are designed for ICON_MULTIPLY
+	em_block = TRUE
 
 	var/icon/suit_sprites = null //File for suit sprites, if any.
 	var/icon/under_sprites = null
@@ -187,6 +190,11 @@
 	under_sprites = 'icons/mob/taursuits_horse.dmi'
 	suit_sprites = 'icons/mob/taursuits_horse.dmi'
 	icon_sprite_tag = "horse"
+
+/datum/sprite_accessory/tail/taur/horse/horse_2c
+	name = "Horse & colorable tail (Taur)"
+	extra_overlay = "horse_markings"
+	//icon_sprite_tag = "wolf2c"
 
 /datum/sprite_accessory/tail/taur/horse/synthhorse
 	name = "SynthHorse dual-color (Taur)"
@@ -277,6 +285,11 @@
 	suit_sprites = 'icons/mob/taursuits_slug.dmi'
 	icon_sprite_tag = "slug"
 
+/datum/sprite_accessory/tail/taur/slug/snail
+	name = "Snail (Taur)"
+	icon_state = "slug_s"
+	extra_overlay = "snail_shell_marking"
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog (Taur)"
 	icon_state = "frog_s"
@@ -326,20 +339,20 @@
 	can_ride = 0
 	icon_sprite_tag = "mermaid"
 
-/datum/sprite_accessory/tail/taur/shadekin_tail
-	name = "Shadekin Tail"
-	icon_state = "shadekin_s"
-	can_ride = 0
-	hide_body_parts = null
-	clip_mask_icon = null
-	clip_mask_state = null
-	//apply_restrictions = TRUE
-	//species_allowed = list(SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW)
+/datum/sprite_accessory/tail/taur/noodle
+	name = "Eastern Dragon (Taur)"
+	icon_state = "noodle_s"
+	extra_overlay = "noodle_markings"
+	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
+	clip_mask_state = "taur_clip_mask_noodle"
+	icon_sprite_tag = "noodle"
 
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_2c
-	name = "Shadekin Tail (dual color)"
-	extra_overlay = "shadekin_markings"
+/datum/sprite_accessory/tail/taur/zorgoia
+	name = "Zorgoia (Taur)"
+	icon = 'icons/mob/human_races/sprite_accessories/taurs.dmi'
+	icon_state = "zorgoia"
+	extra_overlay = "zorgoia_fluff"
 
-/datum/sprite_accessory/tail/taur/shadekin_tail/shadekin_tail_long
-	name = "Shadekin Long Tail"
-	icon_state = "shadekin_long_s"
+/datum/sprite_accessory/tail/taur/zorgoia/fat
+	name = "Zorgoia (Fat Taur)"
+	extra_overlay = "zorgoia_fat"

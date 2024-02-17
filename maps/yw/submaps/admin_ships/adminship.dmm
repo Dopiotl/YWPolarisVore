@@ -89,7 +89,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/adminships/engine_bay)
 "bN" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/shuttle/adminshuttle)
@@ -380,7 +380,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ship/adminships/main_corridor)
 "gj" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/int_door,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/shuttle/adminshuttle)
@@ -2416,10 +2416,10 @@
 /area/ship/adminships/kitchen_dining)
 "OK" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 30
 	},
@@ -2483,9 +2483,9 @@
 /area/ship/adminships/engine_bay)
 "PS" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunammo,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/m45/ap,
 /obj/item/ammo_magazine/m45/ap,
 /obj/item/ammo_magazine/m45/ap,
@@ -2592,7 +2592,7 @@
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/shuttle/adminshuttle)
 "Ry" = (
-/obj/machinery/door/airlock/external/glass,
+/obj/machinery/door/airlock/glass_external,
 /obj/effect/map_helper/airlock/door/ext_door,
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/shuttle/adminshuttle)

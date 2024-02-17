@@ -19,10 +19,10 @@
 	var/list/reagent_names = list()
 
 /obj/item/weapon/reagent_containers/borghypo/surgeon
-	reagent_ids = list("tricordrazine", "inaprovaline", "oxycodone", "dexalin" ,"spaceacillin")
+	reagent_ids = list("inaprovaline", "dexalin", "tricordrazine", "spaceacillin", "oxycodone")
 
 /obj/item/weapon/reagent_containers/borghypo/crisis
-	reagent_ids = list("tricordrazine", "inaprovaline", "anti_toxin", "tramadol", "dexalin" ,"spaceacillin")
+	reagent_ids = list("inaprovaline", "bicaridine", "kelotane", "anti_toxin", "dexalin", "tricordrazine", "spaceacillin", "tramadol")
 
 /obj/item/weapon/reagent_containers/borghypo/lost
 	reagent_ids = list("tricordrazine", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
@@ -98,7 +98,7 @@
 	return
 
 /obj/item/weapon/reagent_containers/borghypo/attack_self(mob/user as mob) //Change the mode
-	var/t = ""
+	var/t = "<span class='infoplain'>"
 	for(var/i = 1 to reagent_ids.len)
 		if(t)
 			t += ", "
@@ -106,7 +106,7 @@
 			t += "<b>[reagent_names[i]]</b>"
 		else
 			t += "<a href='?src=\ref[src];reagent=[reagent_ids[i]]'>[reagent_names[i]]</a>"
-	t = "Available reagents: [t]."
+	t = "Available reagents: [t].</span>"
 	to_chat(user,t)
 
 	return
@@ -136,13 +136,14 @@
 	volume = 60
 	possible_transfer_amounts = list(5, 10, 20, 30)
 	reagent_ids = list("ale",
-		"cider",
 		"beer",
 		"berryjuice",
 		"bitters",
+		"cider",
 		"coffee",
 		"cognac",
 		"cola",
+		"cream",
 		"dr_gibb",
 		"egg",
 		"gin",
@@ -158,6 +159,7 @@
 		"milk",
 		"mint",
 		"orangejuice",
+		"redwine",
 		"rum",
 		"sake",
 		"sodawater",
@@ -175,8 +177,7 @@
 		"vodka",
 		"water",
 		"watermelonjuice",
-		"whiskey",
-		"wine")
+		"whiskey")
 
 /obj/item/weapon/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
 	return

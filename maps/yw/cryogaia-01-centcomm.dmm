@@ -432,6 +432,7 @@
 /area/centcom/evac)
 "bU" = (
 /obj/structure/closet/wardrobe/ert,
+/obj/item/device/mapping_unit/ert,
 /turf/unsimulated/floor{
 	dir = 5;
 	icon_state = "vault"
@@ -858,12 +859,12 @@
 /area/centcom/security)
 "dL" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/flashshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/stunshells,
-/obj/item/weapon/storage/box/beanbags,
-/obj/item/weapon/storage/box/beanbags,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/flash,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -2340,7 +2341,7 @@
 	},
 /area/centcom/specops)
 "kJ" = (
-/obj/structure/device/piano{
+/obj/structure/musician/piano{
 	dir = 4
 	},
 /obj/effect/floor_decal/corner/yellow/diagonal,
@@ -4325,7 +4326,7 @@
 /turf/simulated/shuttle/floor/yellow,
 /area/centcom/evac)
 "tN" = (
-/obj/machinery/smartfridge/chemistry/virology,
+/obj/machinery/smartfridge/virology,
 /obj/effect/floor_decal/corner/green{
 	dir = 9
 	},
@@ -4979,7 +4980,7 @@
 /area/centcom/evac)
 "wN" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /turf/simulated/shuttle/floor,
@@ -7011,7 +7012,7 @@
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/weapon/storage/fancy/cigarettes=10,/obj/item/weapon/storage/box/matches=10,/obj/item/weapon/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/unsimulated/floor{
 	dir = 5;
@@ -7925,7 +7926,7 @@
 /area/tdome/tdomeobserve)
 "Kl" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /obj/machinery/door/airlock/external{
@@ -8382,7 +8383,7 @@
 /area/centcom/specops)
 "Mw" = (
 /obj/machinery/conveyor{
-	dir = 4;
+	dir = 8;
 	id = "QMLoad2"
 	},
 /obj/effect/shuttle_landmark/premade/supply/centcom,
@@ -9944,10 +9945,10 @@
 	dir = 8
 	},
 /obj/structure/window/reinforced,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunshells,
-/obj/item/weapon/storage/box/shotgunammo,
-/obj/item/weapon/storage/box/shotgunammo,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
